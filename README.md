@@ -2,6 +2,9 @@
 
 A Flutter app for doing your shopping.
 
+## Branch Coding
+Branch criada para fazer as alterações principais no app. Na master só tem o que foi feito e está funcionando.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
