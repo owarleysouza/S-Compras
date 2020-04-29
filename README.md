@@ -1,6 +1,6 @@
-# minhas_compras
+# App Minhas Compras
 
-A new Flutter project.
+A Flutter app for doing your shopping.
 
 ## Getting Started
 
