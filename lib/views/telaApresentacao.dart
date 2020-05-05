@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/views/login.dart';
 
 class TelaApresentacao extends StatefulWidget {
   @override
@@ -10,13 +11,24 @@ class _TelaApresentacaoState extends State<TelaApresentacao> {
   Widget build(BuildContext context) {
     return Container(
       child: Container(
-          width: double.infinity,
-          color: Colors.white,
-          child: Center(
-              child: Text(
-            "Tela Apresentacao",
-            style: TextStyle(color: Colors.blueGrey),
-          ))),
+        width: double.infinity,
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Tela Apresentacao",
+              style: TextStyle(color: Colors.blueGrey, fontSize: 20),
+            ),
+            RaisedButton(
+                child: Text("Logar"),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Login()));
+                })
+          ],
+        ),
+      ),
     );
   }
 }
