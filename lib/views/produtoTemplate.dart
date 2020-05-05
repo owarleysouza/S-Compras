@@ -10,10 +10,12 @@ class ProdutoTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           //icone/imagem,
           Text(nome),
-          Text("$quantidade x")
+          Text("----"),
+          Text("${quantidade}x")
         ],
       ),
     );
