@@ -30,7 +30,15 @@ class _TelaInicialState extends State<TelaInicial> {
       appBar: AppBar(
         title: Text("Minhas Compras"),
       ),
-      body: 
+      body: temProdutonaLista
+          ? SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: <Widget>[Categoria(produtos: produtos)],
+                ),
+              ),
+            )
+          : Container(child: Text("Ainda nenhum produto")),
     );
   }
 }
