@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/* É basicamente a tela que representa e cria a estrutura basica de um produto, e retorna isso para categoria,
+que vai retornar para tela inicial*/
 class ProdutoTemplate extends StatelessWidget {
   final String nome;
   final int quantidade;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/views/login.dart';
 
+//Tela de Apresentacao onde serão mostradas as funcionalidades do app
 class TelaApresentacao extends StatefulWidget {
   @override
   _TelaApresentacaoState createState() => _TelaApresentacaoState();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/views/telaInicial.dart';
 
+//Tela de Login do app
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();

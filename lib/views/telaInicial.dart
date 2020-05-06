@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/views/categoria.dart';
 
+/*Tela inicial do app. Aqui basicamente é a tela onde são mostrados os produtos nas suas respectivas categorias.
+A mesma tem basicamente a lista de produtos, e a sua estrutura principal chama o widget categoria para ser mostrada nela 
+*/
 class TelaInicial extends StatefulWidget {
   @override
   _TelaInicialState createState() => _TelaInicialState();
