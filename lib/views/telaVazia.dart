@@ -7,7 +7,14 @@ class TelaVazia extends StatelessWidget {
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Text("Ainda nenhum produto! :(")],
+          children: <Widget>[
+            Image.asset(
+              'images/add.png',
+              width: 100,
+              height: 100,
+            ),
+            Text("Ainda nenhum produto! :(")
+          ],
         ),
       ),
     );
