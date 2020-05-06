@@ -32,7 +32,7 @@ class _TelaInicialState extends State<TelaInicial> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Minhas Compras"),
+        title: Text("Minhas Compras - Master"),
       ),
       body: temProdutonaLista
           ? SingleChildScrollView(
