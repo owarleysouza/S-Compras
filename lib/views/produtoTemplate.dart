@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 que vai retornar para tela inicial*/
 class ProdutoTemplate extends StatelessWidget {
   final String nome;
-  final int quantidade;
+  final String quantidade;
 
   ProdutoTemplate({@required this.nome, @required this.quantidade});
 
@@ -26,7 +26,7 @@ class ProdutoTemplate extends StatelessWidget {
           ),
 
           Text(
-            "${quantidade}x",
+            "${quantidade}",
             style: TextStyle(fontSize: 20),
           )
         ],
