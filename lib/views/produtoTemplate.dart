@@ -26,7 +26,7 @@ class ProdutoTemplate extends StatelessWidget {
           ),
 
           Text(
-            "${quantidade}",
+            "$quantidade",
             style: TextStyle(fontSize: 20),
           )
         ],
