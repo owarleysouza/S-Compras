@@ -11,12 +11,17 @@ class ProdutoTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.fromLTRB(4, 5, 4, 5),
+      decoration: BoxDecoration(
+          color: Colors.blueGrey[100], borderRadius: BorderRadius.circular(10)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           //icone/imagem,
           Text(nome),
-          Text("----"),
+          Text(" - "),
           Text("${quantidade}x")
         ],
       ),
