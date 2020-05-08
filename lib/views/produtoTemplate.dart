@@ -17,12 +17,18 @@ class ProdutoTemplate extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.blueGrey[100], borderRadius: BorderRadius.circular(10)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           //icone/imagem,
-          Text(nome),
-          Text(" - "),
-          Text("${quantidade}x")
+          Text(
+            nome,
+            style: TextStyle(fontSize: 20),
+          ),
+
+          Text(
+            "${quantidade}x",
+            style: TextStyle(fontSize: 20),
+          )
         ],
       ),
     );
