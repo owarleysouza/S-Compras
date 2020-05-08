@@ -12,16 +12,37 @@ class TelaInicial extends StatefulWidget {
 
 class _TelaInicialState extends State<TelaInicial> {
   final List<Map<String, Object>> produtos = [
-    {"nome": "Feijão", "quantidade": 2, "categoria": "Grosso"},
-    {"nome": "Arroz", "quantidade": 5, "categoria": "Grosso"},
-    {"nome": "Desinfetante", "quantidade": 3, "categoria": "Limpeza"},
-    {"nome": "Desodorante", "quantidade": 1, "categoria": "Limpeza"},
-    {"nome": "Macarrão", "quantidade": 1, "categoria": "Grosso"},
-    {"nome": "Sabonete", "quantidade": 15, "categoria": "Limpeza"},
-    {"nome": "Açúcar", "quantidade": 2, "categoria": "Grosso"},
-    {"nome": "Sal", "quantidade": 1, "categoria": "Grosso"},
-    {"nome": "Fio Dental", "quantidade": 2, "categoria": "Limpeza"},
-    {"nome": "Lâmina de Barbear", "quantidade": 4, "categoria": "Limpeza"},
+    {"nome": "Feijão", "quantidade": "2x", "categoria": "Grosso"},
+    {"nome": "Arroz", "quantidade": "5x", "categoria": "Grosso"},
+    {
+      "nome": "Desinfetante",
+      "quantidade": "3x",
+      "categoria": "Limpeza e Higiene"
+    },
+    {
+      "nome": "Desodorante",
+      "quantidade": "1x",
+      "categoria": "Limpeza e Higiene"
+    },
+    {"nome": "Macarrão", "quantidade": "1x", "categoria": "Grosso"},
+    {
+      "nome": "Sabonete",
+      "quantidade": "Padrão",
+      "categoria": "Limpeza e Higiene"
+    },
+    {"nome": "Açúcar", "quantidade": "2x", "categoria": "Grosso"},
+    {"nome": "Sal", "quantidade": "Padrão", "categoria": "Grosso"},
+    {
+      "nome": "Fio Dental",
+      "quantidade": "2x",
+      "categoria": "Limpeza e Higiene"
+    },
+    {
+      "nome": "Lâmina de Barbear",
+      "quantidade": "Padrão",
+      "categoria": "Limpeza e Higiene"
+    },
+    {"nome": "Salsicha", "quantidade": "1x", "categoria": "Frios"},
   ];
 
   int _produtonalista = 0;
