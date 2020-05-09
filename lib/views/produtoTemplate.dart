@@ -13,9 +13,22 @@ class ProdutoTemplate extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(10),
-      margin: EdgeInsets.fromLTRB(4, 5, 4, 5),
+      margin: EdgeInsets.fromLTRB(4, 9, 4, 9),
       decoration: BoxDecoration(
-          color: Colors.blueGrey[100], borderRadius: BorderRadius.circular(10)),
+          color: Colors.blueGrey[100],
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            //Propriedade para adicionar sombra ao container, tanto o blur e spread que definem o degrade da sombra como o offset que define largura e altura da sombra
+            BoxShadow(
+              color: Colors.black87,
+              blurRadius: 2.0,
+              spreadRadius: 1.0,
+              offset: Offset(
+                1.5,
+                2.0,
+              ),
+            )
+          ]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
