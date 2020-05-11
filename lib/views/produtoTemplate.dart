@@ -32,10 +32,10 @@ class ProdutoTemplate extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
-            //icone/imagem, Acho que um ícone para cada categoria
-            "IcCat",
-            style: TextStyle(fontSize: 10),
+          Image.asset(
+            'images/shopping-store.png',
+            width: 30,
+            height: 30,
           ),
           Text(
             nome,
