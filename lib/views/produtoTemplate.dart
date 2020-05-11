@@ -12,8 +12,8 @@ class ProdutoTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.fromLTRB(4, 9, 4, 9),
+      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+      margin: EdgeInsets.fromLTRB(6, 9, 6, 9),
       decoration: BoxDecoration(
           color: Colors.blueGrey[100],
           borderRadius: BorderRadius.circular(10),
@@ -32,12 +32,15 @@ class ProdutoTemplate extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          //icone/imagem,
+          Text(
+            //icone/imagem, Acho que um ícone para cada categoria
+            "IcCat",
+            style: TextStyle(fontSize: 10),
+          ),
           Text(
             nome,
             style: TextStyle(fontSize: 20),
           ),
-
           Text(
             "$quantidade",
             style: TextStyle(fontSize: 20),
