@@ -17,6 +17,11 @@ class _TelaApresentacaoState extends State<TelaApresentacao> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image.asset(
+              'images/shopping-store.png',
+              width: 100,
+              height: 100,
+            ),
             Text(
               "Tela Apresentacao",
               style: TextStyle(color: Colors.blueGrey, fontSize: 20),

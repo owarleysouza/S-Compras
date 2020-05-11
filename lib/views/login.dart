@@ -16,6 +16,11 @@ class _LoginState extends State<Login> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image.asset(
+              'images/shopping-store.png',
+              width: 100,
+              height: 100,
+            ),
             TextField(),
             TextField(),
             RaisedButton(
