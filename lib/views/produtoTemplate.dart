@@ -10,42 +10,30 @@ class ProdutoTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+    return Card(
       margin: EdgeInsets.fromLTRB(6, 9, 6, 9),
-      decoration: BoxDecoration(
-          color: Colors.blueGrey[100],
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            //Propriedade para adicionar sombra ao container, tanto o blur e spread que definem o degrade da sombra como o offset que define largura e altura da sombra
-            BoxShadow(
-              color: Colors.black87,
-              blurRadius: 2.0,
-              spreadRadius: 1.0,
-              offset: Offset(
-                1.5,
-                2.0,
-              ),
+      elevation: 7, //Sombra do widget card
+      child: Padding(
+        //Espaçamento geral dos elementos da coluna para o widget card
+        padding: EdgeInsets.all(15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Image.asset(
+              'images/shopping-store.png',
+              width: 30,
+              height: 30,
+            ),
+            Text(
+              nome,
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              "$quantidade",
+              style: TextStyle(fontSize: 20),
             )
-          ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Image.asset(
-            'images/shopping-store.png',
-            width: 30,
-            height: 30,
-          ),
-          Text(
-            nome,
-            style: TextStyle(fontSize: 20),
-          ),
-          Text(
-            "$quantidade",
-            style: TextStyle(fontSize: 20),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
