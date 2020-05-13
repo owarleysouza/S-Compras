@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/views/categoria.dart';
 import 'package:minhas_compras/views/telaVazia.dart';
 
@@ -11,38 +12,25 @@ class TelaInicial extends StatefulWidget {
 }
 
 class _TelaInicialState extends State<TelaInicial> {
-  final List<Map<String, Object>> produtos = [
-    {"nome": "Feijão", "quantidade": "2x", "categoria": "Grosso"},
-    {"nome": "Arroz", "quantidade": "5x", "categoria": "Grosso"},
-    {
-      "nome": "Desinfetante",
-      "quantidade": "3x",
-      "categoria": "Limpeza e Higiene"
-    },
-    {
-      "nome": "Desodorante",
-      "quantidade": "1x",
-      "categoria": "Limpeza e Higiene"
-    },
-    {"nome": "Macarrão", "quantidade": "1x", "categoria": "Grosso"},
-    {
-      "nome": "Sabonete",
-      "quantidade": "Padrão",
-      "categoria": "Limpeza e Higiene"
-    },
-    {"nome": "Açúcar", "quantidade": "2x", "categoria": "Grosso"},
-    {"nome": "Sal", "quantidade": "Padrão", "categoria": "Grosso"},
-    {
-      "nome": "Fio Dental",
-      "quantidade": "2x",
-      "categoria": "Limpeza e Higiene"
-    },
-    {
-      "nome": "Lâmina de Barbear",
-      "quantidade": "Padrão",
-      "categoria": "Limpeza e Higiene"
-    },
-    {"nome": "Salsicha", "quantidade": "1x", "categoria": "Frios"},
+  final produtos = [
+    Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
+    Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
+    Produto(
+        nome: "Desinfetante", quantidade: "3x", categoria: "Limpeza e Higiene"),
+    Produto(
+        nome: "Desodorante", quantidade: "1x", categoria: "Limpeza e Higiene"),
+    Produto(nome: "Macarrão", quantidade: "1x", categoria: "Grosso"),
+    Produto(
+        nome: "Sabonete", quantidade: "Padrão", categoria: "Limpeza e Higiene"),
+    Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
+    Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
+    Produto(
+        nome: "Fio Dental", quantidade: "2x", categoria: "Limpeza e Higiene"),
+    Produto(
+        nome: "Lâmina de Barbear",
+        quantidade: "Padrão",
+        categoria: "Limpeza e Higiene"),
+    Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
   ];
 
   int _produtonalista = 0;
