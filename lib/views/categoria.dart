@@ -16,9 +16,21 @@ class Categoria extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Text("categoria"),
-          ...produtos.map((produto) => ProdutoTemplate(
-              nome: produto.nome, quantidade: produto.quantidade)),
+          Text("Grosso"),
+          ...produtos.map((produto) => produto.categoria == "Grosso"
+              ? ProdutoTemplate(
+                  nome: produto.nome, quantidade: produto.quantidade)
+              : Text("")),
+          Text("Limpeza e Higiene"),
+          ...produtos.map((produto) => produto.categoria == "Limpeza e Higiene"
+              ? ProdutoTemplate(
+                  nome: produto.nome, quantidade: produto.quantidade)
+              : Text("")),
+          Text("Frios"),
+          ...produtos.map((produto) => produto.categoria == "Frios"
+              ? ProdutoTemplate(
+                  nome: produto.nome, quantidade: produto.quantidade)
+              : Text("")),
         ],
       ),
     );
