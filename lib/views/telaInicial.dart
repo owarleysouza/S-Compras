@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/views/extracao.dart';
+import 'package:minhas_compras/views/categoria.dart';
 import 'package:minhas_compras/views/telaVazia.dart';
 
 /*Tela inicial do app. Aqui basicamente é a tela onde são mostrados os produtos nas suas respectivas categorias.
@@ -13,18 +13,26 @@ class TelaInicial extends StatefulWidget {
 
 class _TelaInicialState extends State<TelaInicial> {
   final produtos = [
-    Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
-    Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
-    Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
-    Produto(nome: "Macarrão", quantidade: "1x", categoria: "Grosso"),
-    Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
-    Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
-    Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
-    Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
-    Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
-    Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
-    Produto(nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
-    Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios")
+    [
+      Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
+      Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
+      Produto(nome: "Macarrão", quantidade: "1x", categoria: "Grosso"),
+      Produto(nome: "Fuba", quantidade: "11x", categoria: "Grosso"),
+      Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
+      Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
+    ],
+    [
+      Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
+      Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
+      Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
+      Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
+      Produto(
+          nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
+    ],
+    [
+      Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
+      Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios")
+    ]
   ];
 
   int _produtonalista = 0;
@@ -47,7 +55,7 @@ class _TelaInicialState extends State<TelaInicial> {
           ? SingleChildScrollView(
               child: Center(
                 child: Column(
-                  children: <Widget>[Extracao(produtos: produtos)],
+                  children: <Widget>[Categoria(produtos: produtos)],
                 ),
               ),
             )
