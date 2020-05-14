@@ -5,8 +5,12 @@ que vai retornar para tela inicial*/
 class ProdutoTemplate extends StatelessWidget {
   final String nome;
   final String quantidade;
+  final String categoria;
 
-  ProdutoTemplate({@required this.nome, @required this.quantidade});
+  ProdutoTemplate(
+      {@required this.nome,
+      @required this.quantidade,
+      @required this.categoria});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class ProdutoTemplate extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Image.asset(
-              'images/grosso.png',
+              'images/$categoria.png',
               width: 30,
               height: 30,
             ),
