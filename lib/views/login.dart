@@ -17,7 +17,7 @@ class _LoginState extends State<Login> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              'images/shopping-store.png',
+              'images/logo.png',
               width: 100,
               height: 100,
             ),

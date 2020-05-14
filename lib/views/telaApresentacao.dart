@@ -18,7 +18,7 @@ class _TelaApresentacaoState extends State<TelaApresentacao> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              'images/shopping-store.png',
+              'images/logo.png',
               width: 100,
               height: 100,
             ),
