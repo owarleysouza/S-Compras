@@ -22,21 +22,28 @@ class Categoria extends StatelessWidget {
                 fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
           ),
           ...produtos[0].map((produto) => ProdutoTemplate(
-              nome: produto.nome, quantidade: produto.quantidade)),
+                nome: produto.nome,
+                quantidade: produto.quantidade,
+                categoria: produto.categoria,
+              )),
           Text("Limpeza e Higiene",
               style: TextStyle(
                   fontSize: 25,
                   color: Colors.black,
                   fontWeight: FontWeight.bold)),
           ...produtos[1].map((produto) => ProdutoTemplate(
-              nome: produto.nome, quantidade: produto.quantidade)),
+              nome: produto.nome,
+              quantidade: produto.quantidade,
+              categoria: produto.categoria)),
           Text("Frios",
               style: TextStyle(
                   fontSize: 25,
                   color: Colors.black,
                   fontWeight: FontWeight.bold)),
           ...produtos[2].map((produto) => ProdutoTemplate(
-              nome: produto.nome, quantidade: produto.quantidade)),
+              nome: produto.nome,
+              quantidade: produto.quantidade,
+              categoria: produto.categoria)),
         ],
       ),
     );
