@@ -13,24 +13,26 @@ class TelaInicial extends StatefulWidget {
 
 class _TelaInicialState extends State<TelaInicial> {
   final produtos = [
-    Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
-    Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
-    Produto(
-        nome: "Desinfetante", quantidade: "3x", categoria: "Limpeza e Higiene"),
-    Produto(
-        nome: "Desodorante", quantidade: "1x", categoria: "Limpeza e Higiene"),
-    Produto(nome: "Macarrão", quantidade: "1x", categoria: "Grosso"),
-    Produto(
-        nome: "Sabonete", quantidade: "Padrão", categoria: "Limpeza e Higiene"),
-    Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
-    Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
-    Produto(
-        nome: "Fio Dental", quantidade: "2x", categoria: "Limpeza e Higiene"),
-    Produto(
-        nome: "Lâmina de Barbear",
-        quantidade: "Padrão",
-        categoria: "Limpeza e Higiene"),
-    Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
+    [
+      Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
+      Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
+      Produto(nome: "Macarrão", quantidade: "1x", categoria: "Grosso"),
+      Produto(nome: "Fuba", quantidade: "11x", categoria: "Grosso"),
+      Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
+      Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
+    ],
+    [
+      Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
+      Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
+      Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
+      Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
+      Produto(
+          nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
+    ],
+    [
+      Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
+      Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios")
+    ]
   ];
 
   int _produtonalista = 0;

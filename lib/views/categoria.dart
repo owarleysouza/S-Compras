@@ -7,7 +7,7 @@ com os respectivos produtos dentro desse bloco.
 Essa classe basicamente é chamada pela tela inicial, com a lista dos produtos e o que ela faz é 
 percorrer a lista de produtos transformando eles em um ProdutoTemplate usando a função map*/
 class Categoria extends StatelessWidget {
-  final List<Produto> produtos;
+  final List<List<Produto>> produtos;
 
   Categoria({@required this.produtos});
 
@@ -16,21 +16,27 @@ class Categoria extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Text("Grosso"),
-          ...produtos.map((produto) => produto.categoria == "Grosso"
-              ? ProdutoTemplate(
-                  nome: produto.nome, quantidade: produto.quantidade)
-              : Text("")),
-          Text("Limpeza e Higiene"),
-          ...produtos.map((produto) => produto.categoria == "Limpeza e Higiene"
-              ? ProdutoTemplate(
-                  nome: produto.nome, quantidade: produto.quantidade)
-              : Text("")),
-          Text("Frios"),
-          ...produtos.map((produto) => produto.categoria == "Frios"
-              ? ProdutoTemplate(
-                  nome: produto.nome, quantidade: produto.quantidade)
-              : Text("")),
+          Text(
+            "Grosso",
+            style: TextStyle(
+                fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+          ...produtos[0].map((produto) => ProdutoTemplate(
+              nome: produto.nome, quantidade: produto.quantidade)),
+          Text("Limpeza e Higiene",
+              style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold)),
+          ...produtos[1].map((produto) => ProdutoTemplate(
+              nome: produto.nome, quantidade: produto.quantidade)),
+          Text("Frios",
+              style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold)),
+          ...produtos[2].map((produto) => ProdutoTemplate(
+              nome: produto.nome, quantidade: produto.quantidade)),
         ],
       ),
     );
