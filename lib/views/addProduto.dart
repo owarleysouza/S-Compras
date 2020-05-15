@@ -23,7 +23,7 @@ class AddProduto extends StatelessWidget {
           ),
           TextField(
             decoration:
-                InputDecoration(labelText: "Categoria (Grosso, HeL, Frios)"),
+                InputDecoration(labelText: "Categoria (Grosso, LeH, Frios)"),
             controller: categoriaController,
           ),
           Row(
