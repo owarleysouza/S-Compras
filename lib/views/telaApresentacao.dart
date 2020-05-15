@@ -11,29 +11,34 @@ class _TelaApresentacaoState extends State<TelaApresentacao> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Container(
-        width: double.infinity,
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              'images/logo.png',
-              width: 100,
-              height: 100,
-            ),
-            Text(
-              "Tela Apresentacao",
-              style: TextStyle(color: Colors.blueGrey, fontSize: 20),
-            ),
-            RaisedButton(
+      width: double.infinity,
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Image.asset(
+            'images/logo.png',
+            width: 80,
+            height: 80,
+          ),
+          Text(
+            "Carrossel",
+            style: TextStyle(
+                color: Colors.blueGrey,
+                fontSize: 20,
+                decoration: TextDecoration.none),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            width: double.infinity,
+            child: RaisedButton(
                 child: Text("Logar"),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Login()));
-                })
-          ],
-        ),
+                }),
+          )
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
+import 'package:minhas_compras/views/addProduto.dart';
 import 'package:minhas_compras/views/categoria.dart';
 import 'package:minhas_compras/views/telaVazia.dart';
 
@@ -12,7 +13,7 @@ class TelaInicial extends StatefulWidget {
 }
 
 class _TelaInicialState extends State<TelaInicial> {
-  final produtos = [
+  final _produtos = [
     [
       Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
       Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
@@ -38,11 +39,26 @@ class _TelaInicialState extends State<TelaInicial> {
   int _produtonalista = 0;
 
   get temProdutonaLista {
-    if (_produtonalista < (produtos.length)) {
+    if (_produtonalista < (_produtos.length)) {
       return true;
     } else {
       return false;
     }
+  }
+
+  _addProduto(String nome, String quantidade, String categoria) {
+    final novoProduto =
+        Produto(nome: nome, quantidade: quantidade, categoria: categoria);
+
+    setState(() {
+      if (categoria == "Grosso") {
+        _produtos[0].add(novoProduto);
+      } else if (categoria == "LeH") {
+        _produtos[1].add(novoProduto);
+      } else if (categoria == "Frios") {
+        _produtos[2].add(novoProduto);
+      }
+    });
   }
 
   @override
@@ -55,7 +71,10 @@ class _TelaInicialState extends State<TelaInicial> {
           ? SingleChildScrollView(
               child: Center(
                 child: Column(
-                  children: <Widget>[Categoria(produtos: produtos)],
+                  children: <Widget>[
+                    Categoria(produtos: _produtos),
+                    AddProduto(_addProduto)
+                  ],
                 ),
               ),
             )
