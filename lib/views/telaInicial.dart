@@ -32,7 +32,7 @@ class _TelaInicialState extends State<TelaInicial> {
     ],
     [
       Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
-      Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios")
+      Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
     ]
   ];
 
@@ -68,14 +68,13 @@ class _TelaInicialState extends State<TelaInicial> {
         title: Text("Minhas Compras"),
       ),
       body: temProdutonaLista
-          ? SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    Categoria(produtos: _produtos),
-                    AddProduto(_addProduto)
-                  ],
-                ),
+          ? Container(
+              height: 500,
+              child: ListView(
+                children: <Widget>[
+                  Categoria(produtos: _produtos),
+                  AddProduto(_addProduto)
+                ],
               ),
             )
           : TelaVazia(),

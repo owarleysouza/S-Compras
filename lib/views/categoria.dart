@@ -13,39 +13,39 @@ class Categoria extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Text(
-            "Grosso",
-            style: TextStyle(
-                fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-          ...produtos[0].map((produto) => ProdutoTemplate(
-                nome: produto.nome,
-                quantidade: produto.quantidade,
-                categoria: produto.categoria,
-              )),
-          Text("Limpeza e Higiene",
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold)),
-          ...produtos[1].map((produto) => ProdutoTemplate(
-              nome: produto.nome,
-              quantidade: produto.quantidade,
-              categoria: produto.categoria)),
-          Text("Frios",
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold)),
-          ...produtos[2].map((produto) => ProdutoTemplate(
-              nome: produto.nome,
-              quantidade: produto.quantidade,
-              categoria: produto.categoria)),
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        Text(
+          "Grosso",
+          style: TextStyle(
+              fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        ...produtos[0].map((produtoGrossos) => ProdutoTemplate(
+              nome: produtoGrossos.nome,
+              quantidade: produtoGrossos.quantidade,
+              categoria: produtoGrossos.categoria,
+            )),
+        Text(
+          "Limpeza e Higiene",
+          style: TextStyle(
+              fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        ...produtos[1].map((produtoLeH) => ProdutoTemplate(
+              nome: produtoLeH.nome,
+              quantidade: produtoLeH.quantidade,
+              categoria: produtoLeH.categoria,
+            )),
+        Text(
+          "Frios",
+          style: TextStyle(
+              fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        ...produtos[2].map((produtoFrios) => ProdutoTemplate(
+              nome: produtoFrios.nome,
+              quantidade: produtoFrios.quantidade,
+              categoria: produtoFrios.categoria,
+            ))
+      ],
     );
   }
 }
