@@ -8,6 +8,19 @@ class AddProduto extends StatelessWidget {
 
   AddProduto(this.submeter);
 
+  _submeterFormulario() {
+    //funcao para verificar os inputs gerados. Se estiver correto, submeter o novo elemento
+    final nome = nomeController.text;
+    final quantidade = quantidadeController.text;
+    final categoria = categoriaController.text;
+
+    if (nome == "" || quantidade[0] == "0") {
+      return;
+    } else {
+      submeter(nome, quantidade, categoria);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -19,22 +32,23 @@ class AddProduto extends StatelessWidget {
           ),
           TextField(
             decoration: InputDecoration(labelText: "Quantidade"),
+            keyboardType: TextInputType.numberWithOptions(
+                decimal: true), //parametro para que o teclado seja numerico
             controller: quantidadeController,
           ),
           TextField(
             decoration:
                 InputDecoration(labelText: "Categoria (Grosso, LeH, Frios)"),
             controller: categoriaController,
+            onSubmitted: (_) =>
+                _submeterFormulario(), //Ao apertar no enter do teclado já submeter
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               FlatButton(
                   onPressed: () {
-                    final nome = nomeController.text;
-                    final quantidade = quantidadeController.text;
-                    final categoria = categoriaController.text;
-                    submeter(nome, quantidade, categoria);
+                    _submeterFormulario();
                   },
                   child: Text("Adicionar")),
             ],
