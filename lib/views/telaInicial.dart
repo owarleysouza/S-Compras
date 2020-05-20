@@ -66,6 +66,12 @@ class _TelaInicialState extends State<TelaInicial> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Minhas Compras"),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Icon(Icons.add_shopping_cart),
+          )
+        ],
       ),
       body: temProdutonaLista
           ? Container(
@@ -73,11 +79,14 @@ class _TelaInicialState extends State<TelaInicial> {
               child: ListView(
                 children: <Widget>[
                   Categoria(produtos: _produtos),
-                  AddProduto(_addProduto)
+                  AddProduto(_addProduto),
                 ],
               ),
             )
           : TelaVazia(),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add_shopping_cart), onPressed: () {}),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
