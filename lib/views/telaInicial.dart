@@ -59,6 +59,8 @@ class _TelaInicialState extends State<TelaInicial> {
         _produtos[2].add(novoProduto);
       }
     });
+
+    Navigator.of(context).pop();
   }
 
   _openAddFormModal(BuildContext context) {
