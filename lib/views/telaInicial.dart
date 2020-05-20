@@ -59,13 +59,34 @@ class _TelaInicialState extends State<TelaInicial> {
         _produtos[2].add(novoProduto);
       }
     });
+
+    Navigator.of(context).pop();
+  }
+
+  _openAddFormModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return AddProduto(_addProduto);
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text("Minhas Compras"),
+        actions: <Widget>[
+          Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: IconButton(
+                  color: Theme.of(context).accentColor,
+                  icon: Icon(Icons.add_shopping_cart),
+                  onPressed: () {
+                    _openAddFormModal(context);
+                  }))
+        ],
       ),
       body: temProdutonaLista
           ? Container(
@@ -73,11 +94,16 @@ class _TelaInicialState extends State<TelaInicial> {
               child: ListView(
                 children: <Widget>[
                   Categoria(produtos: _produtos),
-                  AddProduto(_addProduto)
                 ],
               ),
             )
           : TelaVazia(),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add_shopping_cart),
+          onPressed: () {
+            _openAddFormModal(context);
+          }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

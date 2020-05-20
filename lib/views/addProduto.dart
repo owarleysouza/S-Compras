@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
-class AddProduto extends StatelessWidget {
-  final nomeController = TextEditingController();
-  final quantidadeController = TextEditingController();
-  final categoriaController = TextEditingController();
+class AddProduto extends StatefulWidget {
   final void Function(String, String, String) submeter;
 
   AddProduto(this.submeter);
+
+  @override
+  _AddProdutoState createState() => _AddProdutoState();
+}
+
+class _AddProdutoState extends State<AddProduto> {
+  final nomeController = TextEditingController();
+
+  final quantidadeController = TextEditingController();
+
+  final categoriaController = TextEditingController();
 
   _submeterFormulario() {
     //funcao para verificar os inputs gerados. Se estiver correto, submeter o novo elemento
@@ -17,7 +25,7 @@ class AddProduto extends StatelessWidget {
     if (nome == "" || quantidade[0] == "0") {
       return;
     } else {
-      submeter(nome, quantidade, categoria);
+      widget.submeter(nome, quantidade, categoria);
     }
   }
 
