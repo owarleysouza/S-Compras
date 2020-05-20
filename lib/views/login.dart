@@ -16,7 +16,7 @@ class _LoginState extends State<Login> {
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 50),
         children: <Widget>[
           Image.asset(
-            'images/logo.png',
+            'assets/images/logo.png',
             width: 100,
             height: 100,
           ),

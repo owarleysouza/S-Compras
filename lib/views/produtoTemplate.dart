@@ -24,7 +24,7 @@ class ProdutoTemplate extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Image.asset(
-              'images/$categoria.png',
+              'assets/images/$categoria.png',
               width: 30,
               height: 30,
             ),

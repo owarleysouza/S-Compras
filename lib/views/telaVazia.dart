@@ -9,7 +9,7 @@ class TelaVazia extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              'images/add.png',
+              'assets/images/add.png',
               width: 100,
               height: 100,
             ),

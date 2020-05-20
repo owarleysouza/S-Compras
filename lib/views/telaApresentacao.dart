@@ -17,7 +17,7 @@ class _TelaApresentacaoState extends State<TelaApresentacao> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Image.asset(
-            'images/logo.png',
+            'assets/images/logo.png',
             width: 80,
             height: 80,
           ),
