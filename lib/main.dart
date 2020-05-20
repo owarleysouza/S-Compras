@@ -14,10 +14,11 @@ class PrimeiraTela extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: TelaApresentacao(),
-      theme: ThemeData(
-          primarySwatch: Colors.blueGrey, accentColor: Colors.deepOrange),
-    );
+        debugShowCheckedModeBanner: false,
+        home: TelaApresentacao(),
+        theme: ThemeData(
+            primarySwatch: Colors.blueGrey,
+            accentColor: Colors.deepOrange,
+            fontFamily: 'Montserrat'));
   }
 }
