@@ -61,6 +61,14 @@ class _TelaInicialState extends State<TelaInicial> {
     });
   }
 
+  _openAddFormModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return AddProduto(_addProduto);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,9 +76,12 @@ class _TelaInicialState extends State<TelaInicial> {
         title: Text("Minhas Compras"),
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Icon(Icons.add_shopping_cart),
-          )
+              padding: const EdgeInsets.all(10.0),
+              child: IconButton(
+                  icon: Icon(Icons.add_shopping_cart),
+                  onPressed: () {
+                    _openAddFormModal(context);
+                  }))
         ],
       ),
       body: temProdutonaLista
@@ -79,13 +90,15 @@ class _TelaInicialState extends State<TelaInicial> {
               child: ListView(
                 children: <Widget>[
                   Categoria(produtos: _produtos),
-                  AddProduto(_addProduto),
                 ],
               ),
             )
           : TelaVazia(),
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add_shopping_cart), onPressed: () {}),
+          child: Icon(Icons.add_shopping_cart),
+          onPressed: () {
+            _openAddFormModal(context);
+          }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
