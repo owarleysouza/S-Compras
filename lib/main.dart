@@ -16,6 +16,8 @@ class PrimeiraTela extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: TelaApresentacao(),
+      theme: ThemeData(
+          primarySwatch: Colors.blueGrey, accentColor: Colors.deepOrange),
     );
   }
 }
