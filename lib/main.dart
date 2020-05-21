@@ -17,8 +17,10 @@ class PrimeiraTela extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: TelaApresentacao(),
         theme: ThemeData(
-            primarySwatch: Colors.blueGrey,
-            accentColor: Colors.deepOrange,
+            primarySwatch: Colors
+                .blueGrey, //Cor primária do app que vai definir a cor de elementos principais, como a appbar, e etc
+            accentColor: Colors
+                .deepOrange, //Cor definida para os elementos de destaque no app, como botões e etc
             fontFamily: 'Montserrat'));
   }
 }
