@@ -13,7 +13,7 @@ class TelaInicial extends StatefulWidget {
 }
 
 class _TelaInicialState extends State<TelaInicial> {
-  final _produtos = [
+  final List<List<Produto>> _produtos = [
     [
       Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
       Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
@@ -39,7 +39,9 @@ class _TelaInicialState extends State<TelaInicial> {
   int _produtonalista = 0;
 
   get temProdutonaLista {
-    if (_produtonalista < (_produtos.length)) {
+    if (_produtonalista < (_produtos[0].length) &&
+        _produtonalista < (_produtos[1].length) &&
+        _produtonalista < (_produtos[2].length)) {
       return true;
     } else {
       return false;
