@@ -13,7 +13,7 @@ class TelaInicial extends StatefulWidget {
 }
 
 class _TelaInicialState extends State<TelaInicial> {
-  final _produtos = [
+  final List<List<Produto>> _produtos = [
     [
       Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
       Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
@@ -36,10 +36,10 @@ class _TelaInicialState extends State<TelaInicial> {
     ]
   ];
 
-  int _produtonalista = 0;
-
   get temProdutonaLista {
-    if (_produtonalista < (_produtos.length)) {
+    if (_produtos[0].isNotEmpty &&
+        _produtos[1].isNotEmpty &&
+        _produtos[2].isNotEmpty) {
       return true;
     } else {
       return false;
@@ -76,7 +76,11 @@ class _TelaInicialState extends State<TelaInicial> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text("Minhas Compras"),
+        title: Center(
+            child: Text(
+          "Minhas Compras",
+          //style: Theme.of(context).textTheme.headline6, Essa opção é possível ser usada para usar um estilo já definido lá no main.dart no scaffold
+        )),
         actions: <Widget>[
           Padding(
               padding: const EdgeInsets.all(10.0),
