@@ -76,7 +76,11 @@ class _TelaInicialState extends State<TelaInicial> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text("Minhas Compras"),
+        title: Center(
+            child: Text(
+          "Minhas Compras",
+          //style: Theme.of(context).textTheme.headline6, Essa opção é possível ser usada para usar um estilo já definido lá no main.dart no scaffold
+        )),
         actions: <Widget>[
           Padding(
               padding: const EdgeInsets.all(10.0),
