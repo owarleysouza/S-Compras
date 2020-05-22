@@ -98,6 +98,10 @@ class _TelaInicialState extends State<TelaInicial> {
               child: ListView(
                 children: <Widget>[
                   Categoria(produtos: _produtos),
+                  SizedBox(
+                    //Elemento para que o float button nao fique encima do ultimo produto
+                    height: 60,
+                  )
                 ],
               ),
             )
