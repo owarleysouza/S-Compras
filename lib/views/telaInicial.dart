@@ -74,6 +74,7 @@ class _TelaInicialState extends State<TelaInicial> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFe5e5e5),
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: Center(
