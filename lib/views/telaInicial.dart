@@ -74,12 +74,12 @@ class _TelaInicialState extends State<TelaInicial> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFe5e5e5),
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: Center(
             child: Text(
           "Minhas Compras",
-          //style: Theme.of(context).textTheme.headline6, Essa opção é possível ser usada para usar um estilo já definido lá no main.dart no scaffold
         )),
         actions: <Widget>[
           Padding(
@@ -98,6 +98,10 @@ class _TelaInicialState extends State<TelaInicial> {
               child: ListView(
                 children: <Widget>[
                   Categoria(produtos: _produtos),
+                  SizedBox(
+                    //Elemento para que o float button nao fique encima do ultimo produto
+                    height: 60,
+                  )
                 ],
               ),
             )
