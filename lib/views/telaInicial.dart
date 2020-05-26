@@ -37,12 +37,10 @@ class _TelaInicialState extends State<TelaInicial> {
   ];
 
   get temProdutonaLista {
-    if (_produtos[0].isNotEmpty &&
-        _produtos[1].isNotEmpty &&
-        _produtos[2].isNotEmpty) {
-      return true;
-    } else {
+    if (_produtos[0].isEmpty && _produtos[1].isEmpty && _produtos[2].isEmpty) {
       return false;
+    } else {
+      return true;
     }
   }
 

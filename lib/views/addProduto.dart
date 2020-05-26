@@ -22,8 +22,9 @@ class _AddProdutoState extends State<AddProduto> {
     final quantidade = quantidadeController.text;
     final categoria = categoriaController.text;
 
-    if (nome == "" || quantidade[0] == "0") {
-      return;
+    if (nome == "" || quantidade[0] == "0" || nome.length > 17) {
+      //Nome deve ser não vazio e menor que 17 caracteres para não dá overflowed na tela. Quantidade deve ser maior que 0
+      return; //Lembrar de criar widgets para tratar erros e mostrar avisos para o usuário e chamar aqui
     } else {
       widget.submeter(nome, quantidade, categoria);
     }
