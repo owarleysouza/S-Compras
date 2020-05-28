@@ -79,7 +79,8 @@ class _TelaInicialState extends State<TelaInicial> {
             child: Text(
           "Minhas Compras",
         )),
-        actions: <Widget>[
+        /*actions: <Widget>[
+          //Fica a reflexão e a possibilidade de fazer isso aqui. Mas seguindo a lei de fitts tou retirando o botão
           Padding(
               padding: const EdgeInsets.all(10.0),
               child: IconButton(
@@ -88,7 +89,7 @@ class _TelaInicialState extends State<TelaInicial> {
                   onPressed: () {
                     _openAddFormModal(context);
                   }))
-        ],
+        ],*/
       ),
       body: temProdutonaLista
           ? Container(
