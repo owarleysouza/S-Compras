@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/views/login.dart';
 
 //Tela de Apresentacao onde serão mostradas as funcionalidades do app
 class TelaApresentacao extends StatefulWidget {
@@ -34,8 +33,8 @@ class _TelaApresentacaoState extends State<TelaApresentacao> {
             child: RaisedButton(
                 child: Text("Logar"),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Login()));
+                  Navigator.of(context).pushNamed(
+                      'login'); //Como foram definidas no main rotas nomeadas, é só chamar pelo nome que está lá
                 }),
           )
         ],

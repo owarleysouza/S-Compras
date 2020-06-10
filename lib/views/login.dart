@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/views/telaInicial.dart';
 
 //Tela de Login do app
 class Login extends StatefulWidget {
@@ -27,8 +26,8 @@ class _LoginState extends State<Login> {
             child: RaisedButton(
                 child: Text("Entrar"),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TelaInicial()));
+                  Navigator.of(context).pushNamed(
+                      'initialscreen'); //Como foram definidas no main rotas nomeadas, é só chamar pelo nome que está lá
                 }),
           ),
           RaisedButton(child: Text("Cadastrar"), onPressed: () {})
