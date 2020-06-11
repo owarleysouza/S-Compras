@@ -22,10 +22,45 @@ class _TelaApresentacaoState extends State<TelaApresentacao> {
           ),
           Text(
             "Carrossel",
-            style: TextStyle(
-                color: Colors.blueGrey,
-                fontSize: 20,
-                decoration: TextDecoration.none),
+            style: TextStyle(decoration: TextDecoration.none, fontSize: 20),
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                flex: 2,
+                child: Container(
+                  height: 180,
+                  color: Colors.black,
+                  child: Text(
+                    "Elemento 1",
+                    style: TextStyle(
+                        decoration: TextDecoration.none, fontSize: 15),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                    height: 180,
+                    color: Colors.grey,
+                    child: Text(
+                      "Elemento 2",
+                      style: TextStyle(
+                          decoration: TextDecoration.none, fontSize: 15),
+                    )),
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                    height: 180,
+                    color: Colors.blueGrey,
+                    child: Text(
+                      "Elemento 3",
+                      style: TextStyle(
+                          decoration: TextDecoration.none, fontSize: 15),
+                    )),
+              )
+            ],
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10),
