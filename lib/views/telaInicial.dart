@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/models/listadecompra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/views/addProduto.dart';
 import 'package:minhas_compras/views/categoria.dart';
@@ -13,24 +14,24 @@ class TelaInicial extends StatefulWidget {
 }
 
 class _TelaInicialState extends State<TelaInicial> {
-  final List<Produto> _produtos = [
-    Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
-    Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
-    Produto(nome: "Macarrão", quantidade: "1x", categoria: "Grosso"),
-    Produto(nome: "Fuba", quantidade: "11x", categoria: "Grosso"),
-    Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
-    Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
-    Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
-    Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
-    Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
-    Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
-    Produto(nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
-    Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
-    Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
-  ];
+  final _compras = ListadeCompra(
+      nome: "Compra de Julho",
+      data: DateTime.now(),
+      listadecompra: [
+        Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
+        Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
+        Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
+        Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
+        Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
+        Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
+        Produto(
+            nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
+        Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
+        Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
+      ]);
 
   get temProdutonaLista {
-    if (_produtos.isEmpty) {
+    if (_compras.listadecompra.isEmpty) {
       return false;
     } else {
       return true;
@@ -42,7 +43,7 @@ class _TelaInicialState extends State<TelaInicial> {
         Produto(nome: nome, quantidade: quantidade, categoria: categoria);
 
     setState(() {
-      _produtos.add(novoProduto);
+      _compras.listadecompra.add(novoProduto);
     });
 
     Navigator.of(context).pop();
@@ -62,10 +63,9 @@ class _TelaInicialState extends State<TelaInicial> {
       backgroundColor: Color(0xFFe5e5e5),
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Center(
-            child: Text(
-          "Minhas Compras",
-        )),
+        title: Text(
+          _compras.nome,
+        ),
         /*actions: <Widget>[
           //Fica a reflexão e a possibilidade de fazer isso aqui. Mas seguindo a lei de fitts tou retirando o botão
           Padding(
@@ -83,7 +83,7 @@ class _TelaInicialState extends State<TelaInicial> {
               height: 500,
               child: ListView(
                 children: <Widget>[
-                  Categoria(produtos: _produtos),
+                  Categoria(produtos: _compras.listadecompra),
                   SizedBox(
                     //Elemento para que o float button nao fique encima do ultimo produto
                     height: 60,
