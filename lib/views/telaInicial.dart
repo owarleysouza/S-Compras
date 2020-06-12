@@ -13,31 +13,24 @@ class TelaInicial extends StatefulWidget {
 }
 
 class _TelaInicialState extends State<TelaInicial> {
-  final List<List<Produto>> _produtos = [
-    [
-      Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
-      Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
-      Produto(nome: "Macarrão", quantidade: "1x", categoria: "Grosso"),
-      Produto(nome: "Fuba", quantidade: "11x", categoria: "Grosso"),
-      Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
-      Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
-    ],
-    [
-      Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
-      Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
-      Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
-      Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
-      Produto(
-          nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
-    ],
-    [
-      Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
-      Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
-    ]
+  final List<Produto> _produtos = [
+    Produto(nome: "Feijão", quantidade: "2x", categoria: "Grosso"),
+    Produto(nome: "Arroz", quantidade: "5x", categoria: "Grosso"),
+    Produto(nome: "Macarrão", quantidade: "1x", categoria: "Grosso"),
+    Produto(nome: "Fuba", quantidade: "11x", categoria: "Grosso"),
+    Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
+    Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
+    Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
+    Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
+    Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
+    Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
+    Produto(nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
+    Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
+    Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
   ];
 
   get temProdutonaLista {
-    if (_produtos[0].isEmpty && _produtos[1].isEmpty && _produtos[2].isEmpty) {
+    if (_produtos.isEmpty) {
       return false;
     } else {
       return true;
@@ -49,13 +42,7 @@ class _TelaInicialState extends State<TelaInicial> {
         Produto(nome: nome, quantidade: quantidade, categoria: categoria);
 
     setState(() {
-      if (categoria == "Grosso") {
-        _produtos[0].add(novoProduto);
-      } else if (categoria == "LeH") {
-        _produtos[1].add(novoProduto);
-      } else if (categoria == "Frios") {
-        _produtos[2].add(novoProduto);
-      }
+      _produtos.add(novoProduto);
     });
 
     Navigator.of(context).pop();
