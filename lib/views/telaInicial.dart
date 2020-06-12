@@ -84,6 +84,12 @@ class _TelaInicialState extends State<TelaInicial> {
               child: ListView(
                 children: <Widget>[
                   Categoria(produtos: _compras.listadecompra),
+                  RaisedButton(
+                      child: Text("Listas"),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                            'listascompras'); //Como foram definidas no main rotas nomeadas, é só chamar pelo nome que está lá
+                      }),
                   SizedBox(
                     //Elemento para que o float button nao fique encima do ultimo produto
                     height: 60,
