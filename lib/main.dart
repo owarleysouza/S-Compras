@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/views/listasdecompras.dart';
 import 'package:minhas_compras/views/login.dart';
 import 'package:minhas_compras/views/telaApresentacao.dart';
 import 'package:minhas_compras/views/telaInicial.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
       routes: {
         //Usando rotas nomeadas, assim nas paginas que precisam dessas rotas é só chamar o navigator com pushedname
         'login': (context) => Login(),
-        'initialscreen': (context) => TelaInicial()
+        'initialscreen': (context) => TelaInicial(),
+        'listascompras': (context) => ListasdeCompras()
       },
     );
   }
