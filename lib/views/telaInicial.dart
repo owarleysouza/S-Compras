@@ -17,7 +17,7 @@ class _TelaInicialState extends State<TelaInicial> {
   final _compras = ListadeCompra(
       nome: "Compra de Julho",
       data: DateTime.now(),
-      listadecompra: [
+      listadeprodutos: [
         Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
         Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
         Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
@@ -31,7 +31,7 @@ class _TelaInicialState extends State<TelaInicial> {
       ]);
 
   get temProdutonaLista {
-    if (_compras.listadecompra.isEmpty) {
+    if (_compras.listadeprodutos.isEmpty) {
       return false;
     } else {
       return true;
@@ -43,7 +43,7 @@ class _TelaInicialState extends State<TelaInicial> {
         Produto(nome: nome, quantidade: quantidade, categoria: categoria);
 
     setState(() {
-      _compras.listadecompra.add(novoProduto);
+      _compras.listadeprodutos.add(novoProduto);
     });
 
     Navigator.of(context).pop();
@@ -83,7 +83,7 @@ class _TelaInicialState extends State<TelaInicial> {
               height: 500,
               child: ListView(
                 children: <Widget>[
-                  Categoria(produtos: _compras.listadecompra),
+                  Categoria(produtos: _compras.listadeprodutos),
                   RaisedButton(
                       child: Text("Listas"),
                       onPressed: () {
