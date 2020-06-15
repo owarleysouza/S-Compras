@@ -5,7 +5,7 @@ main() {
   var compras = ListadeCompra(
       nome: "Compra de Julho",
       data: DateTime.now(),
-      listadecompra: [
+      listadeprodutos: [
         Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
         Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
         Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
@@ -19,5 +19,5 @@ main() {
       ]);
 
   print(compras.nome);
-  print(compras.listadecompra[3].nome);
+  print(compras.listadeprodutos[3].nome);
 }
