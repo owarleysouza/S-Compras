@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ListaComprasTemplate extends StatelessWidget {
+class CompraTemplate extends StatelessWidget {
   final String nome;
   final DateTime data;
   final int quantidadeitens;
 
-  ListaComprasTemplate(
+  CompraTemplate(
       {@required this.nome,
       @required this.data,
       @required this.quantidadeitens});
