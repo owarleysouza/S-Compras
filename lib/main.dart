@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/views/listasdecompras.dart';
+import 'package:minhas_compras/views/compras.dart';
 import 'package:minhas_compras/views/login.dart';
 import 'package:minhas_compras/views/telaApresentacao.dart';
-import 'package:minhas_compras/views/telaInicial.dart';
 
 //Arquivo principal que usa o RunApp para chamar a classe principal e executar o app
 
@@ -31,12 +30,12 @@ class MyApp extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.w700))),
       ),
-      home: TelaApresentacao(),
+      home:
+          TelaApresentacao(), //Compras(), quando n quiser ficar passando pelas telas anteriores
       routes: {
         //Usando rotas nomeadas, assim nas paginas que precisam dessas rotas é só chamar o navigator com pushedname
         'login': (context) => Login(),
-        'initialscreen': (context) => TelaInicial(),
-        'listascompras': (context) => ListasdeCompras()
+        'initialscreen': (context) => Compras(),
       },
     );
   }
