@@ -11,7 +11,7 @@ class Compras extends StatefulWidget {
 class _ComprasState extends State<Compras> {
   final List<Compra> listadecomprasfeitas = [
     Compra(nome: "Compra de Julho", data: DateTime.now(), listadeprodutos: [
-      Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
+      Produto(nome: "Fuba", quantidade: "2x", categoria: "Grosso"),
       Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
       Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
       Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
@@ -45,11 +45,7 @@ class _ComprasState extends State<Compras> {
           ...listadecomprasfeitas.map((compra) => CompraTemplate(
               nome: compra.nome,
               data: compra.data,
-              quantidadeitens: compra.listadeprodutos.length)),
-          RaisedButton(
-            onPressed: () => Navigator.of(context).pushNamed('produtos'),
-            child: Text("Produtos"),
-          )
+              listadeprodutos: compra.listadeprodutos)),
         ],
       ),
     );
