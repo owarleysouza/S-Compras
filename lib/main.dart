@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.w700))),
       ),
-      home: TelaApresentacao(),
+      home:
+          TelaApresentacao(), //Compras(), quando n quiser ficar passando pelas telas anteriores
       routes: {
         //Usando rotas nomeadas, assim nas paginas que precisam dessas rotas é só chamar o navigator com pushedname
         'login': (context) => Login(),
