@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
+import 'package:minhas_compras/views/addCompra.dart';
 import 'package:minhas_compras/views/compraTemplate.dart';
 
 class Compras extends StatefulWidget {
@@ -31,23 +32,52 @@ class _ComprasState extends State<Compras> {
           nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
       Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
       Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
-    ])
+    ]),
+    Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: []),
+    Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: []),
+    Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: []),
+    Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: []),
   ];
+
+  _addCompra(String novonome) {
+    final novacompra = Compra(nome: novonome);
+    setState(() {
+      listadecomprasfeitas.add(novacompra);
+    });
+
+    Navigator.of(context).pop();
+  }
+
+  _openAddShopFormModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return AddCompra(submeter: _addCompra);
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Compras Feitas"),
-      ),
-      body: ListView(
-        children: <Widget>[
-          ...listadecomprasfeitas.map((compra) => CompraTemplate(
-              nome: compra.nome,
-              data: compra.data,
-              listadeprodutos: compra.listadeprodutos)),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Compras Feitas"),
+        ),
+        body: ListView(
+          children: <Widget>[
+            ...listadecomprasfeitas.map((compra) => CompraTemplate(
+                nome: compra.nome,
+                data: compra.data,
+                listadeprodutos: compra.listadeprodutos)),
+            SizedBox(
+              height: 70,
+            )
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add_box),
+            onPressed: () {
+              _openAddShopFormModal(context);
+            }),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
   }
 }
