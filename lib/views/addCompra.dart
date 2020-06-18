@@ -66,12 +66,17 @@ class _AddCompraState extends State<AddCompra> {
                   ))
             ],
           ),
-          RaisedButton(
-            color: Theme.of(context).accentColor,
-            onPressed: () {
-              _addForm();
-            },
-            child: Text("Adicionar"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              RaisedButton(
+                color: Theme.of(context).accentColor,
+                onPressed: () {
+                  _addForm();
+                },
+                child: Text("Adicionar"),
+              ),
+            ],
           )
         ],
       ),
