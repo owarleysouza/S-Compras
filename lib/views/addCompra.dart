@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/models/produto.dart';
+import 'package:intl/intl.dart';
 
 class AddCompra extends StatefulWidget {
   final Function submeter;
@@ -11,10 +13,35 @@ class AddCompra extends StatefulWidget {
 
 class _AddCompraState extends State<AddCompra> {
   final nomecontroller = TextEditingController();
+  DateTime _datadacompra = DateTime.now();
 
   _addForm() {
     final novonome = nomecontroller.text;
-    widget.submeter(novonome);
+    final datadacompra = _datadacompra;
+    final List<Produto> produtos = [];
+    /*Tava dando erro porque eu tinha definido na classe compra que se não fosse passado
+    uma lista de produtos, ela seria uma lista vazia constante, só que não eh possivel add 
+    um novo produto a uma lista que é vazia e constante. Então eu passo uma lista de produtos vazia
+    sempre que uma compra é criada. Deve ter formas mais elegantes de resolver isso, mas ainda não conheço.
+    */
+    widget.submeter(novonome, datadacompra, produtos);
+  }
+
+  _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(),
+    ).then((dataselecionada) {
+      if (dataselecionada == null) {
+        return;
+      } else {
+        setState(() {
+          _datadacompra = dataselecionada;
+        });
+      }
+    });
   }
 
   @override
@@ -28,15 +55,29 @@ class _AddCompraState extends State<AddCompra> {
           ),
           Row(
             children: <Widget>[
-              Expanded(child: Text("Data Selecionada: ")),
-              FlatButton(onPressed: null, child: Text("Selecionar Data"))
+              Expanded(
+                  child: Text(_datadacompra == null
+                      ? "Nenhuma Data Selecionada!"
+                      : "Data Selecionada: ${DateFormat('dd/MM/y').format(_datadacompra)}")),
+              FlatButton(
+                  onPressed: _showDatePicker,
+                  child: Text(
+                    "Selecionar Data",
+                    style: TextStyle(color: Theme.of(context).accentColor),
+                  ))
             ],
           ),
-          RaisedButton(
-            onPressed: () {
-              _addForm();
-            },
-            child: Text("Adicionar"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              RaisedButton(
+                color: Theme.of(context).accentColor,
+                onPressed: () {
+                  _addForm();
+                },
+                child: Text("Adicionar"),
+              ),
+            ],
           )
         ],
       ),

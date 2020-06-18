@@ -56,6 +56,7 @@ class _AddProdutoState extends State<AddProduto> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               FlatButton(
+                  color: Theme.of(context).accentColor,
                   onPressed: () {
                     _submeterFormulario();
                   },

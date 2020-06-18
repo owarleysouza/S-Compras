@@ -6,9 +6,9 @@ class Compra {
   DateTime data;
   List<Produto> listadeprodutos;
 
-  Compra(
-      {@required this.nome,
-      this.data,
-      this.listadeprodutos =
-          const []}); //Tá dando erro porque não eh possivel add um novo produto a uma lista que tem essa lista de produtos vazia e constante. Resolver isso
+  Compra({
+    @required this.nome,
+    @required this.data,
+    @required this.listadeprodutos,
+  });
 }
