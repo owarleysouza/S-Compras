@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
+import 'package:intl/intl.dart';
 
 class AddCompra extends StatefulWidget {
   final Function submeter;
@@ -12,6 +13,7 @@ class AddCompra extends StatefulWidget {
 
 class _AddCompraState extends State<AddCompra> {
   final nomecontroller = TextEditingController();
+  DateTime _datadacompra;
 
   _addForm() {
     final novonome = nomecontroller.text;
@@ -22,6 +24,23 @@ class _AddCompraState extends State<AddCompra> {
     sempre que uma compra é criada. Deve ter formas mais elegantes de resolver isso, mas ainda não conheço.
     */
     widget.submeter(novonome, produtos);
+  }
+
+  _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(),
+    ).then((dataselecionada) {
+      if (dataselecionada == null) {
+        return;
+      } else {
+        setState(() {
+          _datadacompra = dataselecionada;
+        });
+      }
+    });
   }
 
   @override
@@ -35,11 +54,20 @@ class _AddCompraState extends State<AddCompra> {
           ),
           Row(
             children: <Widget>[
-              Expanded(child: Text("Data Selecionada: ")),
-              FlatButton(onPressed: null, child: Text("Selecionar Data"))
+              Expanded(
+                  child: Text(_datadacompra == null
+                      ? "Nenhuma Data Selecionada!"
+                      : DateFormat('d/MM/y').format(_datadacompra))),
+              FlatButton(
+                  onPressed: _showDatePicker,
+                  child: Text(
+                    "Selecionar Data",
+                    style: TextStyle(color: Theme.of(context).accentColor),
+                  ))
             ],
           ),
           RaisedButton(
+            color: Theme.of(context).accentColor,
             onPressed: () {
               _addForm();
             },
