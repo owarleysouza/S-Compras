@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/models/produto.dart';
 
 class AddCompra extends StatefulWidget {
   final Function submeter;
@@ -14,7 +15,13 @@ class _AddCompraState extends State<AddCompra> {
 
   _addForm() {
     final novonome = nomecontroller.text;
-    widget.submeter(novonome);
+    final List<Produto> produtos = [];
+    /*Tava dando erro porque eu tinha definido na classe compra que se não fosse passado
+    uma lista de produtos, ela seria uma lista vazia constante, só que não eh possivel add 
+    um novo produto a uma lista que é vazia e constante. Então eu passo uma lista de produtos vazia
+    sempre que uma compra é criada. Deve ter formas mais elegantes de resolver isso, mas ainda não conheço.
+    */
+    widget.submeter(novonome, produtos);
   }
 
   @override
