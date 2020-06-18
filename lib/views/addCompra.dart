@@ -13,17 +13,18 @@ class AddCompra extends StatefulWidget {
 
 class _AddCompraState extends State<AddCompra> {
   final nomecontroller = TextEditingController();
-  DateTime _datadacompra;
+  DateTime _datadacompra = DateTime.now();
 
   _addForm() {
     final novonome = nomecontroller.text;
+    final datadacompra = _datadacompra;
     final List<Produto> produtos = [];
     /*Tava dando erro porque eu tinha definido na classe compra que se não fosse passado
     uma lista de produtos, ela seria uma lista vazia constante, só que não eh possivel add 
     um novo produto a uma lista que é vazia e constante. Então eu passo uma lista de produtos vazia
     sempre que uma compra é criada. Deve ter formas mais elegantes de resolver isso, mas ainda não conheço.
     */
-    widget.submeter(novonome, produtos);
+    widget.submeter(novonome, datadacompra, produtos);
   }
 
   _showDatePicker() {

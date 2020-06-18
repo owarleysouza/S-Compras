@@ -6,5 +6,9 @@ class Compra {
   DateTime data;
   List<Produto> listadeprodutos;
 
-  Compra({@required this.nome, @required this.listadeprodutos, this.data});
+  Compra({
+    @required this.nome,
+    @required this.data,
+    @required this.listadeprodutos,
+  });
 }

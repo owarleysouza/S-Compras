@@ -39,8 +39,9 @@ class _ComprasState extends State<Compras> {
     Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: []),
   ];
 
-  _addCompra(String novonome, List<Produto> produtos) {
-    final novacompra = Compra(nome: novonome, listadeprodutos: produtos);
+  _addCompra(String novonome, DateTime datadacompra, List<Produto> produtos) {
+    final novacompra =
+        Compra(nome: novonome, data: datadacompra, listadeprodutos: produtos);
     setState(() {
       listadecomprasfeitas.add(novacompra);
     });
