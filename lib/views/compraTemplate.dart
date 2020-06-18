@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/views/produtos.dart';
 
@@ -35,7 +36,7 @@ class CompraTemplate extends StatelessWidget {
               ),
             ),
             title: Text(nome),
-            subtitle: Text(data.toString()),
+            subtitle: Text((DateFormat('dd/MM/y').format(data))),
           ),
         ),
       ),
