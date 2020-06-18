@@ -57,7 +57,7 @@ class _AddCompraState extends State<AddCompra> {
               Expanded(
                   child: Text(_datadacompra == null
                       ? "Nenhuma Data Selecionada!"
-                      : DateFormat('d/MM/y').format(_datadacompra))),
+                      : "Data Selecionada: ${DateFormat('dd/MM/y').format(_datadacompra)}")),
               FlatButton(
                   onPressed: _showDatePicker,
                   child: Text(
