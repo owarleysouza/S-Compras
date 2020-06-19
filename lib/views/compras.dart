@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
@@ -11,42 +13,79 @@ class Compras extends StatefulWidget {
 
 class _ComprasState extends State<Compras> {
   final List<Compra> listadecomprasfeitas = [
-    Compra(nome: "Compra de Julho", data: DateTime.now(), listadeprodutos: [
-      Produto(nome: "Fuba", quantidade: "2x", categoria: "Grosso"),
-      Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
-      Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
-      Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
-      Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
-      Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
-      Produto(
-          nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
-      Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
-      Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
-    ]),
-    Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: [
-      Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
-      Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
-      Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
-      Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
-      Produto(
-          nome: "Lâmina de Barbear", quantidade: "Padrão", categoria: "LeH"),
-      Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
-      Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
-    ]),
-    Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: []),
-    Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: []),
-    Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: []),
-    Compra(nome: "Compra de Agosto", data: DateTime.now(), listadeprodutos: []),
+    Compra(
+        id: Random().nextDouble().toString(),
+        nome: "Compra de Julho",
+        data: DateTime.now(),
+        listadeprodutos: [
+          Produto(nome: "Fuba", quantidade: "2x", categoria: "Grosso"),
+          Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
+          Produto(nome: "Desinfetante", quantidade: "3x", categoria: "LeH"),
+          Produto(nome: "Desodorante", quantidade: "1x", categoria: "LeH"),
+          Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
+          Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
+          Produto(
+              nome: "Lâmina de Barbear",
+              quantidade: "Padrão",
+              categoria: "LeH"),
+          Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
+          Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
+        ]),
+    Compra(
+        id: Random().nextDouble().toString(),
+        nome: "Compra de Agosto",
+        data: DateTime.now(),
+        listadeprodutos: [
+          Produto(nome: "Açúcar", quantidade: "2x", categoria: "Grosso"),
+          Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
+          Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
+          Produto(nome: "Fio Dental", quantidade: "2x", categoria: "LeH"),
+          Produto(
+              nome: "Lâmina de Barbear",
+              quantidade: "Padrão",
+              categoria: "LeH"),
+          Produto(nome: "Peixe", quantidade: "3x", categoria: "Frios"),
+          Produto(nome: "Salsicha", quantidade: "1x", categoria: "Frios"),
+        ]),
+    Compra(
+        id: Random().nextDouble().toString(),
+        nome: "Compra de Agosto",
+        data: DateTime.now(),
+        listadeprodutos: []),
+    Compra(
+        id: Random().nextDouble().toString(),
+        nome: "Compra de Agosto",
+        data: DateTime.now(),
+        listadeprodutos: []),
+    Compra(
+        id: Random().nextDouble().toString(),
+        nome: "Compra de Agosto",
+        data: DateTime.now(),
+        listadeprodutos: []),
+    Compra(
+        id: Random().nextDouble().toString(),
+        nome: "Compra de Agosto",
+        data: DateTime.now(),
+        listadeprodutos: []),
   ];
 
   _addCompra(String novonome, DateTime datadacompra, List<Produto> produtos) {
-    final novacompra =
-        Compra(nome: novonome, data: datadacompra, listadeprodutos: produtos);
+    final novacompra = Compra(
+        id: Random().nextDouble().toString(),
+        nome: novonome,
+        data: datadacompra,
+        listadeprodutos: produtos);
     setState(() {
       listadecomprasfeitas.add(novacompra);
     });
 
     Navigator.of(context).pop();
+  }
+
+  _delCompra(String id) {
+    setState(() {
+      listadecomprasfeitas.removeWhere((compra) => compra.id == id);
+    });
   }
 
   _openAddShopFormModal(BuildContext context) {
@@ -66,9 +105,9 @@ class _ComprasState extends State<Compras> {
         body: ListView(
           children: <Widget>[
             ...listadecomprasfeitas.map((compra) => CompraTemplate(
-                nome: compra.nome,
-                data: compra.data,
-                listadeprodutos: compra.listadeprodutos)),
+                  compra: compra,
+                  delCompra: _delCompra,
+                )),
             SizedBox(
               height: 70,
             )
