@@ -14,13 +14,13 @@ class _AddProdutoState extends State<AddProduto> {
 
   final quantidadeController = TextEditingController();
 
-  final categoriaController = TextEditingController();
+  String categoriavalue = "Grosso";
 
   _submeterFormulario() {
     //funcao para verificar os inputs gerados. Se estiver correto, submeter o novo elemento
     final nome = nomeController.text;
     final quantidade = quantidadeController.text;
-    final categoria = categoriaController.text;
+    final categoria = categoriavalue;
 
     if (nome == "" || quantidade[0] == "0" || nome.length > 17) {
       //Nome deve ser não vazio e menor que 17 caracteres para não dá overflowed na tela. Quantidade deve ser maior que 0
@@ -45,12 +45,27 @@ class _AddProdutoState extends State<AddProduto> {
                 decimal: true), //parametro para que o teclado seja numerico
             controller: quantidadeController,
           ),
-          TextField(
-            decoration:
-                InputDecoration(labelText: "Categoria (Grosso, LeH, Frios)"),
-            controller: categoriaController,
-            onSubmitted: (_) =>
-                _submeterFormulario(), //Ao apertar no enter do teclado já submeter
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Categoria do Produto:"),
+              SizedBox(
+                width: 20,
+              ),
+              DropdownButton(
+                  value: categoriavalue,
+                  items: <String>["Grosso", "LeH", "Frios"]
+                      .map((String value) => DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          ))
+                      .toList(),
+                  onChanged: (newvalue) {
+                    setState(() {
+                      categoriavalue = newvalue;
+                    });
+                  }),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
