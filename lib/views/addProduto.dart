@@ -22,9 +22,11 @@ class _AddProdutoState extends State<AddProduto> {
     final quantidade = quantidadeController.text;
     final categoria = categoriavalue;
 
-    if (nome == "" || quantidade[0] == "0" || nome.length > 17) {
+    if (nome == "" || quantidade == "0" || nome.length > 17) {
       //Nome deve ser não vazio e menor que 17 caracteres para não dá overflowed na tela. Quantidade deve ser maior que 0
       return; //Lembrar de criar widgets para tratar erros e mostrar avisos para o usuário e chamar aqui
+    } else if (nome != "" && quantidade == "" && nome.length < 17) {
+      widget.submeter(nome, "Padrão", categoria);
     } else {
       widget.submeter(nome, quantidade, categoria);
     }
@@ -40,7 +42,8 @@ class _AddProdutoState extends State<AddProduto> {
             controller: nomeController,
           ),
           TextField(
-            decoration: InputDecoration(labelText: "Quantidade"),
+            decoration: InputDecoration(
+                labelText: "Quantidade (Vazio para qtd 'Padrão')"),
             keyboardType: TextInputType.numberWithOptions(
                 decimal: true), //parametro para que o teclado seja numerico
             controller: quantidadeController,
