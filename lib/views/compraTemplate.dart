@@ -18,7 +18,8 @@ class CompraTemplate extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => Produtos(
-                  nome: compra.nome, listadeprodutos: compra.listadeprodutos)));
+                    compra: compra,
+                  )));
         },
         child: Card(
           elevation: 5,

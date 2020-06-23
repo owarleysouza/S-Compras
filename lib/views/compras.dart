@@ -18,34 +18,92 @@ class _ComprasState extends State<Compras> {
         nome: "Compra de Julho",
         data: DateTime.now(),
         listadeprodutos: [
-          Produto(nome: "Fuba", quantidade: "2", categoria: "Grosso"),
-          Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
-          Produto(nome: "Desinfetante", quantidade: "3", categoria: "LeH"),
-          Produto(nome: "Desodorante", quantidade: "1", categoria: "LeH"),
-          Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
-          Produto(nome: "Fio Dental", quantidade: "2", categoria: "LeH"),
           Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Fuba",
+              quantidade: "2",
+              categoria: "Grosso"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Sal",
+              quantidade: "Padrão",
+              categoria: "Grosso"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Desinfetante",
+              quantidade: "3",
+              categoria: "LeH"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Desodorante",
+              quantidade: "1",
+              categoria: "LeH"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Sabonete",
+              quantidade: "Padrão",
+              categoria: "LeH"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Fio Dental",
+              quantidade: "2",
+              categoria: "LeH"),
+          Produto(
+              id: Random().nextDouble().toString(),
               nome: "Lâmina de Barbear",
               quantidade: "Padrão",
               categoria: "LeH"),
-          Produto(nome: "Peixe", quantidade: "3", categoria: "Frios"),
-          Produto(nome: "Salsicha", quantidade: "1", categoria: "Frios"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Peixe",
+              quantidade: "3",
+              categoria: "Frios"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Salsicha",
+              quantidade: "1",
+              categoria: "Frios"),
         ]),
     Compra(
         id: Random().nextDouble().toString(),
         nome: "Compra de Agosto",
         data: DateTime.now(),
         listadeprodutos: [
-          Produto(nome: "Açúcar", quantidade: "2", categoria: "Grosso"),
-          Produto(nome: "Sal", quantidade: "Padrão", categoria: "Grosso"),
-          Produto(nome: "Sabonete", quantidade: "Padrão", categoria: "LeH"),
-          Produto(nome: "Fio Dental", quantidade: "2", categoria: "LeH"),
           Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Açúcar",
+              quantidade: "2",
+              categoria: "Grosso"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Sal",
+              quantidade: "Padrão",
+              categoria: "Grosso"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Sabonete",
+              quantidade: "Padrão",
+              categoria: "LeH"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Fio Dental",
+              quantidade: "2",
+              categoria: "LeH"),
+          Produto(
+              id: Random().nextDouble().toString(),
               nome: "Lâmina de Barbear",
               quantidade: "Padrão",
               categoria: "LeH"),
-          Produto(nome: "Peixe", quantidade: "3", categoria: "Frios"),
-          Produto(nome: "Salsicha", quantidade: "1", categoria: "Frios"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Peixe",
+              quantidade: "3",
+              categoria: "Frios"),
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "Salsicha",
+              quantidade: "1",
+              categoria: "Frios"),
         ]),
     Compra(
         id: Random().nextDouble().toString(),

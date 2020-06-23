@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/models/produto.dart';
 
 /* É basicamente a tela que representa e cria a estrutura basica de um produto, e retorna isso para categoria,
 que vai retornar para tela inicial*/
 class ProdutoTemplate extends StatelessWidget {
-  final String nome;
-  final String quantidade;
-  final String categoria;
+  final Produto produto;
+  final Function delproduto;
 
-  ProdutoTemplate(
-      {@required this.nome,
-      @required this.quantidade,
-      @required this.categoria});
+  ProdutoTemplate({
+    @required this.produto,
+    @required this.delproduto,
+  });
 
   @override
   Widget build(BuildContext context) {
+    String pNome = produto.nome;
+    String pQuantidade = produto.quantidade;
+    String pCategoria = produto.categoria;
     return Card(
       margin: EdgeInsets.fromLTRB(6, 9, 6, 9),
-      elevation: 7, //Sombra do widget card
-      child: Padding(
-        //Espaçamento geral dos elementos da coluna para o widget card
-        padding: EdgeInsets.all(15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/$categoria.png',
-              width: 30,
-              height: 30,
-            ),
-            Text(
-              nome,
-              style: TextStyle(fontSize: 20),
-            ),
-            Text(
-              "$quantidade",
-              style: TextStyle(fontSize: 20),
-            )
-          ],
+      elevation: 7,
+      child: ListTile(
+        leading: Image.asset(
+          'assets/images/$pCategoria.png',
+          width: 30,
+          height: 30,
         ),
+        title: Text(
+          pNome,
+          style: TextStyle(fontSize: 20),
+        ),
+        subtitle: Text(
+          "$pQuantidade",
+          style: TextStyle(fontSize: 20),
+        ),
+        trailing: IconButton(
+            icon: Icon(Icons.delete),
+            color: Theme.of(context).errorColor,
+            onPressed: () => delproduto(produto.id)),
       ),
     );
   }

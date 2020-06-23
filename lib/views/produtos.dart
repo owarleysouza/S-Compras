@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/views/addProduto.dart';
 import 'package:minhas_compras/views/produtoTemplate.dart';
@@ -9,10 +12,11 @@ A mesma tem basicamente a lista de produtos, e a sua estrutura principal chama o
 */
 
 class Produtos extends StatefulWidget {
-  final String nome;
-  final List<Produto> listadeprodutos;
+  final Compra compra;
 
-  Produtos({@required this.nome, @required this.listadeprodutos});
+  Produtos({
+    @required this.compra,
+  });
 
   @override
   _ProdutosState createState() => _ProdutosState();
@@ -20,7 +24,7 @@ class Produtos extends StatefulWidget {
 
 class _ProdutosState extends State<Produtos> {
   get temProdutonaLista {
-    if (widget.listadeprodutos.isEmpty) {
+    if (widget.compra.listadeprodutos.isEmpty) {
       return false;
     } else {
       return true;
@@ -28,11 +32,14 @@ class _ProdutosState extends State<Produtos> {
   }
 
   _addProduto(String nome, String quantidade, String categoria) {
-    final novoProduto =
-        Produto(nome: nome, quantidade: quantidade, categoria: categoria);
+    final novoProduto = Produto(
+        id: Random().nextDouble().toString(),
+        nome: nome,
+        quantidade: quantidade,
+        categoria: categoria);
 
     setState(() {
-      widget.listadeprodutos.add(novoProduto);
+      widget.compra.listadeprodutos.add(novoProduto);
     });
 
     Navigator.of(context).pop();
@@ -46,6 +53,12 @@ class _ProdutosState extends State<Produtos> {
         });
   }
 
+  _delproduto(String id) {
+    setState(() {
+      widget.compra.listadeprodutos.removeWhere((produto) => produto.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +66,7 @@ class _ProdutosState extends State<Produtos> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
-          widget.nome,
+          widget.compra.nome,
         ),
         /*actions: <Widget>[
           //Fica a reflexão e a possibilidade de fazer isso aqui. Mas seguindo a lei de fitts tou retirando o botão
@@ -72,11 +85,11 @@ class _ProdutosState extends State<Produtos> {
               height: 500,
               child: ListView(
                 children: <Widget>[
-                  ...widget.listadeprodutos.map((produtos) => ProdutoTemplate(
-                        nome: produtos.nome,
-                        quantidade: produtos.quantidade,
-                        categoria: produtos.categoria,
-                      )),
+                  ...widget.compra.listadeprodutos
+                      .map((produtodalista) => ProdutoTemplate(
+                            produto: produtodalista,
+                            delproduto: _delproduto,
+                          )),
                   SizedBox(
                     //Elemento para que o float button nao fique encima do ultimo produto
                     height: 60,
