@@ -59,11 +59,9 @@ class _EditarProdutoState extends State<EditarProduto> {
               FlatButton(
                   color: Theme.of(context).accentColor,
                   onPressed: () {
-                    widget.editproduto(
-                        id: widget.produto.id,
-                        nome: nomeController.text,
-                        quantidade: quantidadeController.text,
-                        categoria: categoriaValue);
+                    widget.editproduto(widget.produto.id, nomeController.text,
+                        quantidadeController.text, categoriaValue);
+                    Navigator.pop(context);
                   },
                   child: Text("Editar")),
             ],
