@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:minhas_compras/views/compras.dart';
 import 'package:minhas_compras/views/login.dart';
 import 'package:minhas_compras/views/telaApresentacao.dart';
@@ -15,6 +16,8 @@ Resolvi tirar a página principal do main para organizar melhor em outra tela.*/
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
