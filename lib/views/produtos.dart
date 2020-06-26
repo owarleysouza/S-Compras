@@ -59,6 +59,18 @@ class _ProdutosState extends State<Produtos> {
     });
   }
 
+  _editproduto(String id, String nome, String quantidade, String categoria) {
+    for (Produto produto in widget.compra.listadeprodutos) {
+      if (produto.id == id) {
+        setState(() {
+          produto.nome = nome;
+          produto.quantidade = quantidade;
+          produto.categoria = categoria;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,6 +101,7 @@ class _ProdutosState extends State<Produtos> {
                       .map((produtodalista) => ProdutoTemplate(
                             produto: produtodalista,
                             delproduto: _delproduto,
+                            editproduto: _editproduto,
                           )),
                   SizedBox(
                     //Elemento para que o float button nao fique encima do ultimo produto

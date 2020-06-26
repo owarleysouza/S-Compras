@@ -34,54 +34,63 @@ class _AddProdutoState extends State<AddProduto> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: <Widget>[
-          TextField(
-            decoration: InputDecoration(labelText: "Nome"),
-            controller: nomeController,
-          ),
-          TextField(
-            decoration: InputDecoration(
-                labelText: "Quantidade (Vazio para qtd 'Padrão')"),
-            keyboardType: TextInputType.numberWithOptions(
-                decimal: true), //parametro para que o teclado seja numerico
-            controller: quantidadeController,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+    return SingleChildScrollView(
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.only(
+              top: 10,
+              right: 10,
+              left: 10,
+              bottom: 10 + MediaQuery.of(context).viewInsets.bottom),
+          child: Column(
             children: <Widget>[
-              Text("Categoria do Produto:"),
-              SizedBox(
-                width: 20,
+              TextField(
+                decoration: InputDecoration(labelText: "Nome"),
+                controller: nomeController,
               ),
-              DropdownButton(
-                  value: categoriavalue,
-                  items: <String>["Grosso", "LeH", "Frios"]
-                      .map((String value) => DropdownMenuItem(
-                            value: value,
-                            child: Text(value),
-                          ))
-                      .toList(),
-                  onChanged: (newvalue) {
-                    setState(() {
-                      categoriavalue = newvalue;
-                    });
-                  }),
+              TextField(
+                decoration: InputDecoration(
+                    labelText: "Quantidade (Vazio para qtd 'Padrão')"),
+                keyboardType: TextInputType.numberWithOptions(
+                    decimal: true), //parametro para que o teclado seja numerico
+                controller: quantidadeController,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Text("Categoria do Produto:"),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  DropdownButton(
+                      value: categoriavalue,
+                      items: <String>["Grosso", "LeH", "Frios"]
+                          .map((String value) => DropdownMenuItem(
+                                value: value,
+                                child: Text(value),
+                              ))
+                          .toList(),
+                      onChanged: (newvalue) {
+                        setState(() {
+                          categoriavalue = newvalue;
+                        });
+                      }),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  FlatButton(
+                      color: Theme.of(context).accentColor,
+                      onPressed: () {
+                        _submeterFormulario();
+                      },
+                      child: Text("Adicionar")),
+                ],
+              )
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(
-                  color: Theme.of(context).accentColor,
-                  onPressed: () {
-                    _submeterFormulario();
-                  },
-                  child: Text("Adicionar")),
-            ],
-          )
-        ],
+        ),
       ),
     );
   }

@@ -46,40 +46,49 @@ class _AddCompraState extends State<AddCompra> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: <Widget>[
-          TextField(
-            decoration: InputDecoration(labelText: "Nome da Compra"),
-            controller: nomecontroller,
-          ),
-          Row(
+    return SingleChildScrollView(
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.only(
+              top: 10,
+              right: 10,
+              left: 10,
+              bottom: 15 + MediaQuery.of(context).viewInsets.bottom),
+          child: Column(
             children: <Widget>[
-              Expanded(
-                  child: Text(_datadacompra == null
-                      ? "Nenhuma Data Selecionada!"
-                      : "Data Selecionada: ${DateFormat('dd/MM/y').format(_datadacompra)}")),
-              FlatButton(
-                  onPressed: _showDatePicker,
-                  child: Text(
-                    "Selecionar Data",
-                    style: TextStyle(color: Theme.of(context).accentColor),
-                  ))
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              RaisedButton(
-                color: Theme.of(context).accentColor,
-                onPressed: () {
-                  _addForm();
-                },
-                child: Text("Adicionar"),
+              TextField(
+                decoration: InputDecoration(labelText: "Nome da Compra"),
+                controller: nomecontroller,
               ),
+              Row(
+                children: <Widget>[
+                  Expanded(
+                      child: Text(_datadacompra == null
+                          ? "Nenhuma Data Selecionada!"
+                          : "Data Selecionada: ${DateFormat('dd/MM/y').format(_datadacompra)}")),
+                  FlatButton(
+                      onPressed: _showDatePicker,
+                      child: Text(
+                        "Selecionar Data",
+                        style: TextStyle(color: Theme.of(context).accentColor),
+                      ))
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  RaisedButton(
+                    color: Theme.of(context).accentColor,
+                    onPressed: () {
+                      _addForm();
+                    },
+                    child: Text("Adicionar"),
+                  ),
+                ],
+              )
             ],
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
