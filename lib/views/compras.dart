@@ -157,8 +157,36 @@ class _ComprasState extends State<Compras> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                ),
+                child: Text(
+                  'User',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.account_circle),
+                title: Text('Perfil'),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Configurações'),
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: Text("Compras Feitas"),
+          centerTitle: true,
         ),
         body: ListView(
           children: <Widget>[
