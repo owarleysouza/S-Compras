@@ -181,6 +181,10 @@ class _ComprasState extends State<Compras> {
                 leading: Icon(Icons.settings),
                 title: Text('Configurações'),
               ),
+              ListTile(
+                leading: Icon(Icons.add_to_home_screen),
+                title: Text("Compartilhar Compra"),
+              )
             ],
           ),
         ),

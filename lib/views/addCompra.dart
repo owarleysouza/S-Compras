@@ -28,11 +28,12 @@ class _AddCompraState extends State<AddCompra> {
   }
 
   _showDatePicker() {
+    DateTime now = DateTime.now();
     showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2020),
-      lastDate: DateTime.now(),
+      initialDate: now,
+      firstDate: DateTime(now.year),
+      lastDate: DateTime(now.year + 1),
     ).then((dataselecionada) {
       if (dataselecionada == null) {
         return;
