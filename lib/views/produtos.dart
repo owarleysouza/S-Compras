@@ -5,10 +5,9 @@ import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/views/addProduto.dart';
 import 'package:minhas_compras/views/produtoTemplate.dart';
-import 'package:minhas_compras/views/telaVazia.dart';
+import 'package:minhas_compras/views/telaSemProdutos.dart';
 
-/*Tela inicial do app. Aqui basicamente é a tela onde são mostrados os produtos nas suas respectivas categorias.
-A mesma tem basicamente a lista de produtos, e a sua estrutura principal chama o widget categoria para ser mostrada nela 
+/*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
 */
 
 class Produtos extends StatefulWidget {
@@ -49,7 +48,9 @@ class _ProdutosState extends State<Produtos> {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return AddProduto(_addProduto);
+          return AddProduto(
+            submeter: _addProduto,
+          );
         });
   }
 
@@ -74,23 +75,12 @@ class _ProdutosState extends State<Produtos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFe5e5e5),
+      backgroundColor: const Color(0xFFe5e5e5),
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
           widget.compra.nome,
         ),
-        /*actions: <Widget>[
-          //Fica a reflexão e a possibilidade de fazer isso aqui. Mas seguindo a lei de fitts tou retirando o botão
-          Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: IconButton(
-                  color: Theme.of(context).accentColor,
-                  icon: Icon(Icons.add_shopping_cart),
-                  onPressed: () {
-                    _openAddFormModal(context);
-                  }))
-        ],*/
       ),
       body: temProdutonaLista
           ? Container(
@@ -103,7 +93,7 @@ class _ProdutosState extends State<Produtos> {
                             delproduto: _delproduto,
                             editproduto: _editproduto,
                           )),
-                  SizedBox(
+                  const SizedBox(
                     //Elemento para que o float button nao fique encima do ultimo produto
                     height: 60,
                   )
@@ -112,7 +102,7 @@ class _ProdutosState extends State<Produtos> {
             )
           : TelaVazia(),
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add_shopping_cart),
+          child: const Icon(Icons.add_shopping_cart),
           onPressed: () {
             _openAddFormModal(context);
           }),

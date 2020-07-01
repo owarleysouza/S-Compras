@@ -83,7 +83,7 @@ class _AddCompraState extends State<AddCompra> {
                     onPressed: () {
                       _addForm();
                     },
-                    child: Text("Adicionar"),
+                    child: const Text("Adicionar"),
                   ),
                 ],
               )

@@ -13,7 +13,7 @@ class TelaVazia extends StatelessWidget {
               width: 100,
               height: 100,
             ),
-            Text("Ainda nenhum produto! :(")
+            const Text("Ainda nenhum produto! :(")
           ],
         ),
       ),

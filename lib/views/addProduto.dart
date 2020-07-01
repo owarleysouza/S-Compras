@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AddProduto extends StatefulWidget {
   final void Function(String, String, String) submeter;
 
-  AddProduto(this.submeter);
+  AddProduto({@required this.submeter});
 
   @override
   _AddProdutoState createState() => _AddProdutoState();
@@ -58,8 +58,8 @@ class _AddProdutoState extends State<AddProduto> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text("Categoria do Produto:"),
-                  SizedBox(
+                  const Text("Categoria do Produto:"),
+                  const SizedBox(
                     width: 20,
                   ),
                   DropdownButton(
@@ -85,7 +85,7 @@ class _AddProdutoState extends State<AddProduto> {
                       onPressed: () {
                         _submeterFormulario();
                       },
-                      child: Text("Adicionar")),
+                      child: const Text("Adicionar")),
                 ],
               )
             ],

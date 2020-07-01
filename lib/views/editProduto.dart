@@ -20,7 +20,7 @@ class _EditarProdutoState extends State<EditarProduto> {
     return Card(
       child: Column(
         children: <Widget>[
-          Text("Editar Produto"),
+          const Text("Editar Produto"),
           TextField(
             decoration: InputDecoration(labelText: "Nome"),
             controller: nomeController,
@@ -35,8 +35,8 @@ class _EditarProdutoState extends State<EditarProduto> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text("Categoria do Produto:"),
-              SizedBox(
+              const Text("Categoria do Produto:"),
+              const SizedBox(
                 width: 20,
               ),
               DropdownButton(
@@ -64,7 +64,7 @@ class _EditarProdutoState extends State<EditarProduto> {
                         quantidadeController.text, categoriaValue);
                     Navigator.pop(context);
                   },
-                  child: Text("Editar")),
+                  child: const Text("Editar")),
             ],
           )
         ],

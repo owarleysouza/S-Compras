@@ -110,21 +110,6 @@ class _ComprasState extends State<Compras> {
         nome: "Compra de Agosto",
         data: DateTime.now(),
         listadeprodutos: []),
-    Compra(
-        id: Random().nextDouble().toString(),
-        nome: "Compra de Agosto",
-        data: DateTime.now(),
-        listadeprodutos: []),
-    Compra(
-        id: Random().nextDouble().toString(),
-        nome: "Compra de Agosto",
-        data: DateTime.now(),
-        listadeprodutos: []),
-    Compra(
-        id: Random().nextDouble().toString(),
-        nome: "Compra de Agosto",
-        data: DateTime.now(),
-        listadeprodutos: []),
   ];
 
   _addCompra(String novonome, DateTime datadacompra, List<Produto> produtos) {
@@ -174,22 +159,22 @@ class _ComprasState extends State<Compras> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Perfil'),
+                leading: const Icon(Icons.account_circle),
+                title: const Text('Perfil'),
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Configurações'),
+                leading: const Icon(Icons.settings),
+                title: const Text('Configurações'),
               ),
               ListTile(
-                leading: Icon(Icons.add_to_home_screen),
-                title: Text("Compartilhar Compra"),
+                leading: const Icon(Icons.add_to_home_screen),
+                title: const Text("Compartilhar Compra"),
               )
             ],
           ),
         ),
         appBar: AppBar(
-          title: Text("Compras Feitas"),
+          title: const Text("Compras Feitas"),
           centerTitle: true,
         ),
         body: ListView(
@@ -198,13 +183,13 @@ class _ComprasState extends State<Compras> {
                   compra: compra,
                   delCompra: _delCompra,
                 )),
-            SizedBox(
+            const SizedBox(
               height: 70,
             )
           ],
         ),
         floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add_box),
+            child: const Icon(Icons.add_box),
             onPressed: () {
               _openAddShopFormModal(context);
             }),
