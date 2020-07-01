@@ -30,7 +30,7 @@ class CompraTemplate extends StatelessWidget {
               leading: Padding(
                 padding: const EdgeInsets.all(3.0),
                 child: CircleAvatar(
-                  backgroundColor: Color(0xFF14213D),
+                  backgroundColor: const Color(0xFF14213D),
                   radius: 30,
                   child: Text(compra.listadeprodutos.length.toString()),
                 ),
@@ -38,7 +38,7 @@ class CompraTemplate extends StatelessWidget {
               title: Text(compra.nome),
               subtitle: Text((DateFormat('dd/MM/y').format(compra.data))),
               trailing: IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: const Icon(Icons.delete),
                   color: Theme.of(context).errorColor,
                   onPressed: () => delCompra(compra.id)),
             ),

@@ -24,13 +24,13 @@ class _LoginState extends State<Login> {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10),
             child: RaisedButton(
-                child: Text("Entrar"),
+                child: const Text("Entrar"),
                 onPressed: () {
                   Navigator.of(context).pushNamed(
                       'initialscreen'); //Como foram definidas no main rotas nomeadas, é só chamar pelo nome que está lá
                 }),
           ),
-          RaisedButton(child: Text("Cadastrar"), onPressed: () {})
+          RaisedButton(child: const Text("Cadastrar"), onPressed: () {})
         ],
       ),
     );

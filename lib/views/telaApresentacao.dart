@@ -66,7 +66,7 @@ class _TelaApresentacaoState extends State<TelaApresentacao> {
             margin: EdgeInsets.symmetric(horizontal: 10),
             width: double.infinity,
             child: RaisedButton(
-                child: Text("Logar"),
+                child: const Text("Avançar"),
                 onPressed: () {
                   Navigator.of(context).pushNamed(
                       'login'); //Como foram definidas no main rotas nomeadas, é só chamar pelo nome que está lá
