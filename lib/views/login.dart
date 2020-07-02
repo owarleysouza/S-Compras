@@ -7,6 +7,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final emailcontroller = TextEditingController();
+  final senhacontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -19,18 +22,43 @@ class _LoginState extends State<Login> {
             width: 100,
             height: 100,
           ),
-          TextField(decoration: InputDecoration(labelText: "E-mail")),
-          TextField(decoration: InputDecoration(labelText: "Senha")),
+          TextField(
+            decoration: InputDecoration(labelText: "E-mail"),
+            controller: emailcontroller,
+          ),
+          TextField(
+              obscureText: true,
+              decoration: InputDecoration(labelText: "Senha"),
+              controller: senhacontroller),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10),
             child: RaisedButton(
                 child: const Text("Entrar"),
                 onPressed: () {
-                  Navigator.of(context).pushNamed(
-                      'initialscreen'); //Como foram definidas no main rotas nomeadas, é só chamar pelo nome que está lá
+                  if (emailcontroller.text == "warley@gmail.com" &&
+                      senhacontroller.text == "123123") {
+                    Navigator.of(context).pushNamed('initialscreen');
+                  } else {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Erro"),
+                            content: Text("Login e/ou Senha Inválido(s)"),
+                            actions: <Widget>[
+                              FlatButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("OK"))
+                            ],
+                          );
+                        });
+                  }
+                  //Como foram definidas no main rotas nomeadas, é só chamar pelo nome que está lá
                 }),
           ),
-          RaisedButton(child: const Text("Cadastrar"), onPressed: () {})
+          RaisedButton(child: const Text("Cadastrar"), onPressed: null)
         ],
       ),
     );
