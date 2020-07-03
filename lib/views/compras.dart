@@ -159,17 +159,18 @@ class _ComprasState extends State<Compras> {
                 ),
               ),
               ListTile(
-                leading: const Icon(Icons.account_circle),
-                title: const Text('Perfil'),
-              ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Configurações'),
+                leading: const Icon(Icons.shop),
+                title: const Text("Compras Realizadas"),
               ),
               ListTile(
                 leading: const Icon(Icons.add_to_home_screen),
                 title: const Text("Compartilhar Compra"),
-              )
+              ),
+              Divider(),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Configurações'),
+              ),
             ],
           ),
         ),

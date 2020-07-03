@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
             0xFF14213D), //Cor primária do app que vai definir a cor de elementos principais, como a appbar, e etc
         accentColor: Color(
             0xFFFCA311), //Cor definida para os elementos de destaque no app, como botões e etc
+        buttonColor: Color(0xFFFCA311),
         fontFamily: 'Montserrat',
         appBarTheme: AppBarTheme(
             textTheme: ThemeData.light().textTheme.copyWith(
