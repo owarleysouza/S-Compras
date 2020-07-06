@@ -8,11 +8,13 @@ class ProdutoTemplate extends StatelessWidget {
   final Produto produto;
   final Function delproduto;
   final Function editproduto;
+  final Function completeproduto;
 
   ProdutoTemplate(
       {@required this.produto,
       @required this.delproduto,
-      @required this.editproduto});
+      @required this.editproduto,
+      @required this.completeproduto});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,31 @@ class ProdutoTemplate extends StatelessWidget {
                 child:
                     EditarProduto(produto: produto, editproduto: editproduto),
               ))),
+      onDoubleTap: () => showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Marcar Produto"),
+              content: Text(
+                  "Tem certeza que deseja marcar esse produto como concluído?"),
+              actions: <Widget>[
+                FlatButton(
+                    onPressed: () {
+                      completeproduto(produto.id, false);
+                      Navigator.pop(context);
+                    },
+                    child: Text("Desmarcar Produto")),
+                FlatButton(
+                    onPressed: () {
+                      completeproduto(produto.id, true);
+                      Navigator.pop(context);
+                    },
+                    child: Text("OK"))
+              ],
+            );
+          }),
       child: Card(
+        color: produto.iscomplete == true ? Colors.green[300] : Colors.white,
         margin: EdgeInsets.fromLTRB(6, 9, 6, 9),
         elevation: 7,
         child: ListTile(

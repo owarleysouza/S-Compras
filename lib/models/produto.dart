@@ -5,12 +5,14 @@ class Produto {
   String nome;
   String quantidade;
   String categoria;
+  bool iscomplete;
 
   Produto(
       {@required this.id,
       @required this.nome,
       @required this.quantidade,
-      @required this.categoria});
+      @required this.categoria,
+      @required this.iscomplete});
 
   Produto.fromJson(Map<String, dynamic> json) {
     nome = json['nome'];

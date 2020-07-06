@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddProduto extends StatefulWidget {
-  final void Function(String, String, String) submeter;
+  final void Function(String, String, String, bool) submeter;
 
   AddProduto({@required this.submeter});
 
@@ -26,9 +26,9 @@ class _AddProdutoState extends State<AddProduto> {
       //Nome deve ser não vazio e menor que 17 caracteres para não dá overflowed na tela. Quantidade deve ser maior que 0
       return; //Lembrar de criar widgets para tratar erros e mostrar avisos para o usuário e chamar aqui
     } else if (nome != "" && quantidade == "" && nome.length < 17) {
-      widget.submeter(nome, "Padrão", categoria);
+      widget.submeter(nome, "Padrão", categoria, false);
     } else {
-      widget.submeter(nome, quantidade, categoria);
+      widget.submeter(nome, quantidade, categoria, false);
     }
   }
 
