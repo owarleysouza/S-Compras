@@ -30,12 +30,14 @@ class _ProdutosState extends State<Produtos> {
     }
   }
 
-  _addProduto(String nome, String quantidade, String categoria) {
+  _addProduto(
+      String nome, String quantidade, String categoria, bool iscomplete) {
     final novoProduto = Produto(
         id: Random().nextDouble().toString(),
         nome: nome,
         quantidade: quantidade,
-        categoria: categoria);
+        categoria: categoria,
+        iscomplete: iscomplete);
 
     setState(() {
       widget.compra.listadeprodutos.add(novoProduto);
@@ -72,6 +74,16 @@ class _ProdutosState extends State<Produtos> {
     }
   }
 
+  _completeproduto(String id, bool iscomplete) {
+    for (Produto produto in widget.compra.listadeprodutos) {
+      if (produto.id == id) {
+        setState(() {
+          produto.iscomplete = iscomplete;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,6 +104,7 @@ class _ProdutosState extends State<Produtos> {
                             produto: produtodalista,
                             delproduto: _delproduto,
                             editproduto: _editproduto,
+                            completeproduto: _completeproduto,
                           )),
                   const SizedBox(
                     //Elemento para que o float button nao fique encima do ultimo produto
