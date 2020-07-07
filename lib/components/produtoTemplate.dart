@@ -8,13 +8,13 @@ class ProdutoTemplate extends StatelessWidget {
   final Produto produto;
   final Function delproduto;
   final Function editproduto;
-  final Function completeproduto;
+  final Function completeProduto;
 
   ProdutoTemplate(
       {@required this.produto,
       @required this.delproduto,
       @required this.editproduto,
-      @required this.completeproduto});
+      @required this.completeProduto});
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +37,13 @@ class ProdutoTemplate extends StatelessWidget {
               actions: <Widget>[
                 FlatButton(
                     onPressed: () {
-                      completeproduto(produto.id, false);
+                      completeProduto(produto.id, false);
                       Navigator.pop(context);
                     },
                     child: Text("Desmarcar Produto")),
                 FlatButton(
                     onPressed: () {
-                      completeproduto(produto.id, true);
+                      completeProduto(produto.id, true);
                       Navigator.pop(context);
                     },
                     child: Text("OK"))
