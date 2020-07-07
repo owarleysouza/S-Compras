@@ -8,6 +8,7 @@ main() {
       id: Random().nextDouble().toString(),
       nome: "Compra de Julho",
       data: DateTime.now(),
+      iscompleted: false,
       listadeprodutos: [
         Produto(
             id: Random().nextDouble().toString(),

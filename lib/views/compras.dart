@@ -5,6 +5,7 @@ import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/views/addCompra.dart';
 import 'package:minhas_compras/views/compraTemplate.dart';
+import 'package:minhas_compras/views/comprasConcluidas.dart';
 
 class Compras extends StatefulWidget {
   @override
@@ -12,11 +13,12 @@ class Compras extends StatefulWidget {
 }
 
 class _ComprasState extends State<Compras> {
-  final List<Compra> listadecomprasfeitas = [
+  final List<Compra> listadecompras = [
     Compra(
         id: Random().nextDouble().toString(),
         nome: "Compra de Julho",
         data: DateTime.now(),
+        iscompleted: false,
         listadeprodutos: [
           Produto(
               id: Random().nextDouble().toString(),
@@ -77,6 +79,7 @@ class _ComprasState extends State<Compras> {
         id: Random().nextDouble().toString(),
         nome: "Compra de Agosto",
         data: DateTime.now(),
+        iscompleted: false,
         listadeprodutos: [
           Produto(
               id: Random().nextDouble().toString(),
@@ -123,8 +126,9 @@ class _ComprasState extends State<Compras> {
         ]),
     Compra(
         id: Random().nextDouble().toString(),
-        nome: "Compra de Agosto",
+        nome: "Compra de Set",
         data: DateTime.now(),
+        iscompleted: true,
         listadeprodutos: []),
   ];
 
@@ -133,9 +137,10 @@ class _ComprasState extends State<Compras> {
         id: Random().nextDouble().toString(),
         nome: novonome,
         data: datadacompra,
+        iscompleted: false,
         listadeprodutos: produtos);
     setState(() {
-      listadecomprasfeitas.add(novacompra);
+      listadecompras.add(novacompra);
     });
 
     Navigator.of(context).pop();
@@ -143,7 +148,7 @@ class _ComprasState extends State<Compras> {
 
   _delCompra(String id) {
     setState(() {
-      listadecomprasfeitas.removeWhere((compra) => compra.id == id);
+      listadecompras.removeWhere((compra) => compra.id == id);
     });
   }
 
@@ -153,6 +158,16 @@ class _ComprasState extends State<Compras> {
         builder: (_) {
           return AddCompra(submeter: _addCompra);
         });
+  }
+
+  _completeCompra(String id, bool iscomplete) {
+    for (Compra compra in listadecompras) {
+      if (compra.id == id) {
+        setState(() {
+          compra.iscompleted = iscomplete;
+        });
+      }
+    }
   }
 
   @override
@@ -177,6 +192,9 @@ class _ComprasState extends State<Compras> {
               ListTile(
                 leading: const Icon(Icons.shop),
                 title: const Text("Compras Realizadas"),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ComprasConcluidas(
+                        compras: listadecompras, delCompra: _delCompra))),
               ),
               ListTile(
                 leading: const Icon(Icons.add_to_home_screen),
@@ -191,15 +209,22 @@ class _ComprasState extends State<Compras> {
           ),
         ),
         appBar: AppBar(
-          title: const Text("Compras Feitas"),
+          title: const Text("Compras Atuais"),
           centerTitle: true,
         ),
         body: ListView(
           children: <Widget>[
-            ...listadecomprasfeitas.map((compra) => CompraTemplate(
+            ...listadecompras.map((compra) {
+              if (compra.iscompleted == false) {
+                return CompraTemplate(
                   compra: compra,
                   delCompra: _delCompra,
-                )),
+                  completeCompra: _completeCompra,
+                );
+              } else {
+                return Container();
+              }
+            }),
             const SizedBox(
               height: 70,
             )

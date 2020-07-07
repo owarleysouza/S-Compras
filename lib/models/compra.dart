@@ -5,12 +5,14 @@ class Compra {
   String id;
   String nome;
   DateTime data;
+  bool iscompleted;
   List<Produto> listadeprodutos;
 
   Compra({
     @required this.id,
     @required this.nome,
     @required this.data,
+    @required this.iscompleted,
     @required this.listadeprodutos,
   });
 }

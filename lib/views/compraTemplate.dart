@@ -6,11 +6,12 @@ import 'package:minhas_compras/views/produtos.dart';
 class CompraTemplate extends StatelessWidget {
   final Compra compra;
   final Function delCompra;
+  final Function completeCompra;
 
-  CompraTemplate({
-    @required this.compra,
-    @required this.delCompra,
-  });
+  CompraTemplate(
+      {@required this.compra,
+      @required this.delCompra,
+      @required this.completeCompra});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,36 @@ class CompraTemplate extends StatelessWidget {
                     compra: compra,
                   )));
         },
+        onDoubleTap: () => showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("Concluir Compra"),
+                content: Text(
+                    "Tem certeza que deseja marcar essa compra como concluída?"),
+                actions: <Widget>[
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("Cancelar")),
+                  FlatButton(
+                      onPressed: () {
+                        completeCompra(compra.id, false);
+                        Navigator.pop(context);
+                      },
+                      child: Text("Desmarcar Compra")),
+                  FlatButton(
+                      onPressed: () {
+                        completeCompra(compra.id, true);
+                        Navigator.pop(context);
+                      },
+                      child: Text("OK"))
+                ],
+              );
+            }),
         child: Card(
+          color: compra.iscompleted == true ? Colors.green[200] : Colors.white,
           elevation: 5,
           margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           child: Padding(
