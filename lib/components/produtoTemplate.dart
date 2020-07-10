@@ -23,10 +23,8 @@ class ProdutoTemplate extends StatelessWidget {
     String pCategoria = produto.categoria;
     return GestureDetector(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Dialog(
-                child:
-                    EditarProduto(produto: produto, editproduto: editproduto),
-              ))),
+          builder: (context) =>
+              EditarProduto(produto: produto, editproduto: editproduto))),
       onDoubleTap: () => showDialog(
           context: context,
           builder: (context) {
