@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:minhas_compras/views/compras.dart';
 import 'package:minhas_compras/views/login.dart';
-import 'package:minhas_compras/views/telaApresentacao.dart';
 
 //Arquivo principal que usa o RunApp para chamar a classe principal e executar o app
 

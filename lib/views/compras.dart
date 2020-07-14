@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/components/addCompra.dart';
-import 'package:minhas_compras/components/compraTemplate.dart';
 import 'package:minhas_compras/views/comprasConcluidas.dart';
 import 'package:minhas_compras/views/telaCompras.dart';
-import 'package:minhas_compras/views/telaSemProdutos.dart';
 
 class Compras extends StatefulWidget {
   @override
