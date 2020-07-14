@@ -6,6 +6,8 @@ import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/components/addCompra.dart';
 import 'package:minhas_compras/components/compraTemplate.dart';
 import 'package:minhas_compras/views/comprasConcluidas.dart';
+import 'package:minhas_compras/views/telaCompras.dart';
+import 'package:minhas_compras/views/telaSemProdutos.dart';
 
 class Compras extends StatefulWidget {
   @override
@@ -170,71 +172,74 @@ class _ComprasState extends State<Compras> {
     }
   }
 
+  int _selectedScreenIndex = 0;
+  _selectScreen(int index) {
+    setState(() {
+      _selectedScreenIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _screens = [
+      TelaCompras(
+        listadecompras: listadecompras,
+        delCompra: _delCompra,
+        completeCompra: _completeCompra,
+        showModalForm: _openAddShopFormModal,
+      ),
+      ComprasConcluidas(compras: listadecompras, delCompra: _delCompra)
+    ];
+
     return Scaffold(
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                ),
-                child: Text(
-                  'User',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.shop),
-                title: const Text("Compras Realizadas"),
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ComprasConcluidas(
-                        compras: listadecompras, delCompra: _delCompra))),
-              ),
-              ListTile(
-                leading: const Icon(Icons.add_to_home_screen),
-                title: const Text("Compartilhar Compra"),
-              ),
-              Divider(),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Configurações'),
-              ),
-            ],
-          ),
-        ),
-        appBar: AppBar(
-          title: const Text("Compras Atuais"),
-          centerTitle: true,
-        ),
-        body: ListView(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: <Widget>[
-            ...listadecompras.map((compra) {
-              if (compra.iscompleted == false) {
-                return CompraTemplate(
-                  compra: compra,
-                  delCompra: _delCompra,
-                  completeCompra: _completeCompra,
-                );
-              } else {
-                return Container();
-              }
-            }),
-            const SizedBox(
-              height: 70,
-            )
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Text(
+                'User',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.add_to_home_screen),
+              title: const Text("Compartilhar Compra"),
+            ),
+            Divider(),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Configurações'),
+            ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.add_box),
-            onPressed: () {
-              _openAddShopFormModal(context);
-            }),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
+      ),
+      appBar: AppBar(
+        title: const Text("Compras"),
+        centerTitle: true,
+      ),
+      body: _screens[_selectedScreenIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: _selectScreen,
+          backgroundColor: Theme.of(context).primaryColor,
+          unselectedItemColor: Colors.white,
+          selectedItemColor: Theme.of(context).accentColor,
+          currentIndex: _selectedScreenIndex,
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_basket),
+                title: Text("Compras Atuais")),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.check_circle),
+                title: Text("Compras Realizadas"))
+          ]),
+    );
   }
 }

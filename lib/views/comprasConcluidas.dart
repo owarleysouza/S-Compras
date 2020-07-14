@@ -26,9 +26,6 @@ class _ComprasConcluidasState extends State<ComprasConcluidas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Compras Realizadas"),
-      ),
       body: ListView(
         children: <Widget>[
           ...widget.compras.map((compra) {
