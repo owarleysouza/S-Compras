@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/components/mainDrawer.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/components/addCompra.dart';
@@ -190,34 +191,7 @@ class _ComprasState extends State<Compras> {
     ];
 
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-              ),
-              child: Text(
-                'User',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.add_to_home_screen),
-              title: const Text("Compartilhar Compra"),
-            ),
-            Divider(),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Configurações'),
-            ),
-          ],
-        ),
-      ),
+      drawer: MainDrawer(),
       appBar: AppBar(
         title: const Text("Compras"),
         centerTitle: true,

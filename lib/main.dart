@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:minhas_compras/views/compras.dart';
 import 'package:minhas_compras/views/login.dart';
+import 'package:minhas_compras/views/settings.dart';
 
 //Arquivo principal que usa o RunApp para chamar a classe principal e executar o app
 
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         //Usando rotas nomeadas, assim nas paginas que precisam dessas rotas é só chamar o navigator com pushedname
         'login': (context) => Login(),
         'initialscreen': (context) => Compras(),
+        'settings': (context) => Settings()
       },
     );
   }
