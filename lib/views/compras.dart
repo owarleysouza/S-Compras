@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:minhas_compras/components/mainDrawer.dart';
 import 'package:minhas_compras/data/dummy_data.dart';
 import 'package:minhas_compras/models/compra.dart';
@@ -17,19 +19,39 @@ class Compras extends StatefulWidget {
 }
 
 class _ComprasState extends State<Compras> {
-  @override
   _addCompra(String novonome, DateTime datadacompra, List<Produto> produtos) {
-    final novacompra = Compra(
-        id: Random().nextDouble().toString(),
-        nome: novonome,
-        data: datadacompra,
-        iscompleted: false,
-        listadeprodutos: produtos);
-    setState(() {
-      widget.listadeCompras.add(novacompra);
-    });
+    const url = 'https://flutter-minhascompras.firebaseio.com/compras.json';
 
-    Navigator.of(context).pop();
+    http
+        .post(
+      url,
+      body: json.encode({
+        'nome': novonome,
+        'data': datadacompra.toString(),
+        'iscompeted': false,
+        'listadeprodutos': [
+          Produto(
+              id: Random().nextDouble().toString(),
+              nome: "PTeste",
+              quantidade: "0",
+              categoria: "Grosso",
+              iscomplete: false)
+        ],
+      }),
+    )
+        .then((response) {
+      final novacompra = Compra(
+          id: json.decode(response.body)['name'],
+          nome: novonome,
+          data: datadacompra,
+          iscompleted: false,
+          listadeprodutos: produtos);
+      setState(() {
+        widget.listadeCompras.add(novacompra);
+      });
+
+      Navigator.of(context).pop();
+    });
   }
 
   _delCompra(String id) {
