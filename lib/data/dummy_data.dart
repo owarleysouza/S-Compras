@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 
-final LISTADECOMPRAS = [
+final shopList = [
   Compra(
       id: Random().nextDouble().toString(),
       nome: "Compra de Julho",
