@@ -10,14 +10,13 @@ import 'package:minhas_compras/views/comprasConcluidas.dart';
 import 'package:minhas_compras/views/telaCompras.dart';
 
 class Compras extends StatefulWidget {
-  final List<Compra> listadeCompras = LISTADECOMPRAS;
+  final List<Compra> listadeCompras = shopList;
 
   @override
   _ComprasState createState() => _ComprasState();
 }
 
 class _ComprasState extends State<Compras> {
-  @override
   _addCompra(String novonome, DateTime datadacompra, List<Produto> produtos) {
     final novacompra = Compra(
         id: Random().nextDouble().toString(),
