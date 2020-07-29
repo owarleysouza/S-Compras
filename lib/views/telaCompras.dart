@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/components/compraTemplate.dart';
+import 'package:minhas_compras/widgets/compraTemplate.dart';
 import 'package:minhas_compras/models/compra.dart';
 
 class TelaCompras extends StatelessWidget {

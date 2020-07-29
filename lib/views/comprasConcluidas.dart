@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/compra.dart';
-import 'package:minhas_compras/components/compraTemplate.dart';
+import 'package:minhas_compras/widgets/compraTemplate.dart';
 
 class ComprasConcluidas extends StatefulWidget {
   final List<Compra> compras;

@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/components/mainDrawer.dart';
+import 'package:minhas_compras/widgets/mainDrawer.dart';
 import 'package:minhas_compras/data/dummy_data.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/components/addCompra.dart';
+import 'package:minhas_compras/widgets/addCompra.dart';
 import 'package:minhas_compras/views/comprasConcluidas.dart';
 import 'package:minhas_compras/views/telaCompras.dart';
 

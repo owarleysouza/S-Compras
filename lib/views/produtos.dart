@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/components/addProduto.dart';
-import 'package:minhas_compras/components/produtoTemplate.dart';
+import 'package:minhas_compras/widgets/addProduto.dart';
+import 'package:minhas_compras/widgets/produtoTemplate.dart';
 import 'package:minhas_compras/views/telaSemProdutos.dart';
 
 /*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
