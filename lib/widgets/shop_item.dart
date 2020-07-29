@@ -3,12 +3,12 @@ import 'package:intl/intl.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/views/produtos.dart';
 
-class CompraTemplate extends StatelessWidget {
+class ShopItem extends StatelessWidget {
   final Compra compra;
   final Function delCompra;
   final Function completeCompra;
 
-  CompraTemplate(
+  ShopItem(
       {@required this.compra,
       @required this.delCompra,
       @required this.completeCompra});

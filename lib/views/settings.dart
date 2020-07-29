@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/components/mainDrawer.dart';
+import 'package:minhas_compras/widgets/mainDrawer.dart';
 
 class Settings extends StatelessWidget {
   @override

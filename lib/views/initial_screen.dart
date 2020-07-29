@@ -1,22 +1,22 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/components/mainDrawer.dart';
+import 'package:minhas_compras/widgets/mainDrawer.dart';
 import 'package:minhas_compras/data/dummy_data.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/components/addCompra.dart';
+import 'package:minhas_compras/widgets/addCompra.dart';
 import 'package:minhas_compras/views/comprasConcluidas.dart';
-import 'package:minhas_compras/views/telaCompras.dart';
+import 'package:minhas_compras/views/shopping_list_overview_screen.dart';
 
-class Compras extends StatefulWidget {
+class InitialScreen extends StatefulWidget {
   final List<Compra> listadeCompras = shopList;
 
   @override
-  _ComprasState createState() => _ComprasState();
+  _InitialScreenState createState() => _InitialScreenState();
 }
 
-class _ComprasState extends State<Compras> {
+class _InitialScreenState extends State<InitialScreen> {
   _addCompra(String novonome, DateTime datadacompra, List<Produto> produtos) {
     final novacompra = Compra(
         id: Random().nextDouble().toString(),
@@ -65,7 +65,7 @@ class _ComprasState extends State<Compras> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _screens = [
-      TelaCompras(
+      ShoppingListOverviewScreen(
         listadecompras: widget.listadeCompras,
         delCompra: _delCompra,
         completeCompra: _completeCompra,

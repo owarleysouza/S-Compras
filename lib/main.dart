@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:minhas_compras/views/compras.dart';
+import 'package:minhas_compras/views/initial_screen.dart';
 import 'package:minhas_compras/views/login.dart';
 import 'package:minhas_compras/views/settings.dart';
 
@@ -35,11 +35,11 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.w700))),
       ),
       home:
-          Compras(), //TelaApresentacao(), quando quiser ficar passando pelas telas anteriores
+          InitialScreen(), //TelaApresentacao(), quando quiser ficar passando pelas telas anteriores
       routes: {
         //Usando rotas nomeadas, assim nas paginas que precisam dessas rotas é só chamar o navigator com pushedname
         'login': (context) => Login(),
-        'initialscreen': (context) => Compras(),
+        'initialscreen': (context) => InitialScreen(),
         'settings': (context) => Settings()
       },
     );

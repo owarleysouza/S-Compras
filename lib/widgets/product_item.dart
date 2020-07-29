@@ -4,13 +4,13 @@ import 'package:minhas_compras/views/editProduto.dart';
 
 /* É basicamente a tela que representa e cria a estrutura basica de um produto, e retorna isso para categoria,
 que vai retornar para tela inicial*/
-class ProdutoTemplate extends StatelessWidget {
+class ProductItem extends StatelessWidget {
   final Produto produto;
   final Function delproduto;
   final Function editproduto;
   final Function completeProduto;
 
-  ProdutoTemplate(
+  ProductItem(
       {@required this.produto,
       @required this.delproduto,
       @required this.editproduto,
