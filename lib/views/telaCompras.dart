@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/widgets/compraTemplate.dart';
+import 'package:minhas_compras/widgets/shop_item.dart';
 import 'package:minhas_compras/models/compra.dart';
 
 class TelaCompras extends StatelessWidget {
@@ -21,7 +21,7 @@ class TelaCompras extends StatelessWidget {
         children: <Widget>[
           ...listadecompras.map((compra) {
             if (compra.iscompleted == false) {
-              return CompraTemplate(
+              return ShopItem(
                 compra: compra,
                 delCompra: delCompra,
                 completeCompra: completeCompra,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/widgets/addProduto.dart';
-import 'package:minhas_compras/widgets/produtoTemplate.dart';
+import 'package:minhas_compras/widgets/product_item.dart';
 import 'package:minhas_compras/views/telaSemProdutos.dart';
 
 /*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
@@ -100,7 +100,7 @@ class _ProdutosState extends State<Produtos> {
               child: ListView(
                 children: <Widget>[
                   ...widget.compra.listadeprodutos
-                      .map((produtodalista) => ProdutoTemplate(
+                      .map((produtodalista) => ProductItem(
                             produto: produtodalista,
                             delproduto: _delproduto,
                             editproduto: _editproduto,

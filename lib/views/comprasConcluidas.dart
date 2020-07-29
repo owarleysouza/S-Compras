@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/compra.dart';
-import 'package:minhas_compras/widgets/compraTemplate.dart';
+import 'package:minhas_compras/widgets/shop_item.dart';
 
 class ComprasConcluidas extends StatefulWidget {
   final List<Compra> compras;
@@ -30,7 +30,7 @@ class _ComprasConcluidasState extends State<ComprasConcluidas> {
         children: <Widget>[
           ...widget.compras.map((compra) {
             if (compra.iscompleted == true) {
-              return CompraTemplate(
+              return ShopItem(
                 compra: compra,
                 delCompra: widget.delCompra,
                 completeCompra: _completeCompra,
