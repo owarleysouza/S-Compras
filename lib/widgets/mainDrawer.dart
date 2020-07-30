@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/utils/routes.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -33,8 +34,8 @@ class MainDrawer extends StatelessWidget {
           ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('Configurações'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacementNamed('settings')),
+              onTap: () => Navigator.of(context)
+                  .pushReplacementNamed(AppRoutes.settings)),
         ],
       ),
     );

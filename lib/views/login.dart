@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/utils/routes.dart';
 
 //Tela de Login do app
 class Login extends StatefulWidget {
@@ -43,7 +44,7 @@ class _LoginState extends State<Login> {
                   onPressed: () {
                     if (emailcontroller.text == "warley@gmail.com" &&
                         senhacontroller.text == "123123") {
-                      Navigator.of(context).pushNamed('initialscreen');
+                      Navigator.of(context).pushNamed(AppRoutes.initial_screen);
                     } else {
                       showDialog(
                           context: context,
