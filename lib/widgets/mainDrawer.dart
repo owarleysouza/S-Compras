@@ -23,8 +23,8 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text("Tela Inicial"),
-            onTap: () =>
-                Navigator.of(context).pushReplacementNamed('initialscreen'),
+            onTap: () => Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.initial_screen),
           ),
           ListTile(
             leading: const Icon(Icons.add_to_home_screen),
