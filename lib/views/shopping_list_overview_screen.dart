@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/widgets/shop_item.dart';
 import 'package:minhas_compras/models/compra.dart';
+import 'package:provider/provider.dart';
 
 class ShoppingListOverviewScreen extends StatelessWidget {
   final List<Compra> listadecompras;
   final Function delCompra;
-  final Function completeCompra;
   final Function showModalForm;
 
   ShoppingListOverviewScreen(
       {@required this.listadecompras,
       @required this.delCompra,
-      @required this.completeCompra,
       @required this.showModalForm});
 
   @override
@@ -21,10 +20,9 @@ class ShoppingListOverviewScreen extends StatelessWidget {
         children: <Widget>[
           ...listadecompras.map((compra) {
             if (compra.iscompleted == false) {
-              return ShopItem(
-                compra: compra,
-                delCompra: delCompra,
-                completeCompra: completeCompra,
+              return ChangeNotifierProvider.value(
+                value: compra,
+                child: ShopItem(),
               );
             } else {
               return Container();

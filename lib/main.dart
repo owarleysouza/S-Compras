@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:minhas_compras/utils/routes.dart';
 import 'package:minhas_compras/views/initial_screen.dart';
 import 'package:minhas_compras/views/login.dart';
 import 'package:minhas_compras/views/settings.dart';
+import 'package:provider/provider.dart';
 
 //Arquivo principal que usa o RunApp para chamar a classe principal e executar o app
 
@@ -19,30 +21,33 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Color(
-            0xFF14213D), //Cor primária do app que vai definir a cor de elementos principais, como a appbar, e etc
-        accentColor: Color(
-            0xFFFCA311), //Cor definida para os elementos de destaque no app, como botões e etc
-        buttonColor: Color(0xFFFCA311),
-        fontFamily: 'Montserrat',
-        appBarTheme: AppBarTheme(
-            textTheme: ThemeData.light().textTheme.copyWith(
-                headline6: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700))),
+    return ChangeNotifierProvider(
+      create: (_) => ShopProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: Color(
+              0xFF14213D), //Cor primária do app que vai definir a cor de elementos principais, como a appbar, e etc
+          accentColor: Color(
+              0xFFFCA311), //Cor definida para os elementos de destaque no app, como botões e etc
+          buttonColor: Color(0xFFFCA311),
+          fontFamily: 'Montserrat',
+          appBarTheme: AppBarTheme(
+              textTheme: ThemeData.light().textTheme.copyWith(
+                  headline6: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700))),
+        ),
+        home:
+            InitialScreen(), //TelaApresentacao(), quando quiser ficar passando pelas telas anteriores
+        routes: {
+          //Usando rotas nomeadas, assim nas paginas que precisam dessas rotas é só chamar o navigator com pushedname
+          AppRoutes.login: (context) => Login(),
+          AppRoutes.initial_screen: (context) => InitialScreen(),
+          AppRoutes.settings: (context) => Settings()
+        },
       ),
-      home:
-          InitialScreen(), //TelaApresentacao(), quando quiser ficar passando pelas telas anteriores
-      routes: {
-        //Usando rotas nomeadas, assim nas paginas que precisam dessas rotas é só chamar o navigator com pushedname
-        AppRoutes.login: (context) => Login(),
-        AppRoutes.initial_screen: (context) => InitialScreen(),
-        AppRoutes.settings: (context) => Settings()
-      },
     );
   }
 }

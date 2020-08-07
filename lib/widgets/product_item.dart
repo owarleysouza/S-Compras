@@ -29,19 +29,21 @@ class ProductItem extends StatelessWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Marcar Produto"),
-              content: Text(
-                  "Tem certeza que deseja marcar esse produto como concluído?"),
+              title: Text(produto.iscomplete == true
+                  ? "Desmarcar Produto"
+                  : "Marcar Produto"),
+              content: Text(produto.iscomplete == true
+                  ? "Tem certeza que deseja DESMARCAR esse produto como concluído?"
+                  : "Tem certeza que deseja MARCAR esse produto como concluído?"),
               actions: <Widget>[
                 FlatButton(
                     onPressed: () {
-                      completeProduto(produto.id, false);
                       Navigator.pop(context);
                     },
-                    child: Text("Desmarcar Produto")),
+                    child: Text("Cancelar")),
                 FlatButton(
                     onPressed: () {
-                      completeProduto(produto.id, true);
+                      completeProduto(produto.id);
                       Navigator.pop(context);
                     },
                     child: Text("OK"))

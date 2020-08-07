@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:minhas_compras/models/compra.dart';
+import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:minhas_compras/views/produtos.dart';
+import 'package:provider/provider.dart';
 
 class ShopItem extends StatelessWidget {
-  final Compra compra;
-  final Function delCompra;
-  final Function completeCompra;
-
-  ShopItem(
-      {@required this.compra,
-      @required this.delCompra,
-      @required this.completeCompra});
-
   @override
   Widget build(BuildContext context) {
+    final compra = Provider.of<Compra>(context);
+    final Function delCompra = Provider.of<ShopProvider>(context).delCompra;
+    //final Function completeCompra =
+    // Provider.of<ShopProvider>(context).completeCompra;
     return GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
@@ -26,9 +23,12 @@ class ShopItem extends StatelessWidget {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text("Concluir Compra"),
-                content: Text(
-                    "Tem certeza que deseja marcar essa compra como concluída?"),
+                title: Text(compra.iscompleted == true
+                    ? "Desconcluir Compra"
+                    : "Concluir Compra"),
+                content: Text(compra.iscompleted == true
+                    ? "Tem certeza que deseja DESMARCAR essa compra como concluída?"
+                    : "Tem certeza que deseja MARCAR essa compra como concluída?"),
                 actions: <Widget>[
                   FlatButton(
                       onPressed: () {
@@ -37,13 +37,7 @@ class ShopItem extends StatelessWidget {
                       child: Text("Cancelar")),
                   FlatButton(
                       onPressed: () {
-                        completeCompra(compra.id, false);
-                        Navigator.pop(context);
-                      },
-                      child: Text("Desmarcar Compra")),
-                  FlatButton(
-                      onPressed: () {
-                        completeCompra(compra.id, true);
+                        compra.toggleCompleteShop();
                         Navigator.pop(context);
                       },
                       child: Text("OK"))

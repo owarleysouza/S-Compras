@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/widgets/shop_item.dart';
+import 'package:provider/provider.dart';
 
 class ComprasConcluidas extends StatefulWidget {
   final List<Compra> compras;
@@ -13,16 +14,6 @@ class ComprasConcluidas extends StatefulWidget {
 }
 
 class _ComprasConcluidasState extends State<ComprasConcluidas> {
-  _completeCompra(String id, bool iscomplete) {
-    for (Compra compra in widget.compras) {
-      if (compra.id == id) {
-        setState(() {
-          compra.iscompleted = iscomplete;
-        });
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +21,9 @@ class _ComprasConcluidasState extends State<ComprasConcluidas> {
         children: <Widget>[
           ...widget.compras.map((compra) {
             if (compra.iscompleted == true) {
-              return ShopItem(
-                compra: compra,
-                delCompra: widget.delCompra,
-                completeCompra: _completeCompra,
+              return ChangeNotifierProvider.value(
+                value: compra,
+                child: ShopItem(),
               );
             } else {
               return Container();
