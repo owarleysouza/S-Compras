@@ -19,14 +19,16 @@ class ShoppingListOverviewScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ...listadecompras.map((compra) {
-            if (compra.iscompleted == false) {
-              return ChangeNotifierProvider.value(
-                value: compra,
-                child: ShopItem(),
-              );
-            } else {
-              return Container();
-            }
+            return ChangeNotifierProvider.value(
+              value: compra,
+              child: ShopItem(),
+            );
+
+            // if (compra.iscompleted == false) {
+            //   return
+            //  } else {
+            //    return Container();
+//}
           }),
           const SizedBox(
             height: 70,

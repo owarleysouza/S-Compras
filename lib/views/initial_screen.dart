@@ -22,19 +22,19 @@ class _InitialScreenState extends State<InitialScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Compra> listadeCompras =
-        Provider.of<ShopProvider>(context).items;
+    final ShopProvider compra = Provider.of<ShopProvider>(context);
     final Function delCompra = Provider.of<ShopProvider>(context).delCompra;
     final showModalForm =
         Provider.of<ShopProvider>(context).openAddShopFormModal;
 
     final List<Widget> _screens = [
       ShoppingListOverviewScreen(
-        listadecompras: listadeCompras,
+        listadecompras: compra.notCompleteShops,
         delCompra: delCompra,
         showModalForm: showModalForm,
       ),
-      ComprasConcluidas(compras: listadeCompras, delCompra: delCompra)
+      ComprasConcluidas(
+          listadecompras: compra.completeShops, delCompra: delCompra)
     ];
 
     return Scaffold(

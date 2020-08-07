@@ -13,6 +13,14 @@ class ShopProvider with ChangeNotifier {
         ..._items
       ]; //Retornando uma copia dos items para não se ter acesso direto a referencia da lista
 
+  List<Compra> get completeShops {
+    return _items.where((shop) => shop.iscompleted == true).toList();
+  }
+
+  List<Compra> get notCompleteShops {
+    return _items.where((shop) => shop.iscompleted == false).toList();
+  }
+
   void addShop(Compra shop) {
     _items.add(shop);
     notifyListeners();
