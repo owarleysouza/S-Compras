@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/providers/shops_provider.dart';
+
 import 'package:minhas_compras/widgets/mainDrawer.dart';
-import 'package:minhas_compras/models/compra.dart';
 
 import 'package:minhas_compras/views/comprasConcluidas.dart';
 import 'package:minhas_compras/views/shopping_list_overview_screen.dart';
-import 'package:provider/provider.dart';
 
 class InitialScreen extends StatefulWidget {
   @override
@@ -22,19 +20,9 @@ class _InitialScreenState extends State<InitialScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ShopProvider compra = Provider.of<ShopProvider>(context);
-    final Function delCompra = Provider.of<ShopProvider>(context).delCompra;
-    final showModalForm =
-        Provider.of<ShopProvider>(context).openAddShopFormModal;
-
     final List<Widget> _screens = [
-      ShoppingListOverviewScreen(
-        shoplistnotcomplete: compra.notCompleteShops,
-        delCompra: delCompra,
-        showModalForm: showModalForm,
-      ),
-      ComprasConcluidas(
-          shoplistcomplete: compra.completeShops, delCompra: delCompra)
+      ShoppingListOverviewScreen(),
+      ComprasConcluidas()
     ];
 
     return Scaffold(

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:minhas_compras/widgets/shop_item.dart';
-import 'package:minhas_compras/models/compra.dart';
 import 'package:provider/provider.dart';
 
-class ShoppingListOverviewScreen extends StatelessWidget {
-  final List<Compra> shoplistnotcomplete;
-  final Function delCompra;
-  final Function showModalForm;
+class ShoppingListOverviewScreen extends StatefulWidget {
+  @override
+  _ShoppingListOverviewScreenState createState() =>
+      _ShoppingListOverviewScreenState();
+}
 
-  ShoppingListOverviewScreen(
-      {@required this.shoplistnotcomplete,
-      @required this.delCompra,
-      @required this.showModalForm});
-
+class _ShoppingListOverviewScreenState
+    extends State<ShoppingListOverviewScreen> {
   @override
   Widget build(BuildContext context) {
+    final ShopProvider compra = Provider.of<ShopProvider>(context);
+    final showModalForm = compra.openAddShopFormModal;
+    final shoplistnotcomplete = compra.notCompleteShops;
     return Scaffold(
       body: ListView(
         children: <Widget>[
