@@ -23,12 +23,6 @@ class ShoppingListOverviewScreen extends StatelessWidget {
               value: compra,
               child: ShopItem(),
             );
-
-            // if (compra.iscompleted == false) {
-            //   return
-            //  } else {
-            //    return Container();
-//}
           }),
           const SizedBox(
             height: 70,

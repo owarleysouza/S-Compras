@@ -21,36 +21,27 @@ class ShopProvider with ChangeNotifier {
     return _items.where((shop) => shop.iscompleted == false).toList();
   }
 
-  void addShop(Compra shop) {
-    _items.add(shop);
+  delCompra(String id) {
+    _items.removeWhere((compra) => compra.id == id);
     notifyListeners();
   }
 
-  addCompra(String novonome, DateTime datadacompra, List<Produto> produtos) {
+  _addShop(String novonome, DateTime datadacompra, List<Produto> produtos) {
     final novacompra = Compra(
         id: Random().nextDouble().toString(),
         nome: novonome,
         data: datadacompra,
         iscompleted: false,
         listadeprodutos: produtos);
-    /*setState(() {
-      _items.add(novacompra);
-    });*/
-
-    //Navigator.of(context).pop();
-  }
-
-  delCompra(String id) {
-    //setState(() {
-    //   _items.removeWhere((compra) => compra.id == id);
-    // });
+    _items.add(novacompra);
+    notifyListeners();
   }
 
   openAddShopFormModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return AddCompra(submeter: addCompra);
+          return AddCompra(addShop: _addShop);
         });
   }
 }

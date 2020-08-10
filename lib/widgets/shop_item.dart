@@ -64,7 +64,28 @@ class ShopItem extends StatelessWidget {
               trailing: IconButton(
                   icon: const Icon(Icons.delete),
                   color: Theme.of(context).errorColor,
-                  onPressed: () => delCompra(compra.id)),
+                  onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("Apagar Compra"),
+                          content: Text(
+                              "Tem certeza que deseja APAGAR essa compra?"),
+                          actions: <Widget>[
+                            FlatButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text("Cancelar")),
+                            FlatButton(
+                                onPressed: () {
+                                  delCompra(compra.id);
+                                  Navigator.pop(context);
+                                },
+                                child: Text("OK"))
+                          ],
+                        );
+                      })),
             ),
           ),
         ));
