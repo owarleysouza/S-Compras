@@ -29,12 +29,12 @@ class _InitialScreenState extends State<InitialScreen> {
 
     final List<Widget> _screens = [
       ShoppingListOverviewScreen(
-        listadecompras: compra.notCompleteShops,
+        shoplistnotcomplete: compra.notCompleteShops,
         delCompra: delCompra,
         showModalForm: showModalForm,
       ),
       ComprasConcluidas(
-          listadecompras: compra.completeShops, delCompra: delCompra)
+          shoplistcomplete: compra.completeShops, delCompra: delCompra)
     ];
 
     return Scaffold(
