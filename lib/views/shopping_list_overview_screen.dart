@@ -1,34 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:minhas_compras/widgets/shop_item.dart';
-import 'package:minhas_compras/models/compra.dart';
+import 'package:provider/provider.dart';
 
-class ShoppingListOverviewScreen extends StatelessWidget {
-  final List<Compra> listadecompras;
-  final Function delCompra;
-  final Function completeCompra;
-  final Function showModalForm;
+class ShoppingListOverviewScreen extends StatefulWidget {
+  @override
+  _ShoppingListOverviewScreenState createState() =>
+      _ShoppingListOverviewScreenState();
+}
 
-  ShoppingListOverviewScreen(
-      {@required this.listadecompras,
-      @required this.delCompra,
-      @required this.completeCompra,
-      @required this.showModalForm});
-
+class _ShoppingListOverviewScreenState
+    extends State<ShoppingListOverviewScreen> {
   @override
   Widget build(BuildContext context) {
+    final ShopProvider compra = Provider.of<ShopProvider>(context);
+    final showModalForm = compra.openAddShopFormModal;
+    final shoplistnotcomplete = compra.notCompleteShops;
     return Scaffold(
       body: ListView(
         children: <Widget>[
-          ...listadecompras.map((compra) {
-            if (compra.iscompleted == false) {
-              return ShopItem(
-                compra: compra,
-                delCompra: delCompra,
-                completeCompra: completeCompra,
-              );
-            } else {
-              return Container();
-            }
+          ...shoplistnotcomplete.map((compra) {
+            return ChangeNotifierProvider.value(
+              value: compra,
+              child: ShopItem(),
+            );
           }),
           const SizedBox(
             height: 70,

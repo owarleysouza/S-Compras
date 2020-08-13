@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class Produto {
+class Produto with ChangeNotifier {
   String id;
   String nome;
   String quantidade;
@@ -14,17 +14,8 @@ class Produto {
       @required this.categoria,
       @required this.iscomplete});
 
-  Produto.fromJson(Map<String, dynamic> json) {
-    nome = json['nome'];
-    quantidade = json['quantidade'];
-    categoria = json['categoria'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nome'] = this.nome;
-    data['quantidade'] = this.quantidade;
-    data['categoria'] = this.categoria;
-    return data;
+  void toggleCompleteProduct() {
+    iscomplete = !iscomplete;
+    notifyListeners();
   }
 }

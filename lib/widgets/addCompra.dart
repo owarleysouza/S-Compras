@@ -3,9 +3,9 @@ import 'package:minhas_compras/models/produto.dart';
 import 'package:intl/intl.dart';
 
 class AddCompra extends StatefulWidget {
-  final Function submeter;
+  final Function addShop;
 
-  AddCompra({@required this.submeter});
+  AddCompra({@required this.addShop});
 
   @override
   _AddCompraState createState() => _AddCompraState();
@@ -24,7 +24,8 @@ class _AddCompraState extends State<AddCompra> {
     um novo produto a uma lista que é vazia e constante. Então eu passo uma lista de produtos vazia
     sempre que uma compra é criada. Deve ter formas mais elegantes de resolver isso, mas ainda não conheço.
     */
-    widget.submeter(novonome, datadacompra, produtos);
+    widget.addShop(novonome, datadacompra, produtos);
+    Navigator.of(context).pop();
   }
 
   _showDatePicker() {

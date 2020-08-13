@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/widgets/addProduto.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
@@ -11,7 +10,7 @@ import 'package:minhas_compras/views/telaSemProdutos.dart';
 */
 
 class Produtos extends StatefulWidget {
-  final Compra compra;
+  final compra;
 
   Produtos({
     @required this.compra,
@@ -74,11 +73,11 @@ class _ProdutosState extends State<Produtos> {
     }
   }
 
-  _completeProduto(String id, bool iscomplete) {
+  _completeProduto(String id) {
     for (Produto produto in widget.compra.listadeprodutos) {
       if (produto.id == id) {
         setState(() {
-          produto.iscomplete = iscomplete;
+          produto.iscomplete = !produto.iscomplete;
         });
       }
     }

@@ -1,60 +1,16 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+
 import 'package:minhas_compras/widgets/mainDrawer.dart';
-import 'package:minhas_compras/data/dummy_data.dart';
-import 'package:minhas_compras/models/compra.dart';
-import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/widgets/addCompra.dart';
-import 'package:minhas_compras/views/comprasConcluidas.dart';
+
+import 'package:minhas_compras/views/complete_shop.dart';
 import 'package:minhas_compras/views/shopping_list_overview_screen.dart';
 
 class InitialScreen extends StatefulWidget {
-  final List<Compra> listadeCompras = shopList;
-
   @override
   _InitialScreenState createState() => _InitialScreenState();
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-  _addCompra(String novonome, DateTime datadacompra, List<Produto> produtos) {
-    final novacompra = Compra(
-        id: Random().nextDouble().toString(),
-        nome: novonome,
-        data: datadacompra,
-        iscompleted: false,
-        listadeprodutos: produtos);
-    setState(() {
-      widget.listadeCompras.add(novacompra);
-    });
-
-    Navigator.of(context).pop();
-  }
-
-  _delCompra(String id) {
-    setState(() {
-      widget.listadeCompras.removeWhere((compra) => compra.id == id);
-    });
-  }
-
-  _openAddShopFormModal(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return AddCompra(submeter: _addCompra);
-        });
-  }
-
-  _completeCompra(String id, bool iscomplete) {
-    for (Compra compra in widget.listadeCompras) {
-      if (compra.id == id) {
-        setState(() {
-          compra.iscompleted = iscomplete;
-        });
-      }
-    }
-  }
-
   int _selectedScreenIndex = 0;
   _selectScreen(int index) {
     setState(() {
@@ -65,13 +21,8 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _screens = [
-      ShoppingListOverviewScreen(
-        listadecompras: widget.listadeCompras,
-        delCompra: _delCompra,
-        completeCompra: _completeCompra,
-        showModalForm: _openAddShopFormModal,
-      ),
-      ComprasConcluidas(compras: widget.listadeCompras, delCompra: _delCompra)
+      ShoppingListOverviewScreen(),
+      ComprasConcluidas()
     ];
 
     return Scaffold(
