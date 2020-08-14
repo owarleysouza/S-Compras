@@ -14,20 +14,18 @@ class _ComprasConcluidasState extends State<ComprasConcluidas> {
   Widget build(BuildContext context) {
     final ShopProvider compra = Provider.of<ShopProvider>(context);
     final shoplistcomplete = compra.completeShops;
-    return Scaffold(
-      body: ListView(
-        children: <Widget>[
-          ...shoplistcomplete.map((compra) {
-            return ChangeNotifierProvider.value(
-              value: compra,
-              child: ShopItem(),
-            );
-          }),
-          const SizedBox(
-            height: 70,
-          )
-        ],
-      ),
+    return ListView(
+      children: <Widget>[
+        ...shoplistcomplete.map((compra) {
+          return ChangeNotifierProvider.value(
+            value: compra,
+            child: ShopItem(),
+          );
+        }),
+        const SizedBox(
+          height: 70,
+        )
+      ],
     );
   }
 }
