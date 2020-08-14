@@ -48,7 +48,8 @@ class ProductItem extends StatelessWidget {
             );
           }),
       child: Card(
-        color: produto.iscomplete == true ? Colors.green[300] : Colors.white,
+        color:
+            produto.iscomplete == true ? Colors.lightGreen[300] : Colors.white,
         margin: EdgeInsets.fromLTRB(6, 9, 6, 9),
         elevation: 7,
         child: ListTile(
@@ -71,7 +72,7 @@ class ProductItem extends StatelessWidget {
               children: [
                 IconButton(
                     icon: const Icon(Icons.edit),
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                     onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(
                             builder: (context) => EditarProduto(
