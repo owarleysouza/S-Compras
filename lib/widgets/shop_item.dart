@@ -16,8 +16,7 @@ class ShopItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final compra = Provider.of<Compra>(context);
     final Function delCompra = Provider.of<ShopProvider>(context).delCompra;
-    //final Function completeCompra =
-    // Provider.of<ShopProvider>(context).completeCompra;
+
     return GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
