@@ -22,9 +22,6 @@ class ProductItem extends StatelessWidget {
     String pQuantidade = produto.quantidade;
     String pCategoria = produto.categoria;
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              EditarProduto(produto: produto, editproduto: editproduto))),
       onDoubleTap: () => showDialog(
           context: context,
           builder: (context) {
@@ -62,16 +59,51 @@ class ProductItem extends StatelessWidget {
           ),
           title: Text(
             pNome,
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 18),
           ),
           subtitle: Text(
             "$pQuantidade",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 18),
           ),
-          trailing: IconButton(
-              icon: const Icon(Icons.delete),
-              color: Theme.of(context).errorColor,
-              onPressed: () => delproduto(produto.id)),
+          trailing: Container(
+            width: 100,
+            child: Row(
+              children: [
+                IconButton(
+                    icon: const Icon(Icons.edit),
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => EditarProduto(
+                                produto: produto, editproduto: editproduto)))),
+                IconButton(
+                    icon: const Icon(Icons.delete),
+                    color: Theme.of(context).errorColor,
+                    onPressed: () => showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Remover Produto"),
+                            content: Text(
+                                "Tem certeza que deseja REMOVER esse produto?"),
+                            actions: <Widget>[
+                              FlatButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("Cancelar")),
+                              FlatButton(
+                                  onPressed: () {
+                                    delproduto(produto.id);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("OK"))
+                            ],
+                          );
+                        })),
+              ],
+            ),
+          ),
         ),
       ),
     );
