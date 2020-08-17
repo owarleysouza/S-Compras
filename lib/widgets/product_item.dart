@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/views/editProduto.dart';
+import 'package:minhas_compras/views/product_form_screen.dart';
 
 /* É basicamente a tela que representa e cria a estrutura basica de um produto, e retorna isso para categoria,
 que vai retornar para tela inicial*/
@@ -75,7 +76,7 @@ class ProductItem extends StatelessWidget {
                     color: Theme.of(context).accentColor,
                     onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => EditarProduto(
+                            builder: (context) => ProductFormScreen(
                                 produto: produto, editproduto: editproduto)))),
                 IconButton(
                     icon: const Icon(Icons.delete),
