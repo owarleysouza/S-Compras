@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/widgets/addProduto.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
-import 'package:minhas_compras/views/telaSemProdutos.dart';
+import 'package:minhas_compras/views/empty_screen.dart';
 
 /*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
 */
@@ -112,7 +112,7 @@ class _ProdutosState extends State<Produtos> {
                 ],
               ),
             )
-          : TelaVazia(),
+          : EmptyScreen(texto: "Ainda nenhum produto! :("),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add_shopping_cart),
           onPressed: () {

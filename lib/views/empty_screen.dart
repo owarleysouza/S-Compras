@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TelaVazia extends StatelessWidget {
+class EmptyScreen extends StatelessWidget {
+  final String texto;
+
+  EmptyScreen({@required this.texto});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,7 +17,10 @@ class TelaVazia extends StatelessWidget {
               width: 100,
               height: 100,
             ),
-            const Text("Ainda nenhum produto! :(")
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Text(texto),
+            )
           ],
         ),
       ),
