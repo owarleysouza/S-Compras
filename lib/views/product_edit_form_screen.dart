@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
+import 'package:provider/provider.dart';
 
 class ProductFormScreen extends StatefulWidget {
-  final Produto produto;
   final Function editproduto;
-  ProductFormScreen({@required this.produto, @required this.editproduto});
+  ProductFormScreen({@required this.editproduto});
 
   @override
   _ProductFormScreenState createState() => _ProductFormScreenState();
@@ -15,7 +15,8 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String categoriaValue = widget.produto.categoria;
+    final produto = Provider.of<Produto>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Editar Produto"),
@@ -44,18 +45,32 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                   width: 20,
                 ),
                 DropdownButton(
-                    value: categoriaValue,
+                    value: produto.categoria,
                     items: <String>["Grosso", "LeH", "Frios"]
-                        .map((String value) => DropdownMenuItem(
-                              value: value,
-                              child: Text(value),
+                        .map((String item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(item),
                             ))
                         .toList(),
                     onChanged: (newvalue) {
                       setState(() {
-                        categoriaValue = newvalue;
+                        produto.categoria =
+                            newvalue; //Ainda tem um bug ao fazer isso, que é: Quando é mudado o valor do dropdown e volta pra tela anterior, aquele atributo fica com o valor mudado
                       });
                     }),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                FlatButton(
+                    color: Theme.of(context).accentColor,
+                    onPressed: () {
+                      widget.editproduto(produto.id, "PreviewNome",
+                          "PreviewQuantidade", produto.categoria);
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Editar")),
               ],
             )
           ],
