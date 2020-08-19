@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddProduto extends StatefulWidget {
-  final void Function(String, String, String, bool) submeter;
+  final void Function(String, int, String, bool) submeter;
 
   AddProduto({@required this.submeter});
 
@@ -19,17 +19,20 @@ class _AddProdutoState extends State<AddProduto> {
   _submeterFormulario() {
     //funcao para verificar os inputs gerados. Se estiver correto, submeter o novo elemento
     final nome = nomeController.text;
-    final quantidade = quantidadeController.text;
+    final quantidade = int.parse(quantidadeController.text);
     final categoria = categoriavalue;
 
-    if (nome == "" || quantidade == "0" || nome.length > 17) {
+    widget.submeter(nome, quantidade, categoria, false);
+
+    /* IMPLEMENTAR ESSAS VALIDAÇÕES NO FORM DE ADD PRODUTO COMO FEITO EM EDITAR PRODUTO
+    if (nome == "" || nome.length > 17) {
       //Nome deve ser não vazio e menor que 17 caracteres para não dá overflowed na tela. Quantidade deve ser maior que 0
       return; //Lembrar de criar widgets para tratar erros e mostrar avisos para o usuário e chamar aqui
     } else if (nome != "" && quantidade == "" && nome.length < 17) {
-      widget.submeter(nome, "Padrão", categoria, false);
+      widget.submeter(nome, 0, categoria, false);
     } else {
       widget.submeter(nome, quantidade, categoria, false);
-    }
+    } */
   }
 
   @override
@@ -50,7 +53,7 @@ class _AddProdutoState extends State<AddProduto> {
               ),
               TextField(
                 decoration: InputDecoration(
-                    labelText: "Quantidade (Vazio para qtd 'Padrão')"),
+                    labelText: "Quantidade ('0' para quantidade Padrão)"),
                 keyboardType: TextInputType.numberWithOptions(
                     decimal: true), //parametro para que o teclado seja numerico
                 controller: quantidadeController,

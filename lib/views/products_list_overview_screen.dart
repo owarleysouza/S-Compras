@@ -29,8 +29,7 @@ class _ProdutosState extends State<Produtos> {
     }
   }
 
-  _addProduto(
-      String nome, String quantidade, String categoria, bool iscomplete) {
+  _addProduto(String nome, int quantidade, String categoria, bool iscomplete) {
     final novoProduto = Produto(
         id: Random().nextDouble().toString(),
         nome: nome,
@@ -61,7 +60,7 @@ class _ProdutosState extends State<Produtos> {
     });
   }
 
-  _editproduto(String id, String nome, String quantidade, String categoria) {
+  _editproduto(String id, String nome, int quantidade, String categoria) {
     for (Produto produto in widget.compra.listadeprodutos) {
       if (produto.id == id) {
         setState(() {

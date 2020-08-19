@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/views/product_edit_form_screen.dart';
-import 'package:provider/provider.dart';
 
 /* É basicamente a tela que representa e cria a estrutura basica de um produto, e retorna isso para categoria,
 que vai retornar para tela inicial*/
@@ -20,7 +19,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String pNome = produto.nome;
-    String pQuantidade = produto.quantidade;
+    int pQuantidade = produto.quantidade;
     String pCategoria = produto.categoria;
     return GestureDetector(
       onDoubleTap: () => showDialog(
@@ -63,10 +62,15 @@ class ProductItem extends StatelessWidget {
             pNome,
             style: TextStyle(fontSize: 18),
           ),
-          subtitle: Text(
-            "$pQuantidade",
-            style: TextStyle(fontSize: 18),
-          ),
+          subtitle: pQuantidade == 0
+              ? Text(
+                  "Padrão",
+                  style: TextStyle(fontSize: 18),
+                )
+              : Text(
+                  "$pQuantidade",
+                  style: TextStyle(fontSize: 18),
+                ),
           trailing: Container(
             width: 100,
             child: Row(
@@ -76,10 +80,8 @@ class ProductItem extends StatelessWidget {
                     color: Theme.of(context).accentColor,
                     onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => ChangeNotifierProvider.value(
-                                value: produto,
-                                child: ProductFormScreen(
-                                    editproduto: editproduto))))),
+                            builder: (context) => ProductEditFormScreen(
+                                editproduct: editproduto, product: produto)))),
                 IconButton(
                     icon: const Icon(Icons.delete),
                     color: Theme.of(context).errorColor,

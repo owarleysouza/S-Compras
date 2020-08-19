@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 class Produto with ChangeNotifier {
   String id;
   String nome;
-  String quantidade;
+  int quantidade;
   String categoria;
   bool iscomplete;
 
