@@ -6,7 +6,7 @@ import 'package:minhas_compras/models/compra.dart';
 
 import 'package:minhas_compras/utils/routes.dart';
 
-import 'package:minhas_compras/views/produtos.dart';
+import 'package:minhas_compras/views/products_list_overview_screen.dart';
 
 import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:provider/provider.dart';

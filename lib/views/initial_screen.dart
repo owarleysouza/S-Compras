@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:minhas_compras/widgets/mainDrawer.dart';
 
-import 'package:minhas_compras/views/complete_shop.dart';
-import 'package:minhas_compras/views/shopping_list_overview_screen.dart';
+import 'package:minhas_compras/views/complete_shops_screen.dart';
+import 'package:minhas_compras/views/shops_list_overview_screen.dart';
 
 class InitialScreen extends StatefulWidget {
   @override

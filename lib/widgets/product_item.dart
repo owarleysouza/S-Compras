@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/views/editProduto.dart';
 import 'package:minhas_compras/views/product_edit_form_screen.dart';
 import 'package:provider/provider.dart';
 
