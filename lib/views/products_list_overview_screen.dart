@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/widgets/addProduto.dart';
+import 'package:minhas_compras/widgets/addProduct.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
 import 'package:minhas_compras/views/empty_screen.dart';
 
@@ -48,9 +48,7 @@ class _ProdutosState extends State<Produtos> {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return AddProduto(
-            submeter: _addProduto,
-          );
+          return AddProduct(addProduct: _addProduto);
         });
   }
 
