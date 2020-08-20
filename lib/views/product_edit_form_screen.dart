@@ -16,7 +16,7 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
 
   String _productName;
   int _productQuantity;
-  String _productCategory;
+  String _productCategory = "Grosso";
 
   _saveForm() {
     bool _isValid = _form.currentState.validate();
