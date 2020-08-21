@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:minhas_compras/data/dummy_data.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/widgets/addCompra.dart';
+import 'package:minhas_compras/widgets/add_shop.dart';
 
 class ShopProvider with ChangeNotifier {
   List<Compra> _items = shopList;
@@ -41,7 +41,9 @@ class ShopProvider with ChangeNotifier {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return AddCompra(addShop: _addShop);
+          return AddShop(
+            addShop: _addShop,
+          );
         });
   }
 }
