@@ -9,6 +9,7 @@ import 'package:minhas_compras/utils/routes.dart';
 import 'package:minhas_compras/views/products_list_overview_screen.dart';
 
 import 'package:minhas_compras/providers/shops_provider.dart';
+import 'package:minhas_compras/views/shop_edit_form_screen.dart';
 import 'package:provider/provider.dart';
 
 class ShopItem extends StatelessWidget {
@@ -76,7 +77,13 @@ class ShopItem extends StatelessWidget {
                     IconButton(
                         icon: Icon(Icons.edit,
                             color: Theme.of(context).accentColor),
-                        onPressed: null),
+                        onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ChangeNotifierProvider.value(
+                                      value: compra,
+                                      child: ShopEditFormScreen(),
+                                    )))),
                     IconButton(
                         icon: const Icon(Icons.delete),
                         color: Theme.of(context).errorColor,

@@ -26,6 +26,17 @@ class ShopProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  editshop(String id, String nome, DateTime data) {
+    for (Compra compra in _items) {
+      if (compra.id == id) {
+        compra.nome = nome;
+        compra.data = data;
+      }
+    }
+    ;
+    notifyListeners();
+  }
+
   _addShop(String novonome, DateTime datadacompra, List<Produto> produtos) {
     final novacompra = Compra(
         id: Random().nextDouble().toString(),
