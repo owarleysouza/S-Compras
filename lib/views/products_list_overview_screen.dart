@@ -1,17 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/widgets/addProduto.dart';
+import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
-import 'package:minhas_compras/views/telaSemProdutos.dart';
+import 'package:minhas_compras/views/empty_screen.dart';
 
 /*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
 */
 
 class Produtos extends StatefulWidget {
-  final Compra compra;
+  final compra;
 
   Produtos({
     @required this.compra,
@@ -30,8 +29,7 @@ class _ProdutosState extends State<Produtos> {
     }
   }
 
-  _addProduto(
-      String nome, String quantidade, String categoria, bool iscomplete) {
+  _addProduto(String nome, int quantidade, String categoria, bool iscomplete) {
     final novoProduto = Produto(
         id: Random().nextDouble().toString(),
         nome: nome,
@@ -50,9 +48,7 @@ class _ProdutosState extends State<Produtos> {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return AddProduto(
-            submeter: _addProduto,
-          );
+          return AddProduct(addProduct: _addProduto);
         });
   }
 
@@ -62,7 +58,7 @@ class _ProdutosState extends State<Produtos> {
     });
   }
 
-  _editproduto(String id, String nome, String quantidade, String categoria) {
+  _editproduto(String id, String nome, int quantidade, String categoria) {
     for (Produto produto in widget.compra.listadeprodutos) {
       if (produto.id == id) {
         setState(() {
@@ -74,11 +70,11 @@ class _ProdutosState extends State<Produtos> {
     }
   }
 
-  _completeProduto(String id, bool iscomplete) {
+  _completeProduto(String id) {
     for (Produto produto in widget.compra.listadeprodutos) {
       if (produto.id == id) {
         setState(() {
-          produto.iscomplete = iscomplete;
+          produto.iscomplete = !produto.iscomplete;
         });
       }
     }
@@ -113,7 +109,7 @@ class _ProdutosState extends State<Produtos> {
                 ],
               ),
             )
-          : TelaVazia(),
+          : EmptyScreen(texto: "Ainda nenhum produto! :("),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add_shopping_cart),
           onPressed: () {

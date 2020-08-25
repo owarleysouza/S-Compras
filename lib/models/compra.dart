@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:minhas_compras/models/produto.dart';
 
-class Compra {
+class Compra with ChangeNotifier {
   String id;
   String nome;
   DateTime data;
@@ -15,4 +15,10 @@ class Compra {
     @required this.iscompleted,
     @required this.listadeprodutos,
   });
+
+  void toggleCompleteShop() {
+    //Método para marcar compra como concluída ou não concluída
+    iscompleted = !iscompleted;
+    notifyListeners();
+  }
 }

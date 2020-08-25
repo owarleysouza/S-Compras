@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/views/editProduto.dart';
+import 'package:minhas_compras/views/product_edit_form_screen.dart';
 
 /* É basicamente a tela que representa e cria a estrutura basica de um produto, e retorna isso para categoria,
 que vai retornar para tela inicial*/
@@ -19,29 +19,28 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String pNome = produto.nome;
-    String pQuantidade = produto.quantidade;
+    int pQuantidade = produto.quantidade;
     String pCategoria = produto.categoria;
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>
-              EditarProduto(produto: produto, editproduto: editproduto))),
       onDoubleTap: () => showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Marcar Produto"),
-              content: Text(
-                  "Tem certeza que deseja marcar esse produto como concluído?"),
+              title: Text(produto.iscomplete == true
+                  ? "Desmarcar Produto"
+                  : "Marcar Produto"),
+              content: Text(produto.iscomplete == true
+                  ? "Tem certeza que deseja DESMARCAR esse produto como concluído?"
+                  : "Tem certeza que deseja MARCAR esse produto como concluído?"),
               actions: <Widget>[
                 FlatButton(
                     onPressed: () {
-                      completeProduto(produto.id, false);
                       Navigator.pop(context);
                     },
-                    child: Text("Desmarcar Produto")),
+                    child: Text("Cancelar")),
                 FlatButton(
                     onPressed: () {
-                      completeProduto(produto.id, true);
+                      completeProduto(produto.id);
                       Navigator.pop(context);
                     },
                     child: Text("OK"))
@@ -49,7 +48,8 @@ class ProductItem extends StatelessWidget {
             );
           }),
       child: Card(
-        color: produto.iscomplete == true ? Colors.green[300] : Colors.white,
+        color:
+            produto.iscomplete == true ? Colors.lightGreen[300] : Colors.white,
         margin: EdgeInsets.fromLTRB(6, 9, 6, 9),
         elevation: 7,
         child: ListTile(
@@ -60,16 +60,56 @@ class ProductItem extends StatelessWidget {
           ),
           title: Text(
             pNome,
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 18),
           ),
-          subtitle: Text(
-            "$pQuantidade",
-            style: TextStyle(fontSize: 20),
+          subtitle: pQuantidade == 0
+              ? Text(
+                  "Padrão",
+                  style: TextStyle(fontSize: 18),
+                )
+              : Text(
+                  "$pQuantidade",
+                  style: TextStyle(fontSize: 18),
+                ),
+          trailing: Container(
+            width: 100,
+            child: Row(
+              children: [
+                IconButton(
+                    icon: const Icon(Icons.edit),
+                    color: Theme.of(context).accentColor,
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => ProductEditFormScreen(
+                                editproduct: editproduto, product: produto)))),
+                IconButton(
+                    icon: const Icon(Icons.delete),
+                    color: Theme.of(context).errorColor,
+                    onPressed: () => showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Remover Produto"),
+                            content: Text(
+                                "Tem certeza que deseja REMOVER esse produto?"),
+                            actions: <Widget>[
+                              FlatButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("Cancelar")),
+                              FlatButton(
+                                  onPressed: () {
+                                    delproduto(produto.id);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("OK"))
+                            ],
+                          );
+                        })),
+              ],
+            ),
           ),
-          trailing: IconButton(
-              icon: const Icon(Icons.delete),
-              color: Theme.of(context).errorColor,
-              onPressed: () => delproduto(produto.id)),
         ),
       ),
     );

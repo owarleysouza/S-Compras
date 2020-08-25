@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
+
 import 'package:minhas_compras/models/compra.dart';
-import 'package:minhas_compras/views/produtos.dart';
+
+import 'package:minhas_compras/utils/routes.dart';
+
+import 'package:minhas_compras/views/products_list_overview_screen.dart';
+
+import 'package:minhas_compras/providers/shops_provider.dart';
+import 'package:minhas_compras/views/shop_edit_form_screen.dart';
+import 'package:provider/provider.dart';
 
 class ShopItem extends StatelessWidget {
-  final Compra compra;
-  final Function delCompra;
-  final Function completeCompra;
-
-  ShopItem(
-      {@required this.compra,
-      @required this.delCompra,
-      @required this.completeCompra});
-
   @override
   Widget build(BuildContext context) {
+    final compra = Provider.of<Compra>(context);
+    final Function delCompra = Provider.of<ShopProvider>(context).delCompra;
+
     return GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
@@ -26,9 +29,12 @@ class ShopItem extends StatelessWidget {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text("Concluir Compra"),
-                content: Text(
-                    "Tem certeza que deseja marcar essa compra como concluída?"),
+                title: Text(compra.iscompleted == true
+                    ? "Desconcluir Compra"
+                    : "Concluir Compra"),
+                content: Text(compra.iscompleted == true
+                    ? "Tem certeza que deseja DESMARCAR essa compra como concluída?"
+                    : "Tem certeza que deseja MARCAR essa compra como concluída?"),
                 actions: <Widget>[
                   FlatButton(
                       onPressed: () {
@@ -37,40 +43,75 @@ class ShopItem extends StatelessWidget {
                       child: Text("Cancelar")),
                   FlatButton(
                       onPressed: () {
-                        completeCompra(compra.id, false);
+                        compra.toggleCompleteShop();
                         Navigator.pop(context);
-                      },
-                      child: Text("Desmarcar Compra")),
-                  FlatButton(
-                      onPressed: () {
-                        completeCompra(compra.id, true);
-                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(
+                            context,
+                            AppRoutes
+                                .initial_screen); //Problema de a tela de compras não ser atualizada com a alteração do status de completo de uma compra mudar parcialmente resolvido
                       },
                       child: Text("OK"))
                 ],
               );
             }),
         child: Card(
-          color: compra.iscompleted == true ? Colors.green[200] : Colors.white,
+          color: compra.iscompleted == true
+              ? Colors.lightGreen[300]
+              : Colors.white,
           elevation: 5,
-          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
             child: ListTile(
-              leading: Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: CircleAvatar(
-                  backgroundColor: const Color(0xFF14213D),
-                  radius: 30,
-                  child: Text(compra.listadeprodutos.length.toString()),
-                ),
+              leading: Icon(
+                Icons.shopping_cart,
+                color: Theme.of(context).primaryColor,
+                size: 40,
               ),
               title: Text(compra.nome),
               subtitle: Text((DateFormat('dd/MM/y').format(compra.data))),
-              trailing: IconButton(
-                  icon: const Icon(Icons.delete),
-                  color: Theme.of(context).errorColor,
-                  onPressed: () => delCompra(compra.id)),
+              trailing: Container(
+                width: 100,
+                child: Row(
+                  children: [
+                    IconButton(
+                        icon: Icon(Icons.edit,
+                            color: Theme.of(context).accentColor),
+                        onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ChangeNotifierProvider.value(
+                                      value: compra,
+                                      child: ShopEditFormScreen(),
+                                    )))),
+                    IconButton(
+                        icon: const Icon(Icons.delete),
+                        color: Theme.of(context).errorColor,
+                        onPressed: () => showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text("Apagar Compra"),
+                                content: Text(
+                                    "Tem certeza que deseja APAGAR essa compra?"),
+                                actions: <Widget>[
+                                  FlatButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Cancelar")),
+                                  FlatButton(
+                                      onPressed: () {
+                                        delCompra(compra.id);
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("OK"))
+                                ],
+                              );
+                            })),
+                  ],
+                ),
+              ),
             ),
           ),
         ));
