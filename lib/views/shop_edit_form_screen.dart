@@ -60,6 +60,7 @@ class _ShopEditFormScreenState extends State<ShopEditFormScreen> {
             child: ListView(
               children: [
                 TextFormField(
+                  initialValue: compra.nome,
                   decoration: InputDecoration(labelText: "Nome"),
                   textInputAction: TextInputAction.next,
                   onFieldSubmitted: (value) =>
