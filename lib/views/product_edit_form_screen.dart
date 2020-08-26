@@ -44,6 +44,7 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
             child: ListView(
               children: [
                 TextFormField(
+                  initialValue: widget.product.nome,
                   decoration: InputDecoration(labelText: "Nome"),
                   textInputAction: TextInputAction.next,
                   onFieldSubmitted: (value) =>
@@ -58,13 +59,14 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
                   },
                 ),
                 TextFormField(
+                    initialValue: widget.product.quantidade.toString(),
                     decoration: InputDecoration(labelText: "Quantidade"),
                     textInputAction: TextInputAction.next,
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: true),
                     focusNode: _quantityFocusNode,
-                    onSaved: (newValue) =>
-                        _productQuantity = int.parse(newValue),
+                    onSaved: (newValue) => _productQuantity = int.parse(
+                        newValue), //Fazer verificação melhor aqui para validar se entrada do user é mesmo um inteiro
                     validator: (value) {
                       if (value.trim().isEmpty) {
                         return 'Informe uma quantidade válida';
