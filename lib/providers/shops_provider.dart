@@ -33,7 +33,6 @@ class ShopProvider with ChangeNotifier {
         compra.data = data;
       }
     }
-    ;
     notifyListeners();
   }
 
