@@ -8,7 +8,7 @@ class Produto with ChangeNotifier {
   bool iscomplete;
 
   Produto(
-      {@required this.id,
+      {this.id,
       @required this.nome,
       @required this.quantidade,
       @required this.categoria,

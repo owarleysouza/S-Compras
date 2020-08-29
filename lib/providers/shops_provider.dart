@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:minhas_compras/data/dummy_data.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
@@ -21,8 +23,17 @@ class ShopProvider with ChangeNotifier {
     return _items.where((shop) => shop.iscompleted == false).toList();
   }
 
-  addShop(Compra compra) {
-    _items.add(compra);
+  addShop(Compra newShop) {
+    const url = 'https://flutter-minhascompras.firebaseio.com/shops.json';
+    http.post(url,
+        body: json.encode({
+          'name': newShop.nome,
+          'date': newShop.data.toString(),
+          'iscompleted': newShop.iscompleted,
+          'produtos': newShop.listadeprodutos
+        }));
+
+    _items.add(newShop);
     notifyListeners();
   }
 

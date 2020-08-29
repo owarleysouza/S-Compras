@@ -6,10 +6,10 @@ class Compra with ChangeNotifier {
   String nome;
   DateTime data;
   bool iscompleted;
-  List<Produto> listadeprodutos;
+  List listadeprodutos;
 
   Compra({
-    @required this.id,
+    this.id,
     @required this.nome,
     @required this.data,
     @required this.iscompleted,

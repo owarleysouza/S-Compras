@@ -48,7 +48,15 @@ class _AddShopState extends State<AddShop> {
       _keyform.currentState.save();
       final newname = _shopname;
       final newshopdate = _shopdate;
-      final List<Produto> productslist = [];
+      final List productslist = [
+        //Resolver essas transformações aqui. Porque desse jeito não consegue-se acessar a lista de produtos dessa compra
+        {
+          'name': "Fuba",
+          'quantidade': 2,
+          'categoria': "Grosso",
+          'iscomplete': true
+        }
+      ];
       /*Tava dando erro porque eu tinha definido na classe compra que se não fosse passado
     uma lista de produtos, ela seria uma lista vazia constante, só que não eh possivel add 
     um novo produto a uma lista que é vazia e constante. Então eu passo uma lista de produtos vazia
