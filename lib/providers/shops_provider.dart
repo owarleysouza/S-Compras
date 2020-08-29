@@ -21,8 +21,8 @@ class ShopProvider with ChangeNotifier {
     return _items.where((shop) => shop.iscompleted == false).toList();
   }
 
-  delCompra(String id) {
-    _items.removeWhere((compra) => compra.id == id);
+  addShop(Compra compra) {
+    _items.add(compra);
     notifyListeners();
   }
 
@@ -36,14 +36,8 @@ class ShopProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  _addShop(String novonome, DateTime datadacompra, List<Produto> produtos) {
-    final novacompra = Compra(
-        id: Random().nextDouble().toString(),
-        nome: novonome,
-        data: datadacompra,
-        iscompleted: false,
-        listadeprodutos: produtos);
-    _items.add(novacompra);
+  delCompra(String id) {
+    _items.removeWhere((compra) => compra.id == id);
     notifyListeners();
   }
 
@@ -52,7 +46,7 @@ class ShopProvider with ChangeNotifier {
         context: context,
         builder: (_) {
           return AddShop(
-            addShop: _addShop,
+            addShop: addShop,
           );
         });
   }

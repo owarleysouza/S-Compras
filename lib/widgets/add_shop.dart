@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:intl/intl.dart';
 
@@ -51,7 +54,13 @@ class _AddShopState extends State<AddShop> {
     um novo produto a uma lista que é vazia e constante. Então eu passo uma lista de produtos vazia
     sempre que uma compra é criada. Deve ter formas mais elegantes de resolver isso, mas ainda não conheço.
     */
-      widget.addShop(newname, newshopdate, productslist);
+      final novacompra = Compra(
+          id: Random().nextDouble().toString(),
+          nome: newname,
+          data: newshopdate,
+          iscompleted: false,
+          listadeprodutos: productslist);
+      widget.addShop(novacompra);
       Navigator.of(context).pop();
     }
   }
