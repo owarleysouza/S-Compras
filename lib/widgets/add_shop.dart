@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/models/compra.dart';
-import 'package:minhas_compras/models/produto.dart';
+
 import 'package:intl/intl.dart';
 
 class AddShop extends StatefulWidget {
@@ -48,15 +48,9 @@ class _AddShopState extends State<AddShop> {
       _keyform.currentState.save();
       final newname = _shopname;
       final newshopdate = _shopdate;
-      final List productslist = [
-        //Resolver essas transformações aqui. Porque desse jeito não consegue-se acessar a lista de produtos dessa compra
-        {
-          'name': "Fuba",
-          'quantidade': 2,
-          'categoria': "Grosso",
-          'iscomplete': true
-        }
-      ];
+      final productslist =
+          []; //TODO: Resolver a relação ao adicionar um produto em um compra, e a persistência disso no firebase
+
       /*Tava dando erro porque eu tinha definido na classe compra que se não fosse passado
     uma lista de produtos, ela seria uma lista vazia constante, só que não eh possivel add 
     um novo produto a uma lista que é vazia e constante. Então eu passo uma lista de produtos vazia

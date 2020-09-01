@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:minhas_compras/models/produto.dart';
 
 class Compra with ChangeNotifier {
   String id;
