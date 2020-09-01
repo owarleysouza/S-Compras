@@ -22,18 +22,25 @@ class ShopProvider with ChangeNotifier {
     return _items.where((shop) => shop.iscompleted == false).toList();
   }
 
-  addShop(Compra newShop) {
+  Future<void> addShop(Compra newShop) {
     const url = 'https://flutter-minhascompras.firebaseio.com/shops.json';
-    http.post(url,
-        body: json.encode({
-          'name': newShop.nome,
-          'date': newShop.data.toString(),
-          'iscompleted': newShop.iscompleted,
-          'produtos': newShop.listadeprodutos
-        }));
-
-    _items.add(newShop);
-    notifyListeners();
+    return http
+        .post(url,
+            body: json.encode({
+              'name': newShop.nome,
+              'date': newShop.data.toString(),
+              'iscompleted': newShop.iscompleted,
+              'produtos': newShop.listadeprodutos
+            }))
+        .then((response) {
+      _items.add(Compra(
+          id: json.decode(response.body)['name'],
+          nome: newShop.nome,
+          data: newShop.data,
+          iscompleted: newShop.iscompleted,
+          listadeprodutos: newShop.listadeprodutos));
+      notifyListeners();
+    });
   }
 
   editshop(String id, String nome, DateTime data) {
