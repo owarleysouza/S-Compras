@@ -13,12 +13,6 @@ class ShoppingListOverviewScreen extends StatefulWidget {
 class _ShoppingListOverviewScreenState
     extends State<ShoppingListOverviewScreen> {
   @override
-  void initState() {
-    super.initState();
-    Provider.of<ShopProvider>(context, listen: false).loadShops();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final ShopProvider compra = Provider.of<ShopProvider>(context);
     final showModalForm = compra.openAddShopFormModal;

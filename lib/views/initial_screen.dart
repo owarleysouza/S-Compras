@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/providers/shops_provider.dart';
 
 import 'package:minhas_compras/widgets/mainDrawer.dart';
 
 import 'package:minhas_compras/views/complete_shops_screen.dart';
 import 'package:minhas_compras/views/shops_list_overview_screen.dart';
+import 'package:provider/provider.dart';
 
 class InitialScreen extends StatefulWidget {
   @override
@@ -11,6 +13,12 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<ShopProvider>(context, listen: false).loadShops();
+  }
+
   int _selectedScreenIndex = 0;
   _selectScreen(int index) {
     setState(() {
