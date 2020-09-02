@@ -8,7 +8,9 @@ import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/widgets/add_shop.dart';
 
 class ShopProvider with ChangeNotifier {
-  List<Compra> _items = shopList;
+  final String _url = 'https://flutter-minhascompras.firebaseio.com/shops.json';
+
+  List<Compra> _items = [];
 
   List<Compra> get items => [
         ..._items
@@ -22,11 +24,24 @@ class ShopProvider with ChangeNotifier {
     return _items.where((shop) => shop.iscompleted == false).toList();
   }
 
+  Future<void> loadShops() async {
+    final response = await http.get(_url);
+    Map<String, dynamic> data = json.decode(response.body);
+    data.forEach((shopId, shopData) {
+      _items.add(Compra(
+          id: shopId,
+          nome: shopData['name'],
+          data: DateTime.parse(shopData['date']),
+          iscompleted: shopData['iscompleted'],
+          listadeprodutos: []));
+    });
+    notifyListeners();
+  }
+
   Future<void> addShop(Compra newShop) async {
     //Usando async e await para 'trasnformar' o método assíncrono de forma mais síncrona
-    const url = 'https://flutter-minhascompras.firebaseio.com/shops.json';
 
-    final response = await http.post(url,
+    final response = await http.post(_url,
         body: json.encode({
           'name': newShop.nome,
           'date': newShop.data.toString(),
