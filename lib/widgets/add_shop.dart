@@ -39,7 +39,7 @@ class _AddShopState extends State<AddShop> {
     });
   }
 
-  _saveForm() {
+  Future<void> _saveForm() async {
     bool _isValid = _keyform.currentState.validate();
 
     if (!_isValid) {
@@ -61,12 +61,29 @@ class _AddShopState extends State<AddShop> {
         _isLoading = true;
       });
 
-      widget.addShop(novacompra).then((_) {
+      try {
+        await widget.addShop(novacompra);
+        Navigator.of(context).pop();
+      } catch (error) {
+        await showDialog<Null>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Ocorreu um erro!"),
+            content: Text("Ocorreu um erro inesperado para salvar a compra!"),
+            actions: [
+              FlatButton(
+                child: Text("Fechar"),
+                onPressed: () => Navigator.pop(context),
+              )
+            ],
+          ),
+        );
+      } finally {
+        //Nesse caso o que é feito no finally é que independente se caiu no erro ou não, ele executa isso
         setState(() {
           _isLoading = false;
         });
-        Navigator.of(context).pop();
-      });
+      }
     }
   }
 
