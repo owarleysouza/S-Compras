@@ -32,6 +32,10 @@ class _InitialScreenState extends State<InitialScreen> {
     });
   }
 
+  Future<void> _refreshShops(BuildContext context) {
+    return Provider.of<ShopProvider>(context, listen: false).loadShops();
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> _screens = [
@@ -49,7 +53,9 @@ class _InitialScreenState extends State<InitialScreen> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : _screens[_selectedScreenIndex],
+          : RefreshIndicator(
+              onRefresh: () => _refreshShops(context),
+              child: _screens[_selectedScreenIndex]),
       bottomNavigationBar: BottomNavigationBar(
           onTap: _selectScreen,
           backgroundColor: Theme.of(context).primaryColor,
