@@ -28,17 +28,20 @@ class ShopProvider with ChangeNotifier {
     final response = await http.get(_url);
     Map<String, dynamic> data = json.decode(response.body);
 
-    if (items.length < data.length) {
-      data.forEach((shopId, shopData) {
-        _items.add(Compra(
-            id: shopId,
-            nome: shopData['name'],
-            data: DateTime.parse(shopData['date']),
-            iscompleted: shopData['iscompleted'],
-            listadeprodutos: []));
-      });
-      notifyListeners();
+    if (data != null) {
+      if (items.length < data.length) {
+        data.forEach((shopId, shopData) {
+          _items.add(Compra(
+              id: shopId,
+              nome: shopData['name'],
+              data: DateTime.parse(shopData['date']),
+              iscompleted: shopData['iscompleted'],
+              listadeprodutos: []));
+        });
+        notifyListeners();
+      }
     }
+
     return Future.value();
   }
 
