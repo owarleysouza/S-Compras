@@ -38,8 +38,8 @@ class ShopProvider with ChangeNotifier {
             iscompleted: shopData['iscompleted'],
             listadeprodutos: []));
       });
-      notifyListeners();
     }
+    notifyListeners();
 
     return Future.value();
   }
