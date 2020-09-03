@@ -39,6 +39,7 @@ class ShopProvider with ChangeNotifier {
       });
       notifyListeners();
     }
+    return Future.value();
   }
 
   Future<void> addShop(Compra newShop) async {

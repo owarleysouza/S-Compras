@@ -13,10 +13,16 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
+  bool _isLoading = true;
+
   @override
   void initState() {
     super.initState();
-    Provider.of<ShopProvider>(context, listen: false).loadShops();
+    Provider.of<ShopProvider>(context, listen: false)
+        .loadShops()
+        .then((_) => setState(() {
+              _isLoading = false;
+            }));
   }
 
   int _selectedScreenIndex = 0;
@@ -39,7 +45,11 @@ class _InitialScreenState extends State<InitialScreen> {
         title: const Text("Compras"),
         centerTitle: true,
       ),
-      body: _screens[_selectedScreenIndex],
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : _screens[_selectedScreenIndex],
       bottomNavigationBar: BottomNavigationBar(
           onTap: _selectScreen,
           backgroundColor: Theme.of(context).primaryColor,
