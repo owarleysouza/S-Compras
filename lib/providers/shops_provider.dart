@@ -17,25 +17,28 @@ class ShopProvider with ChangeNotifier {
       ]; //Retornando uma copia dos items para não se ter acesso direto a referencia da lista
 
   List<Compra> get completeShops {
-    return _items.where((shop) => shop.iscompleted == true).toList();
+    return items.where((shop) => shop.iscompleted == true).toList();
   }
 
   List<Compra> get notCompleteShops {
-    return _items.where((shop) => shop.iscompleted == false).toList();
+    return items.where((shop) => shop.iscompleted == false).toList();
   }
 
   Future<void> loadShops() async {
     final response = await http.get(_url);
     Map<String, dynamic> data = json.decode(response.body);
-    data.forEach((shopId, shopData) {
-      _items.add(Compra(
-          id: shopId,
-          nome: shopData['name'],
-          data: DateTime.parse(shopData['date']),
-          iscompleted: shopData['iscompleted'],
-          listadeprodutos: []));
-    });
-    notifyListeners();
+
+    if (items.length < data.length) {
+      data.forEach((shopId, shopData) {
+        _items.add(Compra(
+            id: shopId,
+            nome: shopData['name'],
+            data: DateTime.parse(shopData['date']),
+            iscompleted: shopData['iscompleted'],
+            listadeprodutos: []));
+      });
+      notifyListeners();
+    }
   }
 
   Future<void> addShop(Compra newShop) async {
