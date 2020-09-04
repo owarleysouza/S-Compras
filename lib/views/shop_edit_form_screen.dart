@@ -11,6 +11,7 @@ class ShopEditFormScreen extends StatefulWidget {
 }
 
 class _ShopEditFormScreenState extends State<ShopEditFormScreen> {
+  bool _isLoading = false;
   final _dataFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
   String _shopName;
@@ -37,77 +38,86 @@ class _ShopEditFormScreenState extends State<ShopEditFormScreen> {
   @override
   Widget build(BuildContext context) {
     final Compra compra = Provider.of<Compra>(context);
-    final Function editshop = Provider.of<ShopProvider>(context).editshop;
+    Future<void> Function(String, String, DateTime) editshop =
+        Provider.of<ShopProvider>(context).editshop;
 
-    _saveForm() {
+    _saveForm() async {
       bool _isValid = _form.currentState.validate();
 
       if (!_isValid) {
         return;
       } else {
+        setState(() {
+          _isLoading = true;
+        });
+
         _form.currentState.save();
-        editshop(compra.id, _shopName, _shopDate);
+        await editshop(compra.id, _shopName, _shopDate);
         Navigator.pop(context);
       }
     }
 
     return Scaffold(
       appBar: AppBar(title: Text("Editar Compra")),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Form(
-            key: _form,
-            child: ListView(
-              children: [
-                TextFormField(
-                  initialValue: compra.nome,
-                  decoration: InputDecoration(labelText: "Nome"),
-                  textInputAction: TextInputAction.next,
-                  onFieldSubmitted: (value) =>
-                      FocusScope.of(context).requestFocus(_dataFocusNode),
-                  onSaved: (newValue) => _shopName = newValue,
-                  validator: (value) {
-                    if (value.trim().isEmpty) {
-                      return "Informe um nome válido";
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                          "Data da Compra: ${DateFormat('dd/MM/yyyy').format(_shopDate)}"),
-                    ),
-                    FlatButton(
-                        focusNode: _dataFocusNode,
-                        onPressed: _showDatePicker,
-                        child: Text("Selecionar Outra Data",
-                            style: TextStyle(
-                              color: Theme.of(context).accentColor,
-                            )))
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    RaisedButton(
-                      color: Theme.of(context).accentColor,
-                      onPressed: () => _saveForm(),
-                      child: Text("Salvar"),
-                    ),
-                  ],
-                )
-              ],
-            )),
-      ),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : Padding(
+              padding: const EdgeInsets.all(10),
+              child: Form(
+                  key: _form,
+                  child: ListView(
+                    children: [
+                      TextFormField(
+                        initialValue: compra.nome,
+                        decoration: InputDecoration(labelText: "Nome"),
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (value) =>
+                            FocusScope.of(context).requestFocus(_dataFocusNode),
+                        onSaved: (newValue) => _shopName = newValue,
+                        validator: (value) {
+                          if (value.trim().isEmpty) {
+                            return "Informe um nome válido";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                                "Data da Compra: ${DateFormat('dd/MM/yyyy').format(_shopDate)}"),
+                          ),
+                          FlatButton(
+                              focusNode: _dataFocusNode,
+                              onPressed: _showDatePicker,
+                              child: Text("Selecionar Outra Data",
+                                  style: TextStyle(
+                                    color: Theme.of(context).accentColor,
+                                  )))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          RaisedButton(
+                            color: Theme.of(context).accentColor,
+                            onPressed: () => _saveForm(),
+                            child: Text("Salvar"),
+                          ),
+                        ],
+                      )
+                    ],
+                  )),
+            ),
     );
   }
 }
