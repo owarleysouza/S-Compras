@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:minhas_compras/models/compra.dart';
 
 import 'package:minhas_compras/utils/routes.dart';
+import 'package:minhas_compras/views/complete_shops_screen.dart';
+import 'package:minhas_compras/views/not_complete_shops_screen.dart';
 
 import 'package:minhas_compras/views/products_list_overview_screen.dart';
 
@@ -44,11 +46,26 @@ class ShopItem extends StatelessWidget {
                   FlatButton(
                       onPressed: () {
                         compra.toggleCompleteShop();
+
                         Navigator.pop(context);
-                        Navigator.pushReplacementNamed(
-                            context,
-                            AppRoutes
-                                .initial_screen); //Problema de a tela de compras não ser atualizada com a alteração do status de completo de uma compra mudar parcialmente resolvido
+                        /*TODO: Corrigir essa navegação aqui ao concluir uma compra
+                        if (compra.iscompleted == true) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ComprasConcluidas()));
+                        } else {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ShoppingListOverviewScreen()));
+                        }
+                        //Navigator.pushReplacementNamed(
+                        //     context,
+                        //    AppRoutes
+                        //         .initial_screen); //Problema de a tela de compras não ser atualizada com a alteração do status de completo de uma compra mudar parcialmente resolvido
+                      */
                       },
                       child: Text("OK"))
                 ],
