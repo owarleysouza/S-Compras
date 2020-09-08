@@ -14,7 +14,16 @@ import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:minhas_compras/views/shop_edit_form_screen.dart';
 import 'package:provider/provider.dart';
 
-class ShopItem extends StatelessWidget {
+class ShopItem extends StatefulWidget {
+  @override
+  _ShopItemState createState() => _ShopItemState();
+}
+
+class _ShopItemState extends State<ShopItem> {
+  Future<void> _refreshShops(BuildContext context) {
+    return Provider.of<ShopProvider>(context, listen: false).loadShops();
+  }
+
   @override
   Widget build(BuildContext context) {
     final compra = Provider.of<Compra>(context);
@@ -44,28 +53,10 @@ class ShopItem extends StatelessWidget {
                       },
                       child: Text("Cancelar")),
                   FlatButton(
-                      onPressed: () {
-                        compra.toggleCompleteShop();
-
+                      onPressed: () async {
+                        await compra.toggleCompleteShop();
+                        _refreshShops(context);
                         Navigator.pop(context);
-                        /*TODO: Corrigir essa navegação aqui ao concluir uma compra
-                        if (compra.iscompleted == true) {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ComprasConcluidas()));
-                        } else {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ShoppingListOverviewScreen()));
-                        }
-                        //Navigator.pushReplacementNamed(
-                        //     context,
-                        //    AppRoutes
-                        //         .initial_screen); //Problema de a tela de compras não ser atualizada com a alteração do status de completo de uma compra mudar parcialmente resolvido
-                      */
                       },
                       child: Text("OK"))
                 ],

@@ -18,9 +18,10 @@ class Compra with ChangeNotifier {
     @required this.listadeprodutos,
   });
 
-  void toggleCompleteShop() {
+  Future<void> toggleCompleteShop() async {
     //Método para marcar compra como concluída ou não concluída
-    http.patch('https://flutter-minhascompras.firebaseio.com/shops/$id.json',
+    await http.patch(
+        'https://flutter-minhascompras.firebaseio.com/shops/$id.json',
         body: json.encode({
           'name': nome,
           'date': data.toString(),
