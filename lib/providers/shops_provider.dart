@@ -80,9 +80,20 @@ class ShopProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  delCompra(String id) {
-    _items.removeWhere((compra) => compra.id == id);
-    notifyListeners();
+  Future<void> delCompra(String id) async {
+    final index = _items.indexWhere((shop) => shop.id == id);
+    if (index >= 0) {
+      final shop = _items[index];
+      _items.remove(shop);
+      notifyListeners();
+
+      final response = await http.delete('$_baseUrl/$id.json');
+
+      if (response.statusCode >= 400) {
+        _items.insert(index, shop);
+        notifyListeners();
+      }
+    }
   }
 
   openAddShopFormModal(BuildContext context) {
