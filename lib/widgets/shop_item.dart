@@ -4,10 +4,6 @@ import 'package:intl/intl.dart';
 
 import 'package:minhas_compras/models/compra.dart';
 
-import 'package:minhas_compras/utils/routes.dart';
-import 'package:minhas_compras/views/complete_shops_screen.dart';
-import 'package:minhas_compras/views/not_complete_shops_screen.dart';
-
 import 'package:minhas_compras/views/products_list_overview_screen.dart';
 
 import 'package:minhas_compras/providers/shops_provider.dart';
