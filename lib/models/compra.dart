@@ -18,16 +18,28 @@ class Compra with ChangeNotifier {
     @required this.listadeprodutos,
   });
 
-  Future<void> toggleCompleteShop() async {
-    //Método para marcar compra como concluída ou não concluída
-    await http.patch(
-        'https://flutter-minhascompras.firebaseio.com/shops/$id.json',
-        body: json.encode({
-          'name': nome,
-          'date': data.toString(),
-          'iscompleted': !iscompleted
-        }));
+  void _toggleComplete() {
     iscompleted = !iscompleted;
     notifyListeners();
+  }
+
+  Future<void> toggleCompleteShop() async {
+    _toggleComplete();
+
+    try {
+      final response = await http.patch(
+          'https://flutter-minhascompras.firebaseio.com/shops/$id.json',
+          body: json.encode({
+            'name': nome,
+            'date': data.toString(),
+            'iscompleted': iscompleted
+          }));
+
+      if (response.statusCode >= 400) {
+        _toggleComplete();
+      }
+    } catch (error) {
+      _toggleComplete();
+    }
   }
 }
