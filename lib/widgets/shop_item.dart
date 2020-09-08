@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
+import 'package:minhas_compras/exceptions/http_exception.dart';
 
 import 'package:minhas_compras/models/compra.dart';
 
@@ -23,7 +24,8 @@ class _ShopItemState extends State<ShopItem> {
   @override
   Widget build(BuildContext context) {
     final compra = Provider.of<Compra>(context);
-    final Function delCompra = Provider.of<ShopProvider>(context).delCompra;
+    final Function deleteShop = Provider.of<ShopProvider>(context).deleteShop;
+    final scaffold = Scaffold.of(context);
 
     return GestureDetector(
         onTap: () {
@@ -105,8 +107,14 @@ class _ShopItemState extends State<ShopItem> {
                                       },
                                       child: Text("Cancelar")),
                                   FlatButton(
-                                      onPressed: () {
-                                        delCompra(compra.id);
+                                      onPressed: () async {
+                                        try {
+                                          await deleteShop(compra.id);
+                                        } on HttpException catch (error) {
+                                          scaffold.showSnackBar(SnackBar(
+                                              content: Text(error.toString())));
+                                        }
+
                                         Navigator.pop(context);
                                       },
                                       child: Text("OK"))

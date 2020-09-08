@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:minhas_compras/exceptions/http_exception.dart';
 import 'package:minhas_compras/models/compra.dart';
 
 import 'package:minhas_compras/widgets/add_shop.dart';
@@ -80,7 +81,7 @@ class ShopProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> delCompra(String id) async {
+  Future<void> deleteShop(String id) async {
     final index = _items.indexWhere((shop) => shop.id == id);
     if (index >= 0) {
       final shop = _items[index];
@@ -92,6 +93,7 @@ class ShopProvider with ChangeNotifier {
       if (response.statusCode >= 400) {
         _items.insert(index, shop);
         notifyListeners();
+        throw HttpException("Ocorreu um erro ao excluir a compra!");
       }
     }
   }
