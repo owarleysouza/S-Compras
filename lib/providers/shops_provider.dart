@@ -52,7 +52,7 @@ class ShopProvider with ChangeNotifier {
           'name': newShop.nome,
           'date': newShop.data.toString(),
           'iscompleted': newShop.iscompleted,
-          'produtos': newShop.listadeprodutos
+          'products': newShop.listadeprodutos
         }));
 
     _items.add(Compra(

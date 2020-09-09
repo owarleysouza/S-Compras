@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
@@ -21,6 +23,8 @@ class Produtos extends StatefulWidget {
 }
 
 class _ProdutosState extends State<Produtos> {
+  final String _baseUrl = 'https://flutter-minhascompras.firebaseio.com/shops';
+
   get temProdutonaLista {
     if (widget.compra.listadeprodutos.isEmpty) {
       return false;
@@ -29,7 +33,25 @@ class _ProdutosState extends State<Produtos> {
     }
   }
 
-  _addProduto(String nome, int quantidade, String categoria, bool iscomplete) {
+  Future<void> _addProduto(
+      String nome, int quantidade, String categoria, bool iscomplete) async {
+    final shopId = widget.compra.id;
+    List products = widget.compra.listadeprodutos;
+    await http.patch('$_baseUrl/$shopId.json',
+        body: json.encode({
+          'name': widget.compra.nome,
+          'date': widget.compra.data.toString(),
+          'iscompleted': widget.compra.iscompleted,
+          'products': products
+              .map((product) => {
+                    'nome': product.nome,
+                    'quantidade': product.quantidade,
+                    'categoria': product.categoria,
+                    'iscomplete': product.iscomplete
+                  })
+              .toList()
+        }));
+
     final novoProduto = Produto(
         id: Random().nextDouble().toString(),
         nome: nome,
@@ -38,7 +60,7 @@ class _ProdutosState extends State<Produtos> {
         iscomplete: iscomplete);
 
     setState(() {
-      widget.compra.listadeprodutos.add(novoProduto);
+      products.add(novoProduto);
     });
 
     Navigator.of(context).pop();
