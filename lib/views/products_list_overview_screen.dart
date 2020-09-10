@@ -56,6 +56,7 @@ class _ProdutosState extends State<Produtos> {
           'iscompleted': widget.compra.iscompleted,
           'products': products
               .map((product) => {
+                    'id': product.id,
                     'nome': product.nome,
                     'quantidade': product.quantidade,
                     'categoria': product.categoria,

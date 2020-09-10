@@ -37,6 +37,7 @@ class ShopProvider with ChangeNotifier {
           List produtos = shopData['products'];
           productsList = produtos
               .map((p) => Produto(
+                  id: p['id'],
                   nome: p['nome'],
                   quantidade: p['quantidade'],
                   categoria: p['categoria'],
