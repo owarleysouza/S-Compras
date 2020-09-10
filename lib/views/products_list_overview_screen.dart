@@ -37,6 +37,18 @@ class _ProdutosState extends State<Produtos> {
       String nome, int quantidade, String categoria, bool iscomplete) async {
     final shopId = widget.compra.id;
     List products = widget.compra.listadeprodutos;
+
+    final novoProduto = Produto(
+        id: Random().nextDouble().toString(),
+        nome: nome,
+        quantidade: quantidade,
+        categoria: categoria,
+        iscomplete: iscomplete);
+
+    setState(() {
+      products.add(novoProduto);
+    });
+
     await http.patch('$_baseUrl/$shopId.json',
         body: json.encode({
           'name': widget.compra.nome,
@@ -51,17 +63,6 @@ class _ProdutosState extends State<Produtos> {
                   })
               .toList()
         }));
-
-    final novoProduto = Produto(
-        id: Random().nextDouble().toString(),
-        nome: nome,
-        quantidade: quantidade,
-        categoria: categoria,
-        iscomplete: iscomplete);
-
-    setState(() {
-      products.add(novoProduto);
-    });
 
     Navigator.of(context).pop();
   }
