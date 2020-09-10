@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:minhas_compras/exceptions/http_exception.dart';
 import 'package:minhas_compras/models/compra.dart';
+import 'package:minhas_compras/models/produto.dart';
 
 import 'package:minhas_compras/widgets/add_shop.dart';
 
@@ -27,16 +28,37 @@ class ShopProvider with ChangeNotifier {
   Future<void> loadShops() async {
     final response = await http.get('$_baseUrl.json');
     Map<String, dynamic> data = json.decode(response.body);
+    List productsList = [];
     _items
         .clear(); //Limpa-se a lista de items, para que cada vez que a tela for iniciada e esse metodo for chamado, nao duplique a lista
     if (data != null) {
       data.forEach((shopId, shopData) {
-        _items.add(Compra(
-            id: shopId,
-            nome: shopData['name'],
-            data: DateTime.parse(shopData['date']),
-            iscompleted: shopData['iscompleted'],
-            listadeprodutos: []));
+        if (shopData['products'] != null) {
+          List produtos = shopData['products'];
+          productsList = produtos
+              .map((p) => Produto(
+                  nome: p['nome'],
+                  quantidade: p['quantidade'],
+                  categoria: p['categoria'],
+                  iscomplete: p['iscomplete']))
+              .toList();
+
+          _items.add(Compra(
+              id: shopId,
+              nome: shopData['name'],
+              data: DateTime.parse(shopData['date']),
+              iscompleted: shopData['iscompleted'],
+              listadeprodutos: productsList));
+
+          productsList = [];
+        } else {
+          _items.add(Compra(
+              id: shopId,
+              nome: shopData['name'],
+              data: DateTime.parse(shopData['date']),
+              iscompleted: shopData['iscompleted'],
+              listadeprodutos: productsList));
+        }
       });
     }
     notifyListeners();
