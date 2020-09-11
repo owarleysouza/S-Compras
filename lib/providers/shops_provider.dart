@@ -5,11 +5,12 @@ import 'package:http/http.dart' as http;
 import 'package:minhas_compras/exceptions/http_exception.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
+import 'package:minhas_compras/utils/constants.dart';
 
 import 'package:minhas_compras/widgets/add_shop.dart';
 
 class ShopProvider with ChangeNotifier {
-  final String _baseUrl = 'https://flutter-minhascompras.firebaseio.com/shops';
+  final String _baseShopUrl = '${Constants.BASE_API_URL}/shops';
 
   List<Compra> _items = [];
 
@@ -26,7 +27,7 @@ class ShopProvider with ChangeNotifier {
   }
 
   Future<void> loadShops() async {
-    final response = await http.get('$_baseUrl.json');
+    final response = await http.get('$_baseShopUrl.json');
     Map<String, dynamic> data = json.decode(response.body);
     List productsList = [];
     _items
@@ -70,7 +71,7 @@ class ShopProvider with ChangeNotifier {
   Future<void> addShop(Compra newShop) async {
     //Usando async e await para 'trasnformar' o método assíncrono de forma mais síncrona
 
-    final response = await http.post('$_baseUrl.json',
+    final response = await http.post('$_baseShopUrl.json',
         body: json.encode({
           'name': newShop.nome,
           'date': newShop.data.toString(),
@@ -91,7 +92,7 @@ class ShopProvider with ChangeNotifier {
   Future<void> editshop(String id, String nome, DateTime data) async {
     for (Compra compra in _items) {
       if (compra.id == id) {
-        await http.patch('$_baseUrl/${compra.id}.json',
+        await http.patch('$_baseShopUrl/${compra.id}.json',
             body: json.encode({
               'name': nome,
               'date': data.toString(),
@@ -111,7 +112,7 @@ class ShopProvider with ChangeNotifier {
       _items.remove(shop);
       notifyListeners();
 
-      final response = await http.delete('$_baseUrl/$id.json');
+      final response = await http.delete('$_baseShopUrl/$id.json');
 
       if (response.statusCode >= 400) {
         _items.insert(index, shop);

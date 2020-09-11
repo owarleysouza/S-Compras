@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:minhas_compras/models/produto.dart';
+import 'package:minhas_compras/utils/constants.dart';
 import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
 import 'package:minhas_compras/views/empty_screen.dart';
@@ -23,7 +24,7 @@ class Produtos extends StatefulWidget {
 }
 
 class _ProdutosState extends State<Produtos> {
-  final String _baseUrl = 'https://flutter-minhascompras.firebaseio.com/shops';
+  final String _baseShopUrl = '${Constants.BASE_API_URL}/shops';
 
   get temProdutonaLista {
     if (widget.compra.listadeprodutos.isEmpty) {
@@ -49,7 +50,7 @@ class _ProdutosState extends State<Produtos> {
       products.add(novoProduto);
     });
 
-    await http.patch('$_baseUrl/$shopId.json',
+    await http.patch('$_baseShopUrl/$shopId.json',
         body: json.encode({
           'name': widget.compra.nome,
           'date': widget.compra.data.toString(),

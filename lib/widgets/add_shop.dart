@@ -50,7 +50,7 @@ class _AddShopState extends State<AddShop> {
           nome: _shopname,
           data: _shopdate,
           iscompleted: false,
-          listadeprodutos: []); //TODO: Resolver a relação ao adicionar um produto em um compra, e a persistência disso no firebase
+          listadeprodutos: []);
       /*Tava dando erro porque eu tinha definido na classe compra que se não fosse passado
     uma lista de produtos, ela seria uma lista vazia constante, só que não eh possivel add 
     um novo produto a uma lista que é vazia e constante. Então eu passo uma lista de produtos vazia
