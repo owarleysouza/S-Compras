@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:minhas_compras/providers/auth_provider.dart';
 import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:minhas_compras/utils/routes.dart';
 import 'package:minhas_compras/views/initial_screen.dart';
@@ -21,8 +22,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-    return ChangeNotifierProvider(
-      create: (_) => ShopProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => new ShopProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => new AuthProvider(),
+        )
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
