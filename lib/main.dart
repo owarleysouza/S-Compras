@@ -5,7 +5,7 @@ import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:minhas_compras/utils/routes.dart';
 import 'package:minhas_compras/views/auth_home_screen.dart';
 import 'package:minhas_compras/views/initial_screen.dart';
-import 'package:minhas_compras/views/auth.dart';
+import 'package:minhas_compras/views/auth_screen.dart';
 import 'package:minhas_compras/views/settings.dart';
 import 'package:provider/provider.dart';
 

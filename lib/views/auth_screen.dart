@@ -6,12 +6,12 @@ import 'package:provider/provider.dart';
 
 enum AuthMode { Signup, Login }
 
-class Login extends StatefulWidget {
+class Auth extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _AuthState createState() => _AuthState();
 }
 
-class _LoginState extends State<Login> {
+class _AuthState extends State<Auth> {
   GlobalKey<FormState> _form = GlobalKey();
   AuthMode _authMode = AuthMode.Login;
   bool _isLoading = false;

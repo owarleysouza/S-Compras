@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/providers/auth_provider.dart';
-import 'package:minhas_compras/views/auth.dart';
+import 'package:minhas_compras/views/auth_screen.dart';
 import 'package:minhas_compras/views/initial_screen.dart';
 import 'package:provider/provider.dart';
 
