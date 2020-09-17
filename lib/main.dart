@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:minhas_compras/providers/auth_provider.dart';
 import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:minhas_compras/utils/routes.dart';
+import 'package:minhas_compras/views/auth_home_screen.dart';
 import 'package:minhas_compras/views/initial_screen.dart';
 import 'package:minhas_compras/views/auth.dart';
 import 'package:minhas_compras/views/settings.dart';
@@ -47,11 +48,10 @@ class MyApp extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.w700))),
         ),
-        home: Login(),
-        //InitialScreen(), //TelaApresentacao(), quando quiser ficar passando pelas telas anteriores
+        home: AuthOrHomeScreen(),
         routes: {
           //Usando rotas nomeadas, assim nas paginas que precisam dessas rotas é só chamar o navigator com pushedname
-          AppRoutes.login: (context) => Login(),
+          AppRoutes.login: (context) => Auth(),
           AppRoutes.initial_screen: (context) => InitialScreen(),
           AppRoutes.settings: (context) => Settings()
         },

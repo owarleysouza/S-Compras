@@ -5,6 +5,23 @@ import 'package:http/http.dart' as http;
 import 'package:minhas_compras/exceptions/auth_exception.dart';
 
 class AuthProvider with ChangeNotifier {
+  String _token;
+  DateTime _expiryDate;
+
+  bool get isAuth {
+    return token != null;
+  }
+
+  String get token {
+    if (_token != null &&
+        _expiryDate != null &&
+        _expiryDate.isAfter(DateTime.now())) {
+      return _token;
+    } else {
+      return null;
+    }
+  }
+
   Future<void> authenticate(
       String email, String password, String urlSegment) async {
     final _url =
@@ -15,8 +32,14 @@ class AuthProvider with ChangeNotifier {
             {'email': email, 'password': password, 'returnSecureToken': true}));
 
     final responseBody = json.decode(response.body);
+
     if (responseBody["error"] != null) {
       throw AuthException(responseBody["error"]["message"]);
+    } else {
+      _token = responseBody["idToken"];
+      _expiryDate = DateTime.now()
+          .add(Duration(seconds: int.parse(responseBody["expiresIn"])));
+      notifyListeners();
     }
 
     return Future.value();
