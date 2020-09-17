@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/exceptions/auth_exception.dart';
 import 'package:minhas_compras/providers/auth_provider.dart';
 import 'package:minhas_compras/utils/routes.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,21 @@ class _LoginState extends State<Login> {
   final _passwordController = TextEditingController();
   final Map<String, String> _authData = {'email': '', 'password': ''};
 
+  void _showErrorDialog(String msg) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Ocorreu um erro!"),
+        content: Text(msg),
+        actions: [
+          FlatButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text("Fechar"))
+        ],
+      ),
+    );
+  }
+
   Future<void> _submit() async {
     if (!_form.currentState.validate()) {
       return null;
@@ -29,10 +45,17 @@ class _LoginState extends State<Login> {
     _form.currentState.save();
 
     AuthProvider auth = Provider.of(context, listen: false);
-    if (_authMode == AuthMode.Login) {
-      //Login
-    } else {
-      await auth.signup(_authData['email'], _authData['password']);
+
+    try {
+      if (_authMode == AuthMode.Login) {
+        await auth.login(_authData['email'], _authData['password']);
+      } else {
+        await auth.signup(_authData['email'], _authData['password']);
+      }
+    } on AuthException catch (error) {
+      _showErrorDialog(error.toString());
+    } catch (error) {
+      _showErrorDialog("Ocorreu um erro inesperado!");
     }
 
     setState(() {
