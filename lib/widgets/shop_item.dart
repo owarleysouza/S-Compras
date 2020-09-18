@@ -26,12 +26,14 @@ class _ShopItemState extends State<ShopItem> {
     final compra = Provider.of<Compra>(context);
     final Function deleteShop = Provider.of<ShopProvider>(context).deleteShop;
     final scaffold = Scaffold.of(context);
+    final token = Provider.of<ShopProvider>(context).token;
 
     return GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => Produtos(
                     compra: compra,
+                    token: token,
                   )));
         },
         onDoubleTap: () => showDialog(
@@ -52,7 +54,7 @@ class _ShopItemState extends State<ShopItem> {
                       child: Text("Cancelar")),
                   FlatButton(
                       onPressed: () async {
-                        await compra.toggleCompleteShop();
+                        await compra.toggleCompleteShop(token);
                         _refreshShops(context);
                         Navigator.pop(context);
                       },

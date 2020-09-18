@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 
 class Produto with ChangeNotifier {
   String id;
@@ -14,8 +17,35 @@ class Produto with ChangeNotifier {
       @required this.categoria,
       @required this.iscomplete});
 
-  void toggleCompleteProduct() {
+  void _toggleComplete(String token) {
     iscomplete = !iscomplete;
     notifyListeners();
+  }
+
+  Future<void> toggleCompleteProduct(String token, compra) async {
+    _toggleComplete(token);
+    id = compra.id;
+
+    try {
+      final response = await http.patch(
+          'https://flutter-minhascompras.firebaseio.com/shops/$id.json?auth=$token',
+          body: json.encode({
+            'products': compra.listadeprodutos
+                .map((product) => {
+                      'id': product.id,
+                      'nome': product.nome,
+                      'quantidade': product.quantidade,
+                      'categoria': product.categoria,
+                      'iscomplete': product.iscomplete
+                    })
+                .toList()
+          }));
+
+      if (response.statusCode >= 400) {
+        _toggleComplete(token);
+      }
+    } catch (error) {
+      _toggleComplete(token);
+    }
   }
 }

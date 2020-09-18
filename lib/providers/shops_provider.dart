@@ -11,8 +11,14 @@ import 'package:minhas_compras/widgets/add_shop.dart';
 
 class ShopProvider with ChangeNotifier {
   final String _baseShopUrl = '${Constants.BASE_API_URL}/shops';
-
+  String _token;
   List<Compra> _items = [];
+
+  ShopProvider(this._token, this._items);
+
+  String get token {
+    return _token;
+  }
 
   List<Compra> get items => [
         ..._items
@@ -27,7 +33,7 @@ class ShopProvider with ChangeNotifier {
   }
 
   Future<void> loadShops() async {
-    final response = await http.get('$_baseShopUrl.json');
+    final response = await http.get('$_baseShopUrl.json?auth=$_token');
     Map<String, dynamic> data = json.decode(response.body);
     List productsList = [];
     _items
@@ -71,7 +77,7 @@ class ShopProvider with ChangeNotifier {
   Future<void> addShop(Compra newShop) async {
     //Usando async e await para 'trasnformar' o método assíncrono de forma mais síncrona
 
-    final response = await http.post('$_baseShopUrl.json',
+    final response = await http.post('$_baseShopUrl.json?auth=$_token',
         body: json.encode({
           'name': newShop.nome,
           'date': newShop.data.toString(),
@@ -92,7 +98,7 @@ class ShopProvider with ChangeNotifier {
   Future<void> editshop(String id, String nome, DateTime data) async {
     for (Compra compra in _items) {
       if (compra.id == id) {
-        await http.patch('$_baseShopUrl/${compra.id}.json',
+        await http.patch('$_baseShopUrl/${compra.id}.json?auth=$_token',
             body: json.encode({
               'name': nome,
               'date': data.toString(),
@@ -112,7 +118,7 @@ class ShopProvider with ChangeNotifier {
       _items.remove(shop);
       notifyListeners();
 
-      final response = await http.delete('$_baseShopUrl/$id.json');
+      final response = await http.delete('$_baseShopUrl/$id.json?auth=$_token');
 
       if (response.statusCode >= 400) {
         _items.insert(index, shop);

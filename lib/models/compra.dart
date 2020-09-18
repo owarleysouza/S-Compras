@@ -18,17 +18,17 @@ class Compra with ChangeNotifier {
     @required this.listadeprodutos,
   });
 
-  void _toggleComplete() {
+  void _toggleComplete(String token) {
     iscompleted = !iscompleted;
     notifyListeners();
   }
 
-  Future<void> toggleCompleteShop() async {
-    _toggleComplete();
+  Future<void> toggleCompleteShop(String token) async {
+    _toggleComplete(token);
 
     try {
       final response = await http.patch(
-          'https://flutter-minhascompras.firebaseio.com/shops/$id.json',
+          'https://flutter-minhascompras.firebaseio.com/shops/$id.json?auth=$token',
           body: json.encode({
             'name': nome,
             'date': data.toString(),
@@ -36,10 +36,10 @@ class Compra with ChangeNotifier {
           }));
 
       if (response.statusCode >= 400) {
-        _toggleComplete();
+        _toggleComplete(token);
       }
     } catch (error) {
-      _toggleComplete();
+      _toggleComplete(token);
     }
   }
 }

@@ -3,7 +3,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:minhas_compras/models/produto.dart';
+
 import 'package:minhas_compras/utils/constants.dart';
 import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
@@ -12,12 +14,12 @@ import 'package:minhas_compras/views/empty_screen.dart';
 /*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
 */
 
+// ignore: must_be_immutable
 class Produtos extends StatefulWidget {
   final compra;
+  String token;
 
-  Produtos({
-    @required this.compra,
-  });
+  Produtos({@required this.compra, @required this.token});
 
   @override
   _ProdutosState createState() => _ProdutosState();
@@ -32,6 +34,10 @@ class _ProdutosState extends State<Produtos> {
     } else {
       return true;
     }
+  }
+
+  String get token {
+    return widget.token;
   }
 
   Future<void> _addProduto(
@@ -50,21 +56,22 @@ class _ProdutosState extends State<Produtos> {
       products.add(novoProduto);
     });
 
-    await http.patch('$_baseShopUrl/$shopId.json',
-        body: json.encode({
-          'name': widget.compra.nome,
-          'date': widget.compra.data.toString(),
-          'iscompleted': widget.compra.iscompleted,
-          'products': products
-              .map((product) => {
-                    'id': product.id,
-                    'nome': product.nome,
-                    'quantidade': product.quantidade,
-                    'categoria': product.categoria,
-                    'iscomplete': product.iscomplete
-                  })
-              .toList()
-        }));
+    Response response =
+        await http.patch('$_baseShopUrl/$shopId.json?auth=$token',
+            body: json.encode({
+              'name': widget.compra.nome,
+              'date': widget.compra.data.toString(),
+              'iscompleted': widget.compra.iscompleted,
+              'products': products
+                  .map((product) => {
+                        'id': product.id,
+                        'nome': product.nome,
+                        'quantidade': product.quantidade,
+                        'categoria': product.categoria,
+                        'iscomplete': product.iscomplete
+                      })
+                  .toList()
+            }));
 
     Navigator.of(context).pop();
   }
@@ -92,7 +99,7 @@ class _ProdutosState extends State<Produtos> {
       }
     }
 
-    await http.patch('$_baseShopUrl/$shopId.json',
+    await http.patch('$_baseShopUrl/$shopId.json?auth=$token',
         body: json.encode({
           'products': products
               .map((product) => {
@@ -113,7 +120,7 @@ class _ProdutosState extends State<Produtos> {
       products.removeWhere((produto) => produto.id == id);
     });
 
-    await http.patch('$_baseShopUrl/$shopId.json',
+    await http.patch('$_baseShopUrl/$shopId.json?auth=$token',
         body: json.encode({
           'products': products
               .map((product) => {
@@ -131,7 +138,7 @@ class _ProdutosState extends State<Produtos> {
     for (Produto produto in widget.compra.listadeprodutos) {
       if (produto.id == id) {
         setState(() {
-          produto.iscomplete = !produto.iscomplete;
+          produto.toggleCompleteProduct(token, widget.compra);
         });
       }
     }

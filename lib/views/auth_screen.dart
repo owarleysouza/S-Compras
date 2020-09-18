@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minhas_compras/exceptions/auth_exception.dart';
 import 'package:minhas_compras/providers/auth_provider.dart';
-import 'package:minhas_compras/utils/routes.dart';
 import 'package:provider/provider.dart';
 
 enum AuthMode { Signup, Login }
