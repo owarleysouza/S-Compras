@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/providers/auth_provider.dart';
 import 'package:minhas_compras/utils/routes.dart';
+import 'package:provider/provider.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -36,6 +38,11 @@ class MainDrawer extends StatelessWidget {
               title: const Text('Configurações'),
               onTap: () => Navigator.of(context)
                   .pushReplacementNamed(AppRoutes.settings)),
+          ListTile(
+              leading: const Icon(Icons.exit_to_app),
+              title: const Text('Sair'),
+              onTap: () =>
+                  Provider.of<AuthProvider>(context, listen: false).logout()),
         ],
       ),
     );
