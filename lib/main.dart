@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
           create: (_) => new AuthProvider(),
         ),
         ChangeNotifierProxyProvider<AuthProvider, ShopProvider>(
-          create: (_) => new ShopProvider(null, []),
+          create: (_) => new ShopProvider(),
           update: (context, auth, previousShops) =>
-              new ShopProvider(auth.token, previousShops.items),
+              new ShopProvider(auth.token, auth.userId, previousShops.items),
         ),
       ],
       child: MaterialApp(

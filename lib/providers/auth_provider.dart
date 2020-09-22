@@ -5,11 +5,16 @@ import 'package:http/http.dart' as http;
 import 'package:minhas_compras/exceptions/auth_exception.dart';
 
 class AuthProvider with ChangeNotifier {
+  String _userId;
   String _token;
   DateTime _expiryDate;
 
   bool get isAuth {
     return token != null;
+  }
+
+  String get userId {
+    return isAuth ? _userId : null;
   }
 
   String get token {
@@ -37,6 +42,7 @@ class AuthProvider with ChangeNotifier {
       throw AuthException(responseBody["error"]["message"]);
     } else {
       _token = responseBody["idToken"];
+      _userId = responseBody["localId"];
       _expiryDate = DateTime.now()
           .add(Duration(seconds: int.parse(responseBody["expiresIn"])));
       notifyListeners();

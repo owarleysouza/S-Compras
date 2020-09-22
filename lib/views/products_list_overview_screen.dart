@@ -18,8 +18,10 @@ import 'package:minhas_compras/views/empty_screen.dart';
 class Produtos extends StatefulWidget {
   final compra;
   String token;
+  String userId;
 
-  Produtos({@required this.compra, @required this.token});
+  Produtos(
+      {@required this.compra, @required this.token, @required this.userId});
 
   @override
   _ProdutosState createState() => _ProdutosState();
@@ -40,6 +42,10 @@ class _ProdutosState extends State<Produtos> {
     return widget.token;
   }
 
+  String get userId {
+    return widget.userId;
+  }
+
   Future<void> _addProduto(
       String nome, int quantidade, String categoria, bool iscomplete) async {
     final shopId = widget.compra.id;
@@ -57,7 +63,7 @@ class _ProdutosState extends State<Produtos> {
     });
 
     Response response =
-        await http.patch('$_baseShopUrl/$shopId.json?auth=$token',
+        await http.patch('$_baseShopUrl/$userId/$shopId.json?auth=$token',
             body: json.encode({
               'name': widget.compra.nome,
               'date': widget.compra.data.toString(),
@@ -99,7 +105,7 @@ class _ProdutosState extends State<Produtos> {
       }
     }
 
-    await http.patch('$_baseShopUrl/$shopId.json?auth=$token',
+    await http.patch('$_baseShopUrl/$userId/$shopId.json?auth=$token',
         body: json.encode({
           'products': products
               .map((product) => {
@@ -120,7 +126,7 @@ class _ProdutosState extends State<Produtos> {
       products.removeWhere((produto) => produto.id == id);
     });
 
-    await http.patch('$_baseShopUrl/$shopId.json?auth=$token',
+    await http.patch('$_baseShopUrl/$userId/$shopId.json?auth=$token',
         body: json.encode({
           'products': products
               .map((product) => {
@@ -138,7 +144,7 @@ class _ProdutosState extends State<Produtos> {
     for (Produto produto in widget.compra.listadeprodutos) {
       if (produto.id == id) {
         setState(() {
-          produto.toggleCompleteProduct(token, widget.compra);
+          produto.toggleCompleteProduct(token, widget.compra, userId);
         });
       }
     }

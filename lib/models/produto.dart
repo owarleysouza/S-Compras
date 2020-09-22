@@ -22,13 +22,14 @@ class Produto with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleCompleteProduct(String token, compra) async {
+  Future<void> toggleCompleteProduct(
+      String token, compra, String userId) async {
     _toggleComplete(token);
     id = compra.id;
 
     try {
       final response = await http.patch(
-          'https://flutter-minhascompras.firebaseio.com/shops/$id.json?auth=$token',
+          'https://flutter-minhascompras.firebaseio.com/shops/$userId/$id.json?auth=$token',
           body: json.encode({
             'products': compra.listadeprodutos
                 .map((product) => {
