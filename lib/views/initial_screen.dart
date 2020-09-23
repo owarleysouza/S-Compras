@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/providers/auth_provider.dart';
 import 'package:minhas_compras/providers/shops_provider.dart';
 
 import 'package:minhas_compras/widgets/mainDrawer.dart';
@@ -38,13 +39,15 @@ class _InitialScreenState extends State<InitialScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    String userEmail = authProvider.userEmail;
     final List<Widget> _screens = [
       ShoppingListOverviewScreen(),
       ComprasConcluidas()
     ];
 
     return Scaffold(
-      drawer: MainDrawer(),
+      drawer: MainDrawer(userEmail: userEmail),
       appBar: AppBar(
         title: const Text("Compras"),
         centerTitle: true,

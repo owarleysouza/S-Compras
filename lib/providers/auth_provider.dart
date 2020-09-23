@@ -8,6 +8,7 @@ import 'package:minhas_compras/exceptions/auth_exception.dart';
 
 class AuthProvider with ChangeNotifier {
   String _userId;
+  String _userEmail;
   String _token;
   DateTime _expiryDate;
   Timer _logoutTimer;
@@ -18,6 +19,10 @@ class AuthProvider with ChangeNotifier {
 
   String get userId {
     return isAuth ? _userId : null;
+  }
+
+  String get userEmail {
+    return isAuth ? _userEmail : 'null';
   }
 
   String get token {
@@ -40,12 +45,12 @@ class AuthProvider with ChangeNotifier {
             {'email': email, 'password': password, 'returnSecureToken': true}));
 
     final responseBody = json.decode(response.body);
-
     if (responseBody["error"] != null) {
       throw AuthException(responseBody["error"]["message"]);
     } else {
       _token = responseBody["idToken"];
       _userId = responseBody["localId"];
+      _userEmail = responseBody["email"];
       _expiryDate = DateTime.now()
           .add(Duration(seconds: int.parse(responseBody["expiresIn"])));
 

@@ -4,6 +4,10 @@ import 'package:minhas_compras/utils/routes.dart';
 import 'package:provider/provider.dart';
 
 class MainDrawer extends StatelessWidget {
+  final String userEmail;
+
+  MainDrawer({@required this.userEmail});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -15,7 +19,7 @@ class MainDrawer extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
             child: Text(
-              'User',
+              userEmail,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
