@@ -9,6 +9,7 @@ import 'package:minhas_compras/exceptions/auth_exception.dart';
 class AuthProvider with ChangeNotifier {
   String _userId;
   String _userEmail;
+  String _userEmailBackup;
   String _token;
   DateTime _expiryDate;
   Timer _logoutTimer;
@@ -21,8 +22,16 @@ class AuthProvider with ChangeNotifier {
     return isAuth ? _userId : null;
   }
 
+  Future<String> setEmail() async {
+    final userData = await Store.getMap('userData');
+    final userEmail = userData['email'];
+    _userEmailBackup = userEmail;
+    return userEmail.toString();
+  }
+
   String get userEmail {
-    return isAuth ? _userEmail : 'null';
+    setEmail().toString();
+    return isAuth ? _userEmailBackup : 'null';
   }
 
   String get token {
@@ -57,6 +66,7 @@ class AuthProvider with ChangeNotifier {
       Store.saveMap('userData', {
         'token': _token,
         'userId': _userId,
+        'email': _userEmail,
         'expiryDate': _expiryDate.toIso8601String(),
       });
 
