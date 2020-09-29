@@ -5,11 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:minhas_compras/models/produto.dart';
+import 'package:minhas_compras/providers/shops_provider.dart';
 
 import 'package:minhas_compras/utils/constants.dart';
 import 'package:minhas_compras/widgets/add_product.dart';
+import 'package:minhas_compras/widgets/import_shop.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
 import 'package:minhas_compras/views/empty_screen.dart';
+import 'package:minhas_compras/widgets/shop_item.dart';
+import 'package:provider/provider.dart';
 
 /*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
 */
@@ -46,7 +50,7 @@ class _ProdutosState extends State<Produtos> {
     return widget.userId;
   }
 
-  Future<void> _addProduto(
+  Future<void> addProduto(
       String nome, int quantidade, String categoria, bool iscomplete) async {
     final shopId = widget.compra.id;
     List products = widget.compra.listadeprodutos;
@@ -86,7 +90,7 @@ class _ProdutosState extends State<Produtos> {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return AddProduct(addProduct: _addProduto);
+          return AddProduct(addProduct: addProduto);
         });
   }
 
@@ -150,6 +154,24 @@ class _ProdutosState extends State<Produtos> {
     }
   }
 
+  _openImportFormModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return ImportShop(widget.compra); //Tela de Importar
+        });
+  }
+
+  _importProducts() {
+    /*List compras = Provider.of<ShopProvider>(context, listen: false).items;
+    showDialog(context: context, child: Text(compras.toString()));
+    showDialog(
+        context: context,
+        child: ListView(
+          children: [...compras.map((compra) => ShopItem())],
+        ));*/
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,6 +181,14 @@ class _ProdutosState extends State<Produtos> {
         title: Text(
           widget.compra.nome,
         ),
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.import_export,
+                color: Colors.white,
+              ),
+              onPressed: () => _openImportFormModal(context))
+        ],
       ),
       body: temProdutonaLista
           ? Container(
