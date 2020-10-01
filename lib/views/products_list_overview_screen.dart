@@ -5,15 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/providers/shops_provider.dart';
 
 import 'package:minhas_compras/utils/constants.dart';
 import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/import_shop.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
 import 'package:minhas_compras/views/empty_screen.dart';
-import 'package:minhas_compras/widgets/shop_item.dart';
-import 'package:provider/provider.dart';
 
 /*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
 */
@@ -158,7 +155,7 @@ class _ProdutosState extends State<Produtos> {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return ImportShop(widget.compra); //Tela de Importar
+          return ImportShop(widget.compra, token, userId); //Tela de Importar
         });
   }
 

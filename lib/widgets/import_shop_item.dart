@@ -1,21 +1,67 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:minhas_compras/models/compra.dart';
-import 'package:minhas_compras/views/products_list_overview_screen.dart';
+import 'package:minhas_compras/models/produto.dart';
+import 'package:minhas_compras/utils/constants.dart';
 
 class ImportShopItem extends StatefulWidget {
-  final Compra compra;
-  final Compra currentShop;
-  ImportShopItem(this.compra, this.currentShop);
+  final String userId;
+  final token;
+  final Compra oldShop;
+  final Compra newShop;
+  ImportShopItem(this.oldShop, this.newShop, this.token, this.userId);
 
   @override
   _ImportShopItemState createState() => _ImportShopItemState();
 }
 
 class _ImportShopItemState extends State<ImportShopItem> {
+  final String _baseShopUrl = '${Constants.BASE_API_URL}/shops';
+
+  Future<void> addProduto(
+      String nome, int quantidade, String categoria, bool iscomplete) async {
+    final shopId = widget.newShop.id;
+    List products = widget.newShop.listadeprodutos;
+
+    final novoProduto = Produto(
+        id: Random().nextDouble().toString(),
+        nome: nome,
+        quantidade: quantidade,
+        categoria: categoria,
+        iscomplete: iscomplete);
+
+    setState(() {
+      products.add(novoProduto);
+    });
+
+    Response response = await http.patch(
+        '$_baseShopUrl/${widget.userId}/$shopId.json?auth=${widget.token}',
+        body: json.encode({
+          'name': widget.newShop.nome,
+          'date': widget.newShop.data.toString(),
+          'iscompleted': widget.newShop.iscompleted,
+          'products': products
+              .map((product) => {
+                    'id': product.id,
+                    'nome': product.nome,
+                    'quantidade': product.quantidade,
+                    'categoria': product.categoria,
+                    'iscomplete': product.iscomplete
+                  })
+              .toList()
+        }));
+
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
-    List products = widget.compra.listadeprodutos;
+    List products = widget.oldShop.listadeprodutos;
 
     return Card(
       color: Colors.white,
@@ -29,8 +75,8 @@ class _ImportShopItemState extends State<ImportShopItem> {
             color: Theme.of(context).primaryColor,
             size: 40,
           ),
-          title: Text(widget.compra.nome),
-          subtitle: Text((DateFormat('dd/MM/y').format(widget.compra.data))),
+          title: Text(widget.oldShop.nome),
+          subtitle: Text((DateFormat('dd/MM/y').format(widget.oldShop.data))),
           trailing: Container(
             width: 100,
             child: Row(
@@ -55,6 +101,8 @@ class _ImportShopItemState extends State<ImportShopItem> {
                                 child: Text("OK"),
                                 onPressed: () {
                                   for (var p in products) {
+                                    addProduto(p.nome, p.quantidade,
+                                        p.categoria, p.iscomplete);
                                     //TODO: Adicionar esses produtos na currentShop
 
                                   }
