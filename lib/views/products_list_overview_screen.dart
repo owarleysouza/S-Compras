@@ -159,6 +159,7 @@ class _ProdutosState extends State<Produtos> {
         title: Text(
           widget.compra.nome,
         ),
+        actions: [IconButton(icon: Icon(Icons.file_download), onPressed: null)],
       ),
       body: temProdutonaLista
           ? Container(
