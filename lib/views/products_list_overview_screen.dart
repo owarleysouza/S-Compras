@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 import 'package:minhas_compras/models/produto.dart';
 
 import 'package:minhas_compras/utils/constants.dart';
+import 'package:minhas_compras/views/import_product_screen.dart';
 import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
 import 'package:minhas_compras/views/empty_screen.dart';
@@ -159,7 +160,14 @@ class _ProdutosState extends State<Produtos> {
         title: Text(
           widget.compra.nome,
         ),
-        actions: [IconButton(icon: Icon(Icons.file_download), onPressed: null)],
+        actions: [
+          IconButton(
+              icon: Icon(Icons.file_download),
+              color: Colors.white,
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      ImportProductsScreen(compra: widget.compra))))
+        ],
       ),
       body: temProdutonaLista
           ? Container(
