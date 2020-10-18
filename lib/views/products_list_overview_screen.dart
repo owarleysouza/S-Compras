@@ -63,22 +63,21 @@ class _ProdutosState extends State<Produtos> {
       products.add(novoProduto);
     });
 
-    Response response =
-        await http.patch('$_baseShopUrl/$userId/$shopId.json?auth=$token',
-            body: json.encode({
-              'name': widget.compra.nome,
-              'date': widget.compra.data.toString(),
-              'iscompleted': widget.compra.iscompleted,
-              'products': products
-                  .map((product) => {
-                        'id': product.id,
-                        'nome': product.nome,
-                        'quantidade': product.quantidade,
-                        'categoria': product.categoria,
-                        'iscomplete': product.iscomplete
-                      })
-                  .toList()
-            }));
+    await http.patch('$_baseShopUrl/$userId/$shopId.json?auth=$token',
+        body: json.encode({
+          'name': widget.compra.nome,
+          'date': widget.compra.data.toString(),
+          'iscompleted': widget.compra.iscompleted,
+          'products': products
+              .map((product) => {
+                    'id': product.id,
+                    'nome': product.nome,
+                    'quantidade': product.quantidade,
+                    'categoria': product.categoria,
+                    'iscomplete': product.iscomplete
+                  })
+              .toList()
+        }));
 
     Navigator.of(context).pop();
   }
@@ -159,6 +158,7 @@ class _ProdutosState extends State<Produtos> {
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
           widget.compra.nome,
+          style: TextStyle(fontSize: 18),
         ),
         actions: [
           IconButton(
