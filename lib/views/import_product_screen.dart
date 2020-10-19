@@ -5,9 +5,9 @@ import 'package:minhas_compras/widgets/import_shop_item.dart';
 import 'package:provider/provider.dart';
 
 class ImportProductsScreen extends StatefulWidget {
-  final Compra compra;
+  final Compra newShop;
 
-  ImportProductsScreen({@required this.compra});
+  ImportProductsScreen({@required this.newShop});
   @override
   _ImportProductsScreenState createState() => _ImportProductsScreenState();
 }
@@ -15,15 +15,23 @@ class ImportProductsScreen extends StatefulWidget {
 class _ImportProductsScreenState extends State<ImportProductsScreen> {
   @override
   Widget build(BuildContext context) {
+    final token = Provider.of<ShopProvider>(context).token;
+    final userId = Provider.of<ShopProvider>(context).userId;
     List<Compra> shops = Provider.of<ShopProvider>(context).items;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Importar Compra"),
+        title: Text(
+          "Importar para ${widget.newShop.nome}",
+          style: TextStyle(fontSize: 12),
+        ),
       ),
       body: ListView(
         children: [
           ...shops.map((shop) => ImportShopItem(
-                compra: shop,
+                oldShop: shop,
+                newShop: widget.newShop,
+                token: token,
+                userId: userId,
               ))
         ],
       ),

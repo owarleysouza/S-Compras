@@ -165,8 +165,9 @@ class _ProdutosState extends State<Produtos> {
               icon: Icon(Icons.file_download),
               color: Colors.white,
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      ImportProductsScreen(compra: widget.compra))))
+                  builder: (context) => ImportProductsScreen(
+                        newShop: widget.compra,
+                      ))))
         ],
       ),
       body: temProdutonaLista
