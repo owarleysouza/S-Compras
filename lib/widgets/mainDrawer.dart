@@ -19,7 +19,7 @@ class MainDrawer extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
             child: Text(
-              userEmail,
+              userEmail != null ? userEmail : "Olá",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,

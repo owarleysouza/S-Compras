@@ -3,11 +3,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:minhas_compras/models/produto.dart';
 
 import 'package:minhas_compras/utils/constants.dart';
-import 'package:minhas_compras/views/import_product_screen.dart';
+import 'package:minhas_compras/views/import_products_screen.dart';
 import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
 import 'package:minhas_compras/views/empty_screen.dart';

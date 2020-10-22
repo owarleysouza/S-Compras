@@ -27,12 +27,14 @@ class _ImportProductsScreenState extends State<ImportProductsScreen> {
       ),
       body: ListView(
         children: [
-          ...shops.map((shop) => ImportShopItem(
+          for (var shop in shops)
+            if (shop.id != widget.newShop.id)
+              ImportShopItem(
                 oldShop: shop,
                 newShop: widget.newShop,
                 token: token,
                 userId: userId,
-              ))
+              )
         ],
       ),
     );

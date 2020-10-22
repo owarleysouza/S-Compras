@@ -8,6 +8,7 @@ import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 
 import 'package:minhas_compras/utils/constants.dart';
+import 'package:minhas_compras/views/initial_screen.dart';
 
 // ignore: must_be_immutable
 class ImportShopItem extends StatefulWidget {
@@ -21,12 +22,16 @@ class ImportShopItem extends StatefulWidget {
 }
 
 class _ImportShopItemState extends State<ImportShopItem> {
+  bool _isloading = false;
+
   final String _baseShopUrl = '${Constants.BASE_API_URL}/shops';
+  get products {
+    return widget.newShop.listadeprodutos;
+  }
 
   Future<void> _addProduto(
       String nome, int quantidade, String categoria, bool iscomplete) async {
     final shopId = widget.newShop.id;
-    List products = widget.newShop.listadeprodutos;
 
     final novoProduto = Produto(
         id: Random().nextDouble().toString(),
@@ -55,49 +60,70 @@ class _ImportShopItemState extends State<ImportShopItem> {
                   })
               .toList()
         }));
-
-    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {
-          //TODO: Fazer com que cada compra mostre os seus produtos, para poderem ser selecionados, usar import product item acho que é uma boa
-          //Navigator.of(context)
-          //     .push(MaterialPageRoute(builder: (context) => Produtos()));
-        },
-        child: Card(
-          color: widget.oldShop.iscompleted == true
-              ? Colors.lightGreen[300]
-              : Colors.white,
-          elevation: 5,
-          margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
-            child: ListTile(
-              leading: Icon(
-                Icons.shopping_cart,
-                color: Theme.of(context).primaryColor,
-                size: 40,
-              ),
-              title: Text(widget.oldShop.nome),
-              subtitle:
-                  Text((DateFormat('dd/MM/y').format(widget.oldShop.data))),
-              trailing: IconButton(
-                icon: Icon(Icons.cloud_download),
-                onPressed: () {
-                  //TODO: Corrigir erro que está dando logo depois de importar uma compra.
-                  for (var product in widget.oldShop.listadeprodutos) {
-                    if (widget.oldShop.listadeprodutos != null) {
-                      _addProduto(product.nome, product.quantidade,
-                          product.categoria, product.iscomplete);
+    return _isloading
+        ? Card(
+            elevation: 5,
+            margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Center(child: CircularProgressIndicator()),
+            ),
+          )
+        : Card(
+            color: widget.oldShop.iscompleted == true
+                ? Colors.lightGreen[300]
+                : Colors.white,
+            elevation: 5,
+            margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
+              child: ListTile(
+                leading: Icon(
+                  Icons.shopping_cart,
+                  color: Theme.of(context).primaryColor,
+                  size: 40,
+                ),
+                title: Text(widget.oldShop.nome),
+                subtitle:
+                    Text((DateFormat('dd/MM/y').format(widget.oldShop.data))),
+                trailing: IconButton(
+                  icon: Icon(Icons.cloud_download,
+                      color: Theme.of(context).accentColor),
+                  onPressed: () async {
+                    setState(() {
+                      _isloading = true;
+                    });
+
+                    for (var product in widget.oldShop.listadeprodutos) {
+                      if (widget.oldShop.listadeprodutos != null) {
+                        await _addProduto(product.nome, product.quantidade,
+                            product.categoria, product.iscomplete);
+                      }
                     }
-                  }
-                },
+                    setState(() {
+                      _isloading = false;
+                    });
+                    showDialog(
+                        context: context,
+                        child: AlertDialog(
+                          title: Text("Importação Concluída com Sucesso!"),
+                          actions: [
+                            FlatButton(
+                                onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => InitialScreen())),
+                                child: Text("Ok"))
+                          ],
+                        ));
+                  },
+                ),
               ),
             ),
-          ),
-        ));
+          );
   }
 }
