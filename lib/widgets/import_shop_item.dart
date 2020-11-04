@@ -101,7 +101,7 @@ class _ImportShopItemState extends State<ImportShopItem> {
                     for (var product in widget.oldShop.listadeprodutos) {
                       if (widget.oldShop.listadeprodutos != null) {
                         await _addProduto(product.nome, product.quantidade,
-                            product.categoria, product.iscomplete);
+                            product.categoria, false);
                       }
                     }
                     setState(() {
