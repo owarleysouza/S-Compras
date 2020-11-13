@@ -6,6 +6,10 @@ import 'package:minhas_compras/providers/shops_provider.dart';
 import 'package:provider/provider.dart';
 
 class ShopEditFormScreen extends StatefulWidget {
+  final Compra shop;
+
+  ShopEditFormScreen(this.shop);
+
   @override
   _ShopEditFormScreenState createState() => _ShopEditFormScreenState();
 }
@@ -15,7 +19,12 @@ class _ShopEditFormScreenState extends State<ShopEditFormScreen> {
   final _dataFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
   String _shopName;
-  DateTime _shopDate = DateTime.now();
+  DateTime _shopDate;
+
+  void initState() {
+    super.initState();
+    _shopDate = widget.shop.data;
+  }
 
   _showDatePicker() {
     DateTime now = DateTime.now();

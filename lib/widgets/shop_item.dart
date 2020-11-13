@@ -92,7 +92,7 @@ class _ShopItemState extends State<ShopItem> {
                                 builder: (context) =>
                                     ChangeNotifierProvider.value(
                                       value: compra,
-                                      child: ShopEditFormScreen(),
+                                      child: ShopEditFormScreen(compra),
                                     )))),
                     IconButton(
                         icon: const Icon(Icons.delete),
