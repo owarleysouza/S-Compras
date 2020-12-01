@@ -171,7 +171,7 @@ class _ProdutosState extends State<Produtos> {
       ),
       body: temProdutonaLista
           ? Container(
-              height: 500,
+              //height: 600,
               child: ListView(
                 children: <Widget>[
                   ...widget.compra.listadeprodutos
