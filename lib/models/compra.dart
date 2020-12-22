@@ -8,6 +8,7 @@ class Compra with ChangeNotifier {
   String nome;
   DateTime data;
   bool iscompleted;
+  double totalPrice;
   List listadeprodutos;
 
   Compra({
@@ -15,6 +16,7 @@ class Compra with ChangeNotifier {
     @required this.nome,
     @required this.data,
     @required this.iscompleted,
+    @required this.totalPrice,
     @required this.listadeprodutos,
   });
 

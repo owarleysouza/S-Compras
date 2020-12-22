@@ -29,8 +29,8 @@ class _ImportShopItemState extends State<ImportShopItem> {
     return widget.newShop.listadeprodutos;
   }
 
-  Future<void> _addProduto(
-      String nome, int quantidade, String categoria, bool iscomplete) async {
+  Future<void> _addProduto(String nome, int quantidade, String categoria,
+      bool iscomplete, double price) async {
     final shopId = widget.newShop.id;
 
     final novoProduto = Produto(
@@ -38,7 +38,8 @@ class _ImportShopItemState extends State<ImportShopItem> {
         nome: nome,
         quantidade: quantidade,
         categoria: categoria,
-        iscomplete: iscomplete);
+        iscomplete: iscomplete,
+        price: price);
 
     setState(() {
       products.add(novoProduto);
@@ -101,7 +102,7 @@ class _ImportShopItemState extends State<ImportShopItem> {
                     for (var product in widget.oldShop.listadeprodutos) {
                       if (widget.oldShop.listadeprodutos != null) {
                         await _addProduto(product.nome, product.quantidade,
-                            product.categoria, false);
+                            product.categoria, false, product.price);
                       }
                     }
                     setState(() {

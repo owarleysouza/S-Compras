@@ -50,6 +50,7 @@ class _AddShopState extends State<AddShop> {
           nome: _shopname,
           data: _shopdate,
           iscompleted: false,
+          totalPrice: 0.0,
           listadeprodutos: []);
       /*Tava dando erro porque eu tinha definido na classe compra que se não fosse passado
     uma lista de produtos, ela seria uma lista vazia constante, só que não eh possivel add 

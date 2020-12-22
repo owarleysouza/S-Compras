@@ -12,11 +12,13 @@ class ProductEditFormScreen extends StatefulWidget {
 
 class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
   final _quantityFocusNode = FocusNode();
+  final _priceFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
 
   String _productName;
   int _productQuantity;
   String _productCategory;
+  double _productPrice;
 
   void initState() {
     super.initState();
@@ -30,8 +32,8 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
       return;
     } else {
       _form.currentState.save();
-      widget.editproduct(
-          widget.product.id, _productName, _productQuantity, _productCategory);
+      widget.editproduct(widget.product.id, _productName, _productQuantity,
+          _productCategory, _productPrice);
       Navigator.pop(context);
     }
   }
@@ -67,6 +69,8 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
                     initialValue: widget.product.quantidade.toString(),
                     decoration: InputDecoration(labelText: "Quantidade"),
                     textInputAction: TextInputAction.next,
+                    onFieldSubmitted: (value) =>
+                        FocusScope.of(context).requestFocus(_priceFocusNode),
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: true),
                     focusNode: _quantityFocusNode,
@@ -75,6 +79,22 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
                     validator: (value) {
                       if (value.trim().isEmpty) {
                         return 'Informe uma quantidade válida';
+                      } else {
+                        return null;
+                      }
+                    }),
+                TextFormField(
+                    initialValue: widget.product.price.toString(),
+                    decoration: InputDecoration(labelText: "Preço"),
+                    textInputAction: TextInputAction.next,
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    focusNode: _priceFocusNode,
+                    onSaved: (newValue) => _productPrice = double.parse(
+                        newValue), //Fazer verificação melhor aqui para validar se entrada do user é mesmo um inteiro
+                    validator: (value) {
+                      if (value.trim().isEmpty) {
+                        return 'Informe um preço válido';
                       } else {
                         return null;
                       }

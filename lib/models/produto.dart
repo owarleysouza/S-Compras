@@ -9,13 +9,15 @@ class Produto with ChangeNotifier {
   int quantidade;
   String categoria;
   bool iscomplete;
+  double price;
 
   Produto(
       {this.id,
       @required this.nome,
       @required this.quantidade,
       @required this.categoria,
-      @required this.iscomplete});
+      @required this.iscomplete,
+      @required this.price});
 
   void _toggleComplete(String token) {
     iscomplete = !iscomplete;

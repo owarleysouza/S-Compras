@@ -53,7 +53,8 @@ class ShopProvider with ChangeNotifier {
                   nome: p['nome'],
                   quantidade: p['quantidade'],
                   categoria: p['categoria'],
-                  iscomplete: p['iscomplete']))
+                  iscomplete: p['iscomplete'],
+                  price: p['price']))
               .toList();
 
           _items.add(Compra(
@@ -61,6 +62,7 @@ class ShopProvider with ChangeNotifier {
               nome: shopData['name'],
               data: DateTime.parse(shopData['date']),
               iscompleted: shopData['iscompleted'],
+              totalPrice: shopData['totalPrice'],
               listadeprodutos: productsList));
 
           productsList = [];
@@ -70,6 +72,7 @@ class ShopProvider with ChangeNotifier {
               nome: shopData['name'],
               data: DateTime.parse(shopData['date']),
               iscompleted: shopData['iscompleted'],
+              totalPrice: shopData['totalPrice'],
               listadeprodutos: productsList));
         }
       });
@@ -87,6 +90,7 @@ class ShopProvider with ChangeNotifier {
           'name': newShop.nome,
           'date': newShop.data.toString(),
           'iscompleted': newShop.iscompleted,
+          'totalPrice': newShop.totalPrice,
           'products': newShop.listadeprodutos
         }));
 
@@ -95,6 +99,7 @@ class ShopProvider with ChangeNotifier {
         nome: newShop.nome,
         data: newShop.data,
         iscompleted: newShop.iscompleted,
+        totalPrice: newShop.totalPrice,
         listadeprodutos: newShop.listadeprodutos));
 
     notifyListeners();

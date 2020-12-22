@@ -56,7 +56,8 @@ class _ProdutosState extends State<Produtos> {
         nome: nome,
         quantidade: quantidade,
         categoria: categoria,
-        iscomplete: iscomplete);
+        iscomplete: iscomplete,
+        price: 0.0);
 
     setState(() {
       products.add(novoProduto);
@@ -89,8 +90,8 @@ class _ProdutosState extends State<Produtos> {
         });
   }
 
-  Future<void> _editproduto(
-      String id, String nome, int quantidade, String categoria) async {
+  Future<void> _editproduto(String id, String nome, int quantidade,
+      String categoria, double price) async {
     final shopId = widget.compra.id;
     List products = widget.compra.listadeprodutos;
 
@@ -100,6 +101,7 @@ class _ProdutosState extends State<Produtos> {
           produto.nome = nome;
           produto.quantidade = quantidade;
           produto.categoria = categoria;
+          produto.price = price;
         });
       }
     }
@@ -112,7 +114,8 @@ class _ProdutosState extends State<Produtos> {
                     'nome': product.nome,
                     'quantidade': product.quantidade,
                     'categoria': product.categoria,
-                    'iscomplete': product.iscomplete
+                    'iscomplete': product.iscomplete,
+                    'price': product.price
                   })
               .toList()
         }));
