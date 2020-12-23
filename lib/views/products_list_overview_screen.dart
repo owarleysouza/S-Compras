@@ -177,6 +177,25 @@ class _ProdutosState extends State<Produtos> {
               //height: 600,
               child: ListView(
                 children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
+                        child: Text(
+                          "Valor Total:",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 20, 10, 10),
+                        child: Text(
+                          "R\$ ${widget.compra.totalPrice}",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      )
+                    ],
+                  ),
                   ...widget.compra.listadeprodutos
                       .map((produtodalista) => ProductItem(
                             produto: produtodalista,
