@@ -39,7 +39,8 @@ class Produto with ChangeNotifier {
                       'nome': product.nome,
                       'quantidade': product.quantidade,
                       'categoria': product.categoria,
-                      'iscomplete': product.iscomplete
+                      'iscomplete': product.iscomplete,
+                      'price': product.price
                     })
                 .toList()
           }));
