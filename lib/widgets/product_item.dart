@@ -21,6 +21,7 @@ class ProductItem extends StatelessWidget {
     String pNome = produto.nome;
     int pQuantidade = produto.quantidade;
     String pCategoria = produto.categoria;
+    double pPrice = produto.price;
     return GestureDetector(
       onDoubleTap: () => showDialog(
           context: context,
@@ -68,7 +69,7 @@ class ProductItem extends StatelessWidget {
                   style: TextStyle(fontSize: 18),
                 )
               : Text(
-                  "$pQuantidade",
+                  "$pQuantidade | R\$ $pPrice",
                   style: TextStyle(fontSize: 18),
                 ),
           trailing: Container(
