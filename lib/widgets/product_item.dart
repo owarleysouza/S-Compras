@@ -63,15 +63,10 @@ class ProductItem extends StatelessWidget {
             pNome,
             style: TextStyle(fontSize: 18),
           ),
-          subtitle: pQuantidade == 0
-              ? Text(
-                  "Padrão",
-                  style: TextStyle(fontSize: 18),
-                )
-              : Text(
-                  "$pQuantidade | R\$ $pPrice",
-                  style: TextStyle(fontSize: 18),
-                ),
+          subtitle: Text(
+            "$pQuantidade | R\$ $pPrice",
+            style: TextStyle(fontSize: 18),
+          ),
           trailing: Container(
             width: 100,
             child: Row(
