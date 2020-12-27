@@ -105,15 +105,14 @@ class ShopProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> editshop(String id, String nome, DateTime data) async {
+  Future<void> editshop(
+      String id, String nome, DateTime data, double price) async {
     for (Compra compra in _items) {
       if (compra.id == id) {
         await http.patch(
             '$_baseShopUrl/$_userId/${compra.id}.json?auth=$_token',
-            body: json.encode({
-              'name': nome,
-              'date': data.toString(),
-            }));
+            body: json.encode(
+                {'name': nome, 'date': data.toString(), 'totalPrice': price}));
 
         compra.nome = nome;
         compra.data = data;

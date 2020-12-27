@@ -47,7 +47,7 @@ class _ShopEditFormScreenState extends State<ShopEditFormScreen> {
   @override
   Widget build(BuildContext context) {
     final Compra compra = Provider.of<Compra>(context);
-    Future<void> Function(String, String, DateTime) editshop =
+    Future<void> Function(String, String, DateTime, double) editshop =
         Provider.of<ShopProvider>(context).editshop;
 
     _saveForm() async {
@@ -61,7 +61,7 @@ class _ShopEditFormScreenState extends State<ShopEditFormScreen> {
         });
 
         _form.currentState.save();
-        await editshop(compra.id, _shopName, _shopDate);
+        await editshop(compra.id, _shopName, _shopDate, compra.totalPrice);
         Navigator.pop(context);
       }
     }

@@ -200,6 +200,7 @@ class _ProdutosState extends State<Produtos> {
                   ),
                   ...widget.compra.listadeprodutos
                       .map((produtodalista) => ProductItem(
+                            shop: widget.compra,
                             produto: produtodalista,
                             delproduto: _delproduto,
                             editproduto: _editproduto,

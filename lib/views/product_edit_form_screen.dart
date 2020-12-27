@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
+import 'package:minhas_compras/providers/shops_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProductEditFormScreen extends StatefulWidget {
+  final Compra shop;
   final Produto product;
   final Function editproduct;
-  ProductEditFormScreen({@required this.editproduct, @required this.product});
+  ProductEditFormScreen(
+      {@required this.editproduct,
+      @required this.product,
+      @required this.shop});
 
   @override
   _ProductEditFormScreenState createState() => _ProductEditFormScreenState();
@@ -25,6 +32,12 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
     _productCategory = widget.product.categoria;
   }
 
+  _calculateShopPrice(
+      double shopPrice, double oldProductPrice, double newProductPrice) {
+    double newShopPrice = (shopPrice - oldProductPrice) + newProductPrice;
+    return newShopPrice;
+  }
+
   _saveForm() {
     bool _isValid = _form.currentState.validate();
 
@@ -32,8 +45,30 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
       return;
     } else {
       _form.currentState.save();
-      widget.editproduct(widget.product.id, _productName, _productQuantity,
-          _productCategory, _productPrice);
+      if (_productPrice == widget.product.price &&
+          _productQuantity == widget.product.quantidade) {
+        widget.editproduct(widget.product.id, _productName, _productQuantity,
+            _productCategory, _productPrice);
+      } else {
+        ShopProvider shopProvider =
+            Provider.of<ShopProvider>(context, listen: false);
+        double newShopPrice = _calculateShopPrice(
+            widget.shop.totalPrice,
+            widget.product.price * widget.product.quantidade,
+            _productQuantity == widget.product.quantidade
+                ? _productPrice * widget.product.quantidade
+                : _productPrice * _productQuantity);
+        shopProvider.editshop(
+            widget.shop.id, widget.shop.nome, widget.shop.data, newShopPrice);
+        widget.editproduct(widget.product.id, _productName, _productQuantity,
+            _productCategory, _productPrice);
+        shopProvider.loadShops();
+        setState(() {
+          widget.shop.totalPrice = newShopPrice;
+        });
+        //Altera valor da compra. Diminui dela o preco atual, e soma o _productPrice
+      }
+
       Navigator.pop(context);
     }
   }
