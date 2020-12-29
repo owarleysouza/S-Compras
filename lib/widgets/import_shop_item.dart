@@ -39,7 +39,7 @@ class _ImportShopItemState extends State<ImportShopItem> {
         quantidade: quantidade,
         categoria: categoria,
         iscomplete: iscomplete,
-        price: price);
+        price: 0.0);
 
     setState(() {
       products.add(novoProduto);
@@ -51,13 +51,15 @@ class _ImportShopItemState extends State<ImportShopItem> {
           'name': widget.newShop.nome,
           'date': widget.newShop.data.toString(),
           'iscompleted': widget.newShop.iscompleted,
+          'totalPrice': 0.0,
           'products': products
               .map((product) => {
                     'id': product.id,
                     'nome': product.nome,
                     'quantidade': product.quantidade,
                     'categoria': product.categoria,
-                    'iscomplete': product.iscomplete
+                    'iscomplete': product.iscomplete,
+                    'price': 0.0
                   })
               .toList()
         }));
