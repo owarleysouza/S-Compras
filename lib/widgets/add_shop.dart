@@ -27,7 +27,7 @@ class _AddShopState extends State<AddShop> {
       context: context,
       initialDate: now,
       firstDate: DateTime(now.year),
-      lastDate: DateTime(now.year + 1),
+      lastDate: DateTime(now.year + 2),
     ).then((selecteddate) {
       if (selecteddate == null) {
         return;
