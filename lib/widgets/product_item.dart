@@ -102,7 +102,10 @@ class ProductItem extends StatelessWidget {
                                   child: Text("Cancelar")),
                               FlatButton(
                                   onPressed: () {
-                                    delproduto(produto.id);
+                                    double newShopTotalPrice = shop.totalPrice -
+                                        (produto.quantidade * produto.price);
+                                    delproduto(
+                                        produto.id, shop, newShopTotalPrice);
                                     Navigator.pop(context);
                                   },
                                   child: Text("OK"))

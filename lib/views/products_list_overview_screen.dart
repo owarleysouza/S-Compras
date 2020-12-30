@@ -3,13 +3,16 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
+import 'package:minhas_compras/providers/shops_provider.dart';
 
 import 'package:minhas_compras/utils/constants.dart';
 import 'package:minhas_compras/views/import_products_screen.dart';
 import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
 import 'package:minhas_compras/views/empty_screen.dart';
+import 'package:provider/provider.dart';
 
 /*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
 */
@@ -122,7 +125,12 @@ class _ProdutosState extends State<Produtos> {
         }));
   }
 
-  Future<void> _delproduto(String id) async {
+  Future<void> _delproduto(String id, Compra shop, double newPrice) async {
+    ShopProvider shopProvider =
+        Provider.of<ShopProvider>(context, listen: false);
+
+    shopProvider.editshop(shop.id, shop.nome, shop.data, newPrice);
+
     final shopId = widget.compra.id;
     List products = widget.compra.listadeprodutos;
     setState(() {
@@ -142,6 +150,9 @@ class _ProdutosState extends State<Produtos> {
                   })
               .toList()
         }));
+    setState(() {
+      shop.totalPrice = newPrice;
+    });
   }
 
   _completeProduto(String id) {
