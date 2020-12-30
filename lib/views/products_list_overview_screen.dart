@@ -195,16 +195,18 @@ class _ProdutosState extends State<Produtos> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
-                        child: Text(
-                          "Valor Total:",
-                          style: TextStyle(fontSize: 20),
-                        ),
+                        child: Text("Valor Total:",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            )),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 20, 10, 10),
                         child: Text(
-                          "R\$ ${widget.compra.totalPrice}",
-                          style: TextStyle(fontSize: 20),
+                          "R\$ ${widget.compra.totalPrice.toStringAsFixed(2)}",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       )
                     ],
