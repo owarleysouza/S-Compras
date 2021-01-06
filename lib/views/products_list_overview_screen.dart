@@ -165,6 +165,16 @@ class _ProdutosState extends State<Produtos> {
     }
   }
 
+  _completeEditProduto(String id) {
+    for (Produto produto in widget.compra.listadeprodutos) {
+      if (produto.id == id) {
+        setState(() {
+          produto.toggleCompleteEditProduct(token, widget.compra, userId);
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -218,6 +228,7 @@ class _ProdutosState extends State<Produtos> {
                             delproduto: _delproduto,
                             editproduto: _editproduto,
                             completeProduto: _completeProduto,
+                            completeEditProduct: _completeEditProduto,
                           )),
                   const SizedBox(
                     //Elemento para que o float button nao fique encima do ultimo produto

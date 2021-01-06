@@ -52,4 +52,36 @@ class Produto with ChangeNotifier {
       _toggleComplete(token);
     }
   }
+
+  //metodo para apenas completar o produto, quando o preço for setado
+  Future<void> toggleCompleteEditProduct(
+      String token, compra, String userId) async {
+    iscomplete = true;
+    notifyListeners();
+
+    var shopId = compra.id;
+
+    try {
+      final response = await http.patch(
+          'https://flutter-minhascompras.firebaseio.com/shops/$userId/$shopId.json?auth=$token',
+          body: json.encode({
+            'products': compra.listadeprodutos
+                .map((product) => {
+                      'id': product.id,
+                      'nome': product.nome,
+                      'quantidade': product.quantidade,
+                      'categoria': product.categoria,
+                      'iscomplete': product.iscomplete,
+                      'price': product.price
+                    })
+                .toList()
+          }));
+
+      if (response.statusCode >= 400) {
+        _toggleComplete(token);
+      }
+    } catch (error) {
+      _toggleComplete(token);
+    }
+  }
 }

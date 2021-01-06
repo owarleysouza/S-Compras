@@ -8,10 +8,14 @@ class ProductEditFormScreen extends StatefulWidget {
   final Compra shop;
   final Produto product;
   final Function editproduct;
+  final Function completeproduct;
+  final Function completeEditProduto;
   ProductEditFormScreen(
       {@required this.editproduct,
       @required this.product,
-      @required this.shop});
+      @required this.shop,
+      @required this.completeproduct,
+      @required this.completeEditProduto});
 
   @override
   _ProductEditFormScreenState createState() => _ProductEditFormScreenState();
@@ -63,6 +67,7 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
         widget.editproduct(widget.product.id, _productName, _productQuantity,
             _productCategory, _productPrice);
         shopProvider.loadShops();
+        widget.completeEditProduto(widget.product.id);
         setState(() {
           widget.shop.totalPrice = newShopPrice;
         });

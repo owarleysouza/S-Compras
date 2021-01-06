@@ -11,13 +11,15 @@ class ProductItem extends StatelessWidget {
   final Function delproduto;
   final Function editproduto;
   final Function completeProduto;
+  final Function completeEditProduct;
 
   ProductItem(
       {@required this.shop,
       @required this.produto,
       @required this.delproduto,
       @required this.editproduto,
-      @required this.completeProduto});
+      @required this.completeProduto,
+      @required this.completeEditProduct});
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +85,8 @@ class ProductItem extends StatelessWidget {
                                   editproduct: editproduto,
                                   product: produto,
                                   shop: shop,
+                                  completeproduct: completeProduto,
+                                  completeEditProduto: completeEditProduct,
                                 )))),
                 IconButton(
                     icon: const Icon(Icons.delete),
