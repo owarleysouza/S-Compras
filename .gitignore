@@ -38,3 +38,4 @@ lib/generated_plugin_registrant.dart
 
 #Sensible datas
 lib/utils/access_key.dart
+lib/utils/constants.dart
