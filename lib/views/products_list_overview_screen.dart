@@ -7,7 +7,7 @@ import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/providers/shops_provider.dart';
 
-import 'package:minhas_compras/utils/constants.dart';
+import 'package:minhas_compras/utils/constants_key.dart';
 import 'package:minhas_compras/views/import_products_screen.dart';
 import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/product_item.dart';

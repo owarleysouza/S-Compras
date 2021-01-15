@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
 
-import 'package:minhas_compras/utils/constants.dart';
+import 'package:minhas_compras/utils/constants_key.dart';
 import 'package:minhas_compras/views/initial_screen.dart';
 
 // ignore: must_be_immutable

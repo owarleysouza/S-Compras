@@ -38,4 +38,6 @@ lib/generated_plugin_registrant.dart
 
 #Sensible datas
 lib/utils/access_key.dart
-lib/utils/constants.dart
+
+#Sensible data firebase
+lib/utils/constants_key.dart

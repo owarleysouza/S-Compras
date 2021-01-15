@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:minhas_compras/exceptions/http_exception.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
-import 'package:minhas_compras/utils/constants.dart';
+import 'package:minhas_compras/utils/constants_key.dart';
 
 import 'package:minhas_compras/widgets/add_shop.dart';
 
