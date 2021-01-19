@@ -4,6 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:minhas_compras/exceptions/http_exception.dart';
 
 import 'package:minhas_compras/models/compra.dart';
+import 'package:minhas_compras/providers/auth_provider.dart';
+import 'package:minhas_compras/views/auth_product_screen.dart';
+import 'package:minhas_compras/views/auth_screen.dart';
 
 import 'package:minhas_compras/views/products_list_overview_screen.dart';
 
@@ -28,11 +31,12 @@ class _ShopItemState extends State<ShopItem> {
     final scaffold = Scaffold.of(context);
     final token = Provider.of<ShopProvider>(context).token;
     final userId = Provider.of<ShopProvider>(context).userId;
+    final isAuth = Provider.of<AuthProvider>(context).isAuth;
 
     return GestureDetector(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => Produtos(
+              builder: (context) => AuthOrProductScreen(
                     compra: compra,
                     token: token,
                     userId: userId,
