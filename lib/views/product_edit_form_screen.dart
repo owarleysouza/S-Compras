@@ -66,8 +66,9 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
             widget.shop.id, widget.shop.nome, widget.shop.data, newShopPrice);
         widget.editproduct(widget.product.id, _productName, _productQuantity,
             _productCategory, _productPrice);
-        shopProvider.loadShops();
         widget.completeEditProduto(widget.product.id);
+        shopProvider.loadShops();
+
         setState(() {
           widget.shop.totalPrice = newShopPrice;
         });

@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:minhas_compras/models/compra.dart';
 import 'package:minhas_compras/models/produto.dart';
+import 'package:minhas_compras/providers/shops_provider.dart';
 
 import 'package:minhas_compras/utils/constants_key.dart';
 import 'package:minhas_compras/views/initial_screen.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class ImportShopItem extends StatefulWidget {
@@ -110,6 +112,11 @@ class _ImportShopItemState extends State<ImportShopItem> {
                     setState(() {
                       _isloading = false;
                     });
+
+                    ShopProvider shopProvider =
+                        Provider.of<ShopProvider>(context, listen: false);
+                    shopProvider.loadShops();
+
                     showDialog(
                         context: context,
                         child: AlertDialog(
