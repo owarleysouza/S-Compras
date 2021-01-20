@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:minhas_compras/exceptions/http_exception.dart';
 
 import 'package:minhas_compras/models/compra.dart';
-import 'package:minhas_compras/providers/auth_provider.dart';
 import 'package:minhas_compras/views/auth_product_screen.dart';
 
 import 'package:minhas_compras/providers/shops_provider.dart';
