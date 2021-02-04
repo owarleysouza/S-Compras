@@ -49,11 +49,8 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
       return;
     } else {
       _form.currentState.save();
-      if (_productPrice == widget.product.price &&
-          _productQuantity == widget.product.quantidade) {
-        widget.editproduct(widget.product.id, _productName, _productQuantity,
-            _productCategory, _productPrice);
-      } else {
+
+      if (_productPrice != widget.product.price) {
         ShopProvider shopProvider =
             Provider.of<ShopProvider>(context, listen: false);
         double newShopPrice = _calculateShopPrice(
@@ -73,6 +70,9 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
           widget.shop.totalPrice = newShopPrice;
         });
         //Altera valor da compra. Diminui dela o preco atual, e soma o _productPrice
+      } else {
+        widget.editproduct(widget.product.id, _productName, _productQuantity,
+            _productCategory, _productPrice);
       }
 
       Navigator.pop(context);
