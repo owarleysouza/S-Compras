@@ -150,9 +150,35 @@ class _AuthState extends State<Auth> {
                     onPressed: _submit),
             FlatButton(
                 onPressed: _switchMode,
-                child: Text(_authMode == AuthMode.Login
-                    ? "Ainda não tem uma conta? Crie aqui."
-                    : "Já tem uma conta? Entre aqui."))
+                child: _authMode == AuthMode.Login
+                    ? Text.rich(
+                        TextSpan(
+                          text: 'Ainda não tem uma conta? ',
+                          style: TextStyle(fontSize: 16),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'Crie aqui.',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                )),
+                            // can add more TextSpans here...
+                          ],
+                        ),
+                      )
+                    : Text.rich(
+                        TextSpan(
+                          text: 'Já tem uma conta? ',
+                          style: TextStyle(fontSize: 16),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'Entre aqui.',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                )),
+                            // can add more TextSpans here...
+                          ],
+                        ),
+                      ))
           ],
         ),
       ),
