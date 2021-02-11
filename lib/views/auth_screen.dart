@@ -17,6 +17,23 @@ class _AuthState extends State<Auth> {
   final _passwordController = TextEditingController();
   final Map<String, String> _authData = {'email': '', 'password': ''};
 
+  Animation<double> _opacityAnimation;
+
+  /*@override
+  void initState(){
+    super.initState();
+  
+
+  _controller = AnimationController(vsync: this,
+  duration: Duration(milliseconds: 300));
+
+_opacityAnimation = Tween(
+  begin: Size(double.infinity, 290),
+  end: Size(double.infinity, 371),
+).animate(CurvedAnimation(parent: _controller, curve: Curves.linear))
+
+}*/
+
   void _showErrorDialog(String msg) {
     showDialog(
       context: context,
@@ -78,7 +95,9 @@ class _AuthState extends State<Auth> {
   Widget build(BuildContext context) {
     return Material(
       //Aqui é usado o Material porque o TextField precisa ter um ancestral como o Material ou Sccafold para funcionar
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeIn,
         //color: Theme.of(context).primaryColor,
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 50),
