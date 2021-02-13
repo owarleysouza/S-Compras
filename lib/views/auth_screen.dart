@@ -10,29 +10,32 @@ class Auth extends StatefulWidget {
   _AuthState createState() => _AuthState();
 }
 
-class _AuthState extends State<Auth> {
+class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
   GlobalKey<FormState> _form = GlobalKey();
   AuthMode _authMode = AuthMode.Login;
   bool _isLoading = false;
   final _passwordController = TextEditingController();
   final Map<String, String> _authData = {'email': '', 'password': ''};
 
+  AnimationController _controller;
   Animation<double> _opacityAnimation;
 
-  /*@override
-  void initState(){
+  @override
+  void initState() {
     super.initState();
-  
 
-  _controller = AnimationController(vsync: this,
-  duration: Duration(milliseconds: 300));
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(
+        milliseconds: 300,
+      ),
+    );
 
-_opacityAnimation = Tween(
-  begin: Size(double.infinity, 290),
-  end: Size(double.infinity, 371),
-).animate(CurvedAnimation(parent: _controller, curve: Curves.linear))
-
-}*/
+    _opacityAnimation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
+  }
 
   void _showErrorDialog(String msg) {
     showDialog(
@@ -84,10 +87,12 @@ _opacityAnimation = Tween(
       setState(() {
         _authMode = AuthMode.Signup;
       });
+      _controller.forward();
     } else {
       setState(() {
         _authMode = AuthMode.Login;
       });
+      _controller.reverse();
     }
   }
 
@@ -138,18 +143,21 @@ _opacityAnimation = Tween(
                         onSaved: (newValue) =>
                             _authData['password'] = newValue),
                     if (_authMode == AuthMode.Signup)
-                      TextFormField(
-                        decoration:
-                            InputDecoration(labelText: 'Confirmar Senha'),
-                        obscureText: true,
-                        validator: _authMode == AuthMode.Signup
-                            ? (value) {
-                                if (value != _passwordController.text) {
-                                  return "Senhas diferentes";
+                      FadeTransition(
+                        opacity: _opacityAnimation,
+                        child: TextFormField(
+                          decoration:
+                              InputDecoration(labelText: 'Confirmar Senha'),
+                          obscureText: true,
+                          validator: _authMode == AuthMode.Signup
+                              ? (value) {
+                                  if (value != _passwordController.text) {
+                                    return "Senhas diferentes";
+                                  }
+                                  return null;
                                 }
-                                return null;
-                              }
-                            : null,
+                              : null,
+                        ),
                       )
                   ],
                 )),
