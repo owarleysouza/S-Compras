@@ -221,15 +221,63 @@ class _ProdutosState extends State<Produtos> {
                       )
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: Text(
+                      "Categoria Grosso",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  ...widget.compra.listadeprodutos.map(
+                      (produtodalista) => produtodalista.categoria == "Grosso"
+                          ? ProductItem(
+                              shop: widget.compra,
+                              produto: produtodalista,
+                              delproduto: _delproduto,
+                              editproduto: _editproduto,
+                              completeProduto: _completeProduto,
+                              completeEditProduct: _completeEditProduto,
+                            )
+                          : SizedBox()),
+                  Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: Text(
+                      "Categoria Limpeza e Higiene",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                   ...widget.compra.listadeprodutos
-                      .map((produtodalista) => ProductItem(
-                            shop: widget.compra,
-                            produto: produtodalista,
-                            delproduto: _delproduto,
-                            editproduto: _editproduto,
-                            completeProduto: _completeProduto,
-                            completeEditProduct: _completeEditProduto,
-                          )),
+                      .map((produtodalista) => produtodalista.categoria == "LeH"
+                          ? ProductItem(
+                              shop: widget.compra,
+                              produto: produtodalista,
+                              delproduto: _delproduto,
+                              editproduto: _editproduto,
+                              completeProduto: _completeProduto,
+                              completeEditProduct: _completeEditProduto,
+                            )
+                          : SizedBox()),
+                  Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: Text(
+                      "Categoria Frios",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  ...widget.compra.listadeprodutos.map(
+                      (produtodalista) => produtodalista.categoria == "Frios"
+                          ? ProductItem(
+                              shop: widget.compra,
+                              produto: produtodalista,
+                              delproduto: _delproduto,
+                              editproduto: _editproduto,
+                              completeProduto: _completeProduto,
+                              completeEditProduct: _completeEditProduto,
+                            )
+                          : SizedBox()),
                   const SizedBox(
                     //Elemento para que o float button nao fique encima do ultimo produto
                     height: 60,
