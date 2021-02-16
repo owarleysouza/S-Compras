@@ -197,7 +197,6 @@ class _ProdutosState extends State<Produtos> {
       ),
       body: temProdutonaLista
           ? Container(
-              //height: 600,
               child: ListView(
                 children: <Widget>[
                   Row(
