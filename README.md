@@ -1,4 +1,4 @@
-# SS Compras
+![Logo Readme](assets\images\logo-readme.png)
 
 An app to help you to buy groceries and make your shopping list.
 
