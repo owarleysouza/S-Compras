@@ -2,7 +2,7 @@
 
 <p align="center"> An app to help you to buy groceries and make your shopping list. </p>
 
-<!-- Prints das telas do App -->
+<img src="assets\images\Prints-app.png" alt="Prints" align="center" />
 
 
 # 👀 About this Project

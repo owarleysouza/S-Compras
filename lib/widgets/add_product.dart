@@ -59,8 +59,7 @@ class _AddProductState extends State<AddProduct> {
                     },
                   ),
                   TextFormField(
-                    decoration: InputDecoration(
-                        labelText: "Quantidade ('0' para quantidade Padrão)"),
+                    decoration: InputDecoration(labelText: "Quantidade"),
                     textInputAction: TextInputAction.next,
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: true),
