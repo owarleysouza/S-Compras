@@ -1,6 +1,6 @@
 <img src="assets\images\logo-readme.png" alt="Logo SS Compras" align="center" />
 
-<p align="center"> An app to help you to buy groceries and make your shopping list. </p>
+<p align="center"> An app to help you to <strong>buy groceries</strong> and <strong>make your shopping list</strong>. </p>
 
 <img src="assets\images\Prints-app.png" alt="Prints" align="center" />
 
