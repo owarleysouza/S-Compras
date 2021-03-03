@@ -30,4 +30,4 @@ Email-me: wss@cin.ufpe.br
 
 Thank you!
 # 📜 License
-
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/warleys14/SS-Compras/blob/master/LICENSE) file for details.
