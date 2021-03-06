@@ -21,9 +21,16 @@ Email-me: wss@cin.ufpe.br
 If you want to test the app in the production mode, the installer is listed below:  
 - [Android apk installer](https://drive.google.com/drive/folders/1sPuyzkMx3WE3CwH_cqfSp0GHoNZ5InNQ?usp=sharing)
 # 📱 Funcionalities
-
-
-
+- Sign in and Sign up with your e-mail address; 
+- Shops:
+    - Create, edit and remove shops;
+    - Mark as done, when you finished that shop;
+    - Navigate between current shops and done shops.
+- Products:
+    - Create, edit and remove products;
+    - Mark as done, when you picked up that product.
+- Import all products from one shop to another shop;
+- See the real-time price of your shop by editing the product's price.
 # 🔛 Getting Started
 ## Prerequisites
 To run this project in the developer mode, you'll need to have a basic environment to run a Flutter App. That can be found [here](https://flutter.dev/docs/get-started/install).
