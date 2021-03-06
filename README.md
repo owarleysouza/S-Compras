@@ -1,4 +1,4 @@
-<img src="assets\images\logo-readme.png" alt="Logo SS Compras" align="center" />
+<img src="assets\images\logo-readme.png" alt="Logo S Compras" align="center" />
 
 <p align="center"> An app to help you to <strong>buy groceries</strong> and <strong>make your shopping list</strong>. </p>
 
@@ -32,9 +32,9 @@ To run this project in the developer mode, you'll need to have a basic environme
 ## Installing 
 ### Cloning the repository
 ```
-git clone https://github.com/warleys14/SS-Compras.git
+git clone https://github.com/warleys14/S-Compras.git
 
-cd SS-Compras
+cd S-Compras
 ```
 
 ### Running 
@@ -50,4 +50,4 @@ Email-me: wss@cin.ufpe.br
 
 Thank you!
 # 📜 License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/warleys14/SS-Compras/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/warleys14/S-Compras/blob/master/LICENSE) file for details.
