@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:minhas_compras/utils/constants_key.dart';
 
 class Produto with ChangeNotifier {
   String id;
@@ -31,7 +32,7 @@ class Produto with ChangeNotifier {
 
     try {
       final response = await http.patch(
-          'https://flutter-minhascompras.firebaseio.com/shops/$userId/$shopId.json?auth=$token',
+          '${Constants.BASE_API_URL}/shops/$userId/$shopId.json?auth=$token',
           body: json.encode({
             'products': compra.listadeprodutos
                 .map((product) => {
@@ -63,7 +64,7 @@ class Produto with ChangeNotifier {
 
     try {
       final response = await http.patch(
-          'https://flutter-minhascompras.firebaseio.com/shops/$userId/$shopId.json?auth=$token',
+          '${Constants.BASE_API_URL}/shops/$userId/$shopId.json?auth=$token',
           body: json.encode({
             'products': compra.listadeprodutos
                 .map((product) => {

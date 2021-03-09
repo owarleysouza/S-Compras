@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:minhas_compras/utils/constants_key.dart';
 
 class Compra with ChangeNotifier {
   String id;
@@ -30,7 +31,7 @@ class Compra with ChangeNotifier {
 
     try {
       final response = await http.patch(
-          'https://flutter-minhascompras.firebaseio.com/shops/$userId/$id.json?auth=$token',
+          '${Constants.BASE_API_URL}/shops/$userId/$id.json?auth=$token',
           body: json.encode({
             'name': nome,
             'date': data.toString(),
