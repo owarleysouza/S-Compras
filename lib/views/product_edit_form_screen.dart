@@ -50,20 +50,29 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
     } else {
       _form.currentState.save();
 
-      if (_productPrice != widget.product.price) {
+      if (_productPrice != widget.product.price ||
+          _productQuantity != widget.product.quantidade) {
         ShopProvider shopProvider =
             Provider.of<ShopProvider>(context, listen: false);
+
         double newShopPrice = _calculateShopPrice(
             widget.shop.totalPrice,
             widget.product.price * widget.product.quantidade,
             _productQuantity == widget.product.quantidade
                 ? _productPrice * widget.product.quantidade
                 : _productPrice * _productQuantity);
+
         shopProvider.editshop(
             widget.shop.id, widget.shop.nome, widget.shop.data, newShopPrice);
+
+        if (_productPrice != widget.product.price) {
+          //Verifica se preço foi alterado, pra só nesse caso o produto ser marcado como concluído
+          widget.completeEditProduto(widget.product.id);
+        }
+
         widget.editproduct(widget.product.id, _productName, _productQuantity,
             _productCategory, _productPrice);
-        widget.completeEditProduto(widget.product.id);
+
         shopProvider.loadShops();
 
         setState(() {
