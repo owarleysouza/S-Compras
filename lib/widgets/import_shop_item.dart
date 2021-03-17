@@ -119,17 +119,20 @@ class _ImportShopItemState extends State<ImportShopItem> {
 
                     showDialog(
                         context: context,
-                        child: AlertDialog(
-                          title: Text("Importação Concluída com Sucesso!"),
-                          actions: [
-                            FlatButton(
-                                onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => InitialScreen())),
-                                child: Text("Ok"))
-                          ],
-                        ));
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("Importação Concluída com Sucesso!"),
+                            actions: [
+                              FlatButton(
+                                  onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              InitialScreen())),
+                                  child: Text("Ok"))
+                            ],
+                          );
+                        });
                   },
                 ),
               ),
