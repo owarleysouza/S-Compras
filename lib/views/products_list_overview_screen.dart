@@ -13,6 +13,7 @@ import 'package:minhas_compras/widgets/add_product.dart';
 import 'package:minhas_compras/widgets/product_item.dart';
 import 'package:minhas_compras/views/empty_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 /*Tela de produtos do app. Aqui basicamente é a tela onde são mostrados os produtos.
 */
@@ -87,7 +88,7 @@ class _ProdutosState extends State<Produtos> {
   }
 
   _openAddFormModal(BuildContext context) {
-    showModalBottomSheet(
+    showBarModalBottomSheet(
         context: context,
         builder: (_) {
           return AddProduct(addProduct: _addProduto);

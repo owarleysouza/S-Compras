@@ -8,6 +8,7 @@ import 'package:minhas_compras/models/produto.dart';
 import 'package:minhas_compras/utils/constants_key.dart';
 
 import 'package:minhas_compras/widgets/add_shop.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ShopProvider with ChangeNotifier {
   final String _baseShopUrl = '${Constants.BASE_API_URL}/shops';
@@ -140,7 +141,7 @@ class ShopProvider with ChangeNotifier {
   }
 
   openAddShopFormModal(BuildContext context) {
-    showModalBottomSheet(
+    showBarModalBottomSheet(
         context: context,
         builder: (_) {
           return AddShop(
