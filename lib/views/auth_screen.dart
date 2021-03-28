@@ -44,7 +44,7 @@ class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
         title: Text("Ocorreu um erro!"),
         content: Text(msg),
         actions: [
-          FlatButton(
+          TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text("Fechar"))
         ],
@@ -98,6 +98,7 @@ class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    Color accentColor = Theme.of(context).accentColor;
     return Material(
       //Aqui é usado o Material porque o TextField precisa ter um ancestral como o Material ou Sccafold para funcionar
       child: AnimatedContainer(
@@ -171,11 +172,19 @@ class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
                       CircularProgressIndicator(),
                     ],
                   )
-                : RaisedButton(
-                    child:
-                        Text(_authMode == AuthMode.Login ? "Entrar" : "Criar"),
-                    onPressed: _submit),
-            FlatButton(
+                : ElevatedButton(
+                    child: Text(
+                      _authMode == AuthMode.Login ? "Entrar" : "Criar",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    onPressed: _submit,
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(accentColor),
+                    ),
+                  ),
+            TextButton(
+                style: TextButton.styleFrom(primary: Colors.black),
                 onPressed: _switchMode,
                 child: _authMode == AuthMode.Login
                     ? Text.rich(
