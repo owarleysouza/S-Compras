@@ -68,11 +68,9 @@ class _InitialScreenState extends State<InitialScreen> {
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_basket),
-                title: Text("Compras Atuais")),
+                icon: Icon(Icons.shopping_basket), label: "Compras Atuais"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.check_circle),
-                title: Text("Compras Realizadas"))
+                icon: Icon(Icons.check_circle), label: "Compras Realizadas")
           ]),
     );
   }
