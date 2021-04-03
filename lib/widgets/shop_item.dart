@@ -24,7 +24,7 @@ class _ShopItemState extends State<ShopItem> {
   Widget build(BuildContext context) {
     final compra = Provider.of<Compra>(context);
     final Function deleteShop = Provider.of<ShopProvider>(context).deleteShop;
-    final scaffold = Scaffold.of(context);
+    final scaffold = ScaffoldMessenger.of(context);
     final token = Provider.of<ShopProvider>(context).token;
     final userId = Provider.of<ShopProvider>(context).userId;
 
@@ -48,12 +48,12 @@ class _ShopItemState extends State<ShopItem> {
                     ? "Tem certeza que deseja DESMARCAR essa compra como concluída?"
                     : "Tem certeza que deseja MARCAR essa compra como concluída?"),
                 actions: <Widget>[
-                  FlatButton(
+                  TextButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
                       child: Text("Cancelar")),
-                  FlatButton(
+                  TextButton(
                       onPressed: () async {
                         await compra.toggleCompleteShop(token, userId);
                         _refreshShops(context);
@@ -104,12 +104,12 @@ class _ShopItemState extends State<ShopItem> {
                                 content: Text(
                                     "Tem certeza que deseja APAGAR essa compra?"),
                                 actions: <Widget>[
-                                  FlatButton(
+                                  TextButton(
                                       onPressed: () {
                                         Navigator.pop(context);
                                       },
                                       child: Text("Cancelar")),
-                                  FlatButton(
+                                  TextButton(
                                       onPressed: () async {
                                         try {
                                           await deleteShop(compra.id);

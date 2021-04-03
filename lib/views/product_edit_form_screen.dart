@@ -175,12 +175,18 @@ class _ProductEditFormScreenState extends State<ProductEditFormScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    FlatButton(
-                        color: Theme.of(context).accentColor,
+                    ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              Theme.of(context).accentColor),
+                        ),
                         onPressed: () {
                           _saveForm();
                         },
-                        child: const Text("Editar")),
+                        child: const Text(
+                          "Editar",
+                          style: TextStyle(color: Colors.black),
+                        )),
                   ],
                 )
               ],

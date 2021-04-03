@@ -102,7 +102,7 @@ class _ShopEditFormScreenState extends State<ShopEditFormScreen> {
                             child: Text(
                                 "Data da Compra: ${DateFormat('dd/MM/yyyy').format(_shopDate)}"),
                           ),
-                          FlatButton(
+                          TextButton(
                               focusNode: _dataFocusNode,
                               onPressed: _showDatePicker,
                               child: Text("Selecionar Outra Data",
@@ -117,11 +117,18 @@ class _ShopEditFormScreenState extends State<ShopEditFormScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          RaisedButton(
-                            color: Theme.of(context).accentColor,
-                            onPressed: () => _saveForm(),
-                            child: Text("Salvar"),
-                          ),
+                          ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).accentColor),
+                              ),
+                              onPressed: () {
+                                _saveForm();
+                              },
+                              child: const Text(
+                                "Salvar",
+                                style: TextStyle(color: Colors.black),
+                              )),
                         ],
                       )
                     ],

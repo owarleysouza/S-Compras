@@ -39,12 +39,12 @@ class ProductItem extends StatelessWidget {
                   ? "Tem certeza que deseja DESMARCAR esse produto como concluído?"
                   : "Tem certeza que deseja MARCAR esse produto como concluído?"),
               actions: <Widget>[
-                FlatButton(
+                TextButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
                     child: Text("Cancelar")),
-                FlatButton(
+                TextButton(
                     onPressed: () {
                       completeProduto(produto.id);
                       Navigator.pop(context);
@@ -99,12 +99,12 @@ class ProductItem extends StatelessWidget {
                             content: Text(
                                 "Tem certeza que deseja REMOVER esse produto?"),
                             actions: <Widget>[
-                              FlatButton(
+                              TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
                                   child: Text("Cancelar")),
-                              FlatButton(
+                              TextButton(
                                   onPressed: () {
                                     double newShopTotalPrice = shop.totalPrice -
                                         (produto.quantidade * produto.price);

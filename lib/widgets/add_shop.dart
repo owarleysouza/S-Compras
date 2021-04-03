@@ -72,7 +72,7 @@ class _AddShopState extends State<AddShop> {
             title: Text("Ocorreu um erro!"),
             content: Text("Ocorreu um erro inesperado para salvar a compra!"),
             actions: [
-              FlatButton(
+              TextButton(
                 child: Text("Fechar"),
                 onPressed: () => Navigator.pop(context),
               )
@@ -126,7 +126,7 @@ class _AddShopState extends State<AddShop> {
                           Expanded(
                               child: Text(
                                   "Data da Compra: ${DateFormat('dd/MM/y').format(_shopdate)}")),
-                          FlatButton(
+                          TextButton(
                               focusNode: _datefocusnode,
                               onPressed: _showDatePicker,
                               child: Text(
@@ -142,13 +142,18 @@ class _AddShopState extends State<AddShop> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          RaisedButton(
-                            color: Theme.of(context).accentColor,
-                            onPressed: () {
-                              _saveForm();
-                            },
-                            child: const Text("Adicionar"),
-                          ),
+                          ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).accentColor),
+                              ),
+                              onPressed: () {
+                                _saveForm();
+                              },
+                              child: const Text(
+                                "Adicionar",
+                                style: TextStyle(color: Colors.black),
+                              )),
                         ],
                       )
                     ],

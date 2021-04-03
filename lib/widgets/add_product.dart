@@ -104,12 +104,18 @@ class _AddProductState extends State<AddProduct> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      FlatButton(
-                          color: Theme.of(context).accentColor,
+                      ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                Theme.of(context).accentColor),
+                          ),
                           onPressed: () {
                             _saveForm();
                           },
-                          child: const Text("Adicionar")),
+                          child: const Text(
+                            "Adicionar",
+                            style: TextStyle(color: Colors.black),
+                          )),
                     ],
                   )
                 ],

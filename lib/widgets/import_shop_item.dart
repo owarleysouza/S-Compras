@@ -123,7 +123,7 @@ class _ImportShopItemState extends State<ImportShopItem> {
                           return AlertDialog(
                             title: Text("Importação Concluída com Sucesso!"),
                             actions: [
-                              FlatButton(
+                              TextButton(
                                   onPressed: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
